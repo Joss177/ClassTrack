@@ -1,0 +1,117 @@
+/* RESET BÁSICO */
+* {
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* FONDO */
+.login-page {
+    min-height: 100vh;
+    background: #f4f6f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* CONTENEDOR */
+.login-container {
+    width: 380px;
+    background: #ffffff;
+    padding: 35px 30px;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+/* ICONO */
+.login-icon img {
+    width: 50px;
+    margin-bottom: 15px;
+}
+
+/* TITULOS */
+.login-header h1 {
+    margin: 0;
+    font-size: 26px;
+    color: #1e3a5f;
+}
+
+.login-header h2 {
+    margin-top: 8px;
+    font-size: 18px;
+    font-weight: normal;
+    color: #333;
+}
+
+/* FORMULARIO */
+.login-form {
+    margin-top: 25px;
+    text-align: left;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    font-size: 14px;
+    color: #444;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 6px;
+    border: 1px solid #cfd6df;
+    font-size: 14px;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #1e3a5f;
+}
+
+/* LINKS */
+.form-extra {
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+.form-extra a {
+    font-size: 13px;
+    color: #1e3a5f;
+    text-decoration: none;
+}
+
+/* BOTON */
+.form-actions {
+    margin-bottom: 20px;
+}
+
+.btn-login {
+    width: 100%;
+    background: #1e3a5f;
+    color: #fff;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.btn-login:hover {
+    background: #162c48;
+}
+
+/* FOOTER */
+.login-footer {
+    font-size: 14px;
+}
+
+.login-footer a {
+    color: #1e3a5f;
+    font-weight: 500;
+    text-decoration: none;
+}

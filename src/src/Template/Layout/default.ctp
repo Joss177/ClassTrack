@@ -33,7 +33,7 @@ $cakeDescription = 'OnePage';
 
         <?= $this->Html->script('https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'); ?>
         <?= $this->Html->script('https://cdn.jsdelivr.net/npm/sweetalert2@11'); ?>
-        
+
         <?= $this->Html->css('https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css') ?>
         <?= $this->Html->css('style'.MIN) ?>
         <?= $this->Html->css('responsive'.MIN) ?>

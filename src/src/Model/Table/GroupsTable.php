@@ -1,33 +1,29 @@
 <?php
-
 namespace App\Model\Table;
 
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
-class GroupsTable extends Table{
+class GroupsTable extends Table
+{
+    public function initialize(array $config)
+    {
+        parent::initialize($config);
 
-    public function initialize(array $config){
-      $this->addBehavior('Timestamp');
+        $this->setTable('groups');
+        $this->setPrimaryKey('id');
+        $this->addBehavior('Timestamp');
+
+        $this->hasMany('Users', [
+            'foreignKey' => 'group_id',
+        ]);
     }
 
-    public function validationDefault(Validator $validator){
-      $validator
-        ->notEmpty('name');
-      $validator
-        ->notEmpty('name', 'El nombre no puede quedar vacío');
+    public function validationDefault(Validator $validator)
+    {
+        $validator
+            ->notEmptyString('name', 'El nombre del grupo es obligatorio');
 
-      return $validator;
+        return $validator;
     }
-
-    public function validationUpdate($validator){
-
-      $validator
-        ->notEmpty('name');
-      $validator
-        ->notEmpty('name', 'El nombre no puede quedar vacío');
-
-      return $validator;
-    }
-
 }

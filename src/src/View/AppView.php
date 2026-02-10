@@ -36,5 +36,11 @@ class AppView extends View
      */
     public function initialize()
     {
+        parent::initialize();
+
+        // Cargar helpers globales
+        $this->loadHelper('Menu'); // <-- Nuestro MenuHelper
+        $this->loadHelper('Html'); // Por si no lo tienes cargado
+        $this->loadHelper('Form'); // Por si usas formularios
     }
 }

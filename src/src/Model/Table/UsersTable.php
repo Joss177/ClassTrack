@@ -1,51 +1,42 @@
 <?php
-
 namespace App\Model\Table;
 
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\Auth\DefaultPasswordHasher;
 
-class UsersTable extends Table{
+class UsersTable extends Table
+{
+    public function initialize(array $config)
+    {
+        parent::initialize($config);
 
-  public function initialize(array $config){
-    $this->addBehavior('Timestamp');
-  }
+        $this->setTable('users');
+        $this->setPrimaryKey('id');
 
-  public function validationDefault(Validator $validator){
-    $validator
-      ->notEmpty('name')
-      ->notEmpty('email')
-      ->notEmpty('password')
-      ->requirePresence(['name','email','password']);
+        $this->addBehavior('Timestamp');
 
-    return $validator;
-  }
+        $this->belongsTo('Groups', [
+            'foreignKey' => 'group_id',
+            'joinType' => 'INNER'
+        ]);
+    }
 
-  public function validationUpdate($validator){
+    public function validationDefault(Validator $validator)
+    {
+        $validator
+            ->notEmptyString('nombre_completo')
+            ->notEmptyString('correo')
+            ->email('correo')
+            ->notEmptyString('password');
 
-    $validator
-      ->notEmpty('name')
-      ->notEmpty('email')
-      ->notEmpty('password');
-    $validator
-      ->notEmpty('name', 'El nombre no puede quedar vacío')
-      ->notEmpty('email', 'El email no puede quedar vacío')
-      ->notEmpty('password', 'La contraseña no puede quedar vacía');
+        return $validator;
+    }
 
-    return $validator;
-  }
-
-  public function validationLogin($validator){
-
-    $validator
-    ->notEmpty('email', 'Ingrese el email')
-    ->add('email','valid',[
-      'rule'=>'email',
-      'message'=>'Ingresa un email valido'
-    ])
-    ->notEmpty('password', 'Ingrese la contraseña');
-
-    return $validator;
-  }
-
+    public function beforeSave($event, $entity, $options)
+    {
+        if ($entity->isDirty('password') && !empty($entity->password)) {
+            $entity->password = (new DefaultPasswordHasher)->hash($entity->password);
+        }
+    }
 }

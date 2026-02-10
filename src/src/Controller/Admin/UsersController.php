@@ -4,161 +4,198 @@ namespace App\Controller\Admin;
 use App\Controller\AppController;
 use Cake\Event\Event;
 
+class UsersController extends AppController
+{
+    public function initialize()
+    {
+        parent::initialize();
 
-class UsersController extends AppController{
+        $this->loadModel('Users');
+        $this->loadModel('Groups');
 
-  public function initialize()
-  {
-      parent::initialize();
-      $this->loadModel('Groups');
-  }
-
-
-    public function beforeFilter(Event $event){
-      parent::beforeFilter($event);
-      $this->Auth->allow('login');
+        $this->loadComponent('Paginator');
+        $this->loadComponent('Flash');
     }
 
-    public function index(){
+    public function beforeFilter(Event $event)
+    {
+        parent::beforeFilter($event);
 
-      $paginate = [
-        'limit' => 10,
-        'order' => [
-          'Users.created' => 'DESC'
-        ]
-      ];
-
-      $conditions = array();
-      if($this->Auth->user('group_id')!=1){
-        $conditions[] = ['group_id >'=>1];
-      }
-
-      $this->loadComponent('Paginator');
-      $users = $this->Paginator->paginate($this->Users->find('all', ['conditions'=> $conditions]),$paginate);
-      $this->set('users', $users);
-
+        $this->Auth->allow(['login']);
     }
 
-    public function edit($id=null){
+    /* =========================
+     * LISTADO
+     * ========================= */
+    public function index()
+    {
+        $conditions = [];
 
-      $groups = $this->Groups->find('all',['fields'=>['id','name'], 'conditions'=>['id >'=>1]])
-      ->enableHydration(false)
-      ->toList();
-      $grupos = array();
-      foreach ($groups as $key => $g) {
-        $grupos[$g['id']] = $g['name'];
-      }
-
-      if(!empty($id)){
-        $user = $this->Users->get($id);
-        if ($this->request->is(['post', 'put'])) {
-          $this->Users->patchEntity($user, $this->request->getData(), ['validate'=>'update']);
-          if ($this->Users->save($user)) {
-            $this->Flash->set('Usuario actualizado con exito',['key'=>'message', 'element'=>'success']);
-            return $this->redirect(['action' => 'index']);
-          }
-          $this->Flash->set('No se puede editar el usuario',['key'=>'message','element'=>'error']);
+        // Si no es admin, no puede ver admins
+        if ($this->Auth->user('group_id') != 1) {
+            $conditions['Users.group_id >'] = 1;
         }
 
-        $this->set('editUser', $user);
-        $this->set('groups',$grupos);
+        $this->paginate = [
+            'limit' => 10,
+            'conditions' => $conditions,
+            'order' => [
+                'Users.created' => 'DESC'
+            ]
+        ];
 
-      }else{
-        $this->Flash->set('El id es incorrecto',['key'=>'message','element'=>'error']);
-        return $this->redirect(['action' => 'index']);
-      }
+        $users = $this->paginate($this->Users);
+        $this->set(compact('users'));
+    }
 
-    }#edit
+    /* =========================
+     * LOGIN
+     * ========================= */
+        public function login()
+{
+    $this->viewBuilder()->disableAutoLayout();
+    // Si ya está logueado, no mostrar login
+    if ($this->Auth->user()) {
+        return $this->redirect([
+            'controller' => 'Admin',
+            'action' => 'index',
+            'prefix' => 'admin'
+        ]);
+    }
 
-    public function editPass($id=null){
+    if ($this->request->is('post')) {
 
-      if(!empty($id)){
-        $user = $this->Users->get($id);
-        if ($this->request->is(['post', 'put'])) {
-          $this->Users->patchEntity($user, $this->request->getData(), ['validate'=>'update']);
-          if ($this->Users->save($user)) {
-            $this->Flash->set('Usuario actualizado con exito',['key'=>'message', 'element'=>'success']);
-            return $this->redirect(['action' => 'index']);
-          }
-          $this->Flash->set('No se puede editar el usuario',['key'=>'message','element'=>'error']);
-        }
+        $user = $this->Auth->identify();
 
-        $this->set('editUser', $user);
-      }else{
-        $this->Flash->set('El id es incorrecto',['key'=>'message','element'=>'error']);
-        return $this->redirect(['action' => 'index']);
-      }
 
-    }#edit
-
-    public function login(){
-
-      $login = $this->Users->newEntity();
-      if($this->request->is('post') && !empty($this->request->getData())){
-        $check_login = $this->Users->patchEntity($login, $this->request->getData(),['validate'=>'login']);
-        if($check_login->getErrors()){
-          $this->Flash->error('Favor de llenar todos los campos');
-        }else {
-          $user = $this->Auth->identify();
-          if ($user) {
+        if ($user) {
             $this->Auth->setUser($user);
-            // $this->Flash->success('Hola',['key'=>'message']);
-            return $this->redirect($this->Auth->redirectUrl());
-          } else {
-            $this->Flash->error('Usuario o contraseña incorrectos');
-          }
-          // return $this->redirect(['controller'=>'Admin','action'=>'index']);
+
+            // Redirección final después de login
+            return $this->redirect([
+                'controller' => 'Admin',
+                'action' => 'index',
+                'prefix' => 'admin'
+            ]);
         }
-      }
-      $this->set('login',$login);
+
+        $this->Flash->error('Correo o contraseña incorrectos');
+    }
+}
 
 
-    }#login()
+    /* =========================
+     * CREAR USUARIO
+     * ========================= */
+    public function signup()
+    {
+        $user = $this->Users->newEntity();
 
-    public function signup(){
+        $groups = $this->Groups
+            ->find('list', [
+                'keyField' => 'id',
+                'valueField' => 'name'
+            ])
+            ->where(['id >' => 1])
+            ->toArray();
 
-      $sign_up = $this->Users->newEntity($this->request->getData(),['validate'=>false]);
-      $groups = $this->Groups->find('all',['fields'=>['id','name'], 'conditions'=>['id >'=>1]])
-      ->enableHydration(false)
-      ->toList();
-      $grupos = array();
-      foreach ($groups as $key => $g) {
-        $grupos[$g['id']] = $g['name'];
-      }
-      if($this->request->is('post') && !empty($this->request->getData())){
+        if ($this->request->is('post')) {
+            $user = $this->Users->patchEntity($user, $this->request->getData());
 
-        $post = $this->Users->patchEntity($sign_up, $this->request->getData(),['validate'=>'update']);
-        if($sign_up->getErrors()){
-          $this->Flash->error('Favor de llenar todos los datos',['key'=>'message']);
-        }else{
-          if($this->Users->save($sign_up)){
-            $this->Flash->success('Usuario agregado correctamente',['key'=>'message']);
-            return $this->redirect(['action'=>'index']);
-          }
-          $this->Flash->error(__('No se puede guardar el usuario'));
+            if ($user->getErrors()) {
+                $this->Flash->error('Favor de llenar todos los datos');
+            } else {
+                if ($this->Users->save($user)) {
+                    $this->Flash->success('Usuario agregado correctamente');
+                    return $this->redirect(['action' => 'index']);
+                }
+                $this->Flash->error('No se puede guardar el usuario');
+            }
         }
-      }
-      $this->set('groups',$grupos);
-      $this->set('sign_up',$sign_up);
-    }#signup()
 
-    public function logout(){
-      return $this->redirect($this->Auth->logout());
-    }#logout()
+        $this->set(compact('user', 'groups'));
+    }
 
-    public function delete($id){
+    /* =========================
+     * EDITAR USUARIO
+     * ========================= */
+    public function edit($id)
+{
+    $editUser = $this->Users->get($id);
 
-      $this->request->allowMethod(['post', 'delete']);
-      if($this->request->is(['post', 'delete'])){
+    if ($this->request->is(['post','put'])) {
+        $this->Users->patchEntity($editUser, $this->request->getData());
+
+        if ($this->Users->save($editUser)) {
+            $this->Flash->success('Usuario actualizado correctamente');
+            return $this->redirect(['action' => 'index']);
+        }
+
+        $this->Flash->error('No se pudo actualizar el usuario');
+    }
+
+    $groups = $this->Users->Groups->find('list');
+    $this->set(compact('editUser','groups'));
+}
+
+
+    /* =========================
+     * CAMBIAR PASSWORD
+     * ========================= */
+public function editPass($id)
+{
+    $editUser = $this->Users->get($id);
+
+    if ($this->request->is(['post', 'put'])) {
+
+        $data = $this->request->getData();
+
+        // Validación simple
+        if (empty($data['password'])) {
+            $this->Flash->error('La contraseña no puede ir vacía');
+            return;
+        }
+
+        // Eliminar campo que no existe en la entidad
+        unset($data['confirm_pass']);
+
+        $this->Users->patchEntity($editUser, $data);
+
+        if ($this->Users->save($editUser)) {
+            $this->Flash->success('Contraseña actualizada correctamente');
+            return $this->redirect(['action' => 'index']);
+        }
+
+        $this->Flash->error('No se pudo actualizar la contraseña');
+    }
+
+    $this->set(compact('editUser'));
+}
+
+
+    /* =========================
+     * ELIMINAR
+     * ========================= */
+    public function delete($id)
+    {
+        $this->request->allowMethod(['post', 'delete']);
+
         $user = $this->Users->get($id);
+
         if ($this->Users->delete($user)) {
-          $this->Flash->set('Usuario eliminado con exito',['key'=>'message', 'element'=>'success']);
-          return $this->redirect(['action' => 'index']);
+            $this->Flash->success('Usuario eliminado con éxito');
+        } else {
+            $this->Flash->error('No se pudo eliminar el usuario');
         }
-      }
-      $this->Flash->set('No se puede eliminar el usuario',['key'=>'message','element'=>'error']);
 
+        return $this->redirect(['action' => 'index']);
+    }
 
-    }#delete
-
+    /* =========================
+     * LOGOUT
+     * ========================= */
+    public function logout()
+    {
+        return $this->redirect($this->Auth->logout());
+    }
 }
