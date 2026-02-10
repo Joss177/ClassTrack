@@ -1,0 +1,98 @@
+msgid "home_url"
+msgstr "/"
+
+msgid "home_change_url"
+msgstr "/en"
+
+msgid "Español"
+msgstr "English"
+
+msgid "Know us"
+msgstr "Conócenos"
+
+msgid "Services"
+msgstr "Servicios"
+
+msgid "Why us?"
+msgstr "¿Por qué nosotros?"
+
+msgid "Galery"
+msgstr "Galeria"
+
+msgid "Contact"
+msgstr "Contacto"
+
+msgid "Contact us"
+msgstr "Contactanos"
+
+msgid "Social networks galery"
+msgstr "Galeria redes sociales"
+
+msgid "Send us a message for more information"
+msgstr "Mandanos un mensaje para mas información"
+
+msgid "Enter your name and last name"
+msgstr "Ingresa tu nombre y apellidos"
+
+msgid "Full name"
+msgstr "Nombre completo"
+
+msgid "Email"
+msgstr "Correo electrónico"
+
+msgid "Phone"
+msgstr "Teléfono"
+
+msgid "How can we help you?"
+msgstr "¿En qué podemos ayudarte?"
+
+msgid "Write your message here…"
+msgstr "Escribe tu mensaje aquí…"
+
+msgid "Send message"
+msgstr "Enviar mensaje"
+
+msgid "By sending the message you accept"
+msgstr "Al mandar el mensaje aceptas"
+
+msgid "terms and conditions"
+msgstr "términos y condiciones"
+
+msgid "notice of privacy"
+msgstr "aviso de privacidad"
+
+msgid "Terms and conditions"
+msgstr "Términos y condiciones"
+
+msgid "Notice of privacy"
+msgstr "Aviso de privacidad"
+
+msgid "Schedules"
+msgstr "Horarios"
+
+msgid "We are located in"
+msgstr "Nos ubicamos en"
+
+msgid "All rights reserved"
+msgstr "Todos los derechos reservados"
+
+msgid "Freezer truck"
+msgstr "Camión con congelador"
+
+msgid "Cargo truck"
+msgstr "Camión de carga"
+
+msgid "Dump truck"
+msgstr "Camión volteo"
+
+msgid "Truck crane"
+msgstr "Camión grua"
+
+msgid "We transport merchandise and rent cargo transport vehicles from 1 to 24 tons and offer the refrigeration service (thermos for them). Contact us and receive advice according to your needs, we surely have the solution to your transportation requirements, we are here to serve you. 24-hour home care."
+msgstr "Transportamos mercancía y rentamos vehículos de transporte de carga desde 1 hasta 24 toneladas y ofrecemos el servicio de refrigeración (thermos para los mismos). Contáctanos y recibe asesoría según sean tus necesidades, seguro tenemos la solución a tus requerimientos de transporte, estamos para servirte. Atención las 24 horas a domicilio."
+
+msgid "We are a Mexican company with more than 26 years of experience, dedicated to the transportation (freight) of frozen, refrigerated and dry box cargo, with service nationwide. We offer cargo transportation rental with or without a driver, from vans to trailers, as well as refrigeration thermos for transportation, in order to maintain the ideal temperature of the transported products."
+msgstr "Somos una empresa mexicana con más de 26 años de experiencia, dedicados al transporte (fletes) de carga congelada, refrigerada y en caja seca, con servicio a nivel nacional. Brindamos renta de transporte de carga con o sin chofer, desde camionetas hasta tráileres, así como thermos de refrigeración para el transporte, con el fin de mantener la temperatura ideal de los productos transportados."
+
+msgid "Our goal is to provide a solution to your merchandise transportation requirements, we are specialists transporting everything related to the food, pharmaceutical, agricultural, automotive and electronic industries. Thanks to the fact that we have a team of professionals who are dedicated to logistics and transportation, we can give your merchandise security, arriving on time and in optimal conditions, since we know the safest routes in the Mexican territory, trust is ours. cover letter, all our clients support us."
+msgstr "Nuestro objetivo es dar solución a tus requerimientos de transportación de mercancía, somos especialistas transportando todo lo relacionado al giro alimenticio, farmacéutico, agropecuario, automotriz y electrónico. Gracias a que contamos con un equipo de profesionales que se dedican a la logística y transporte, podemos darle seguridad a tu mercancía, llegando en el tiempo pactado y en óptimas condiciones, ya que conocemos las rutas más seguras del territorio mexicano, la confianza es nuestra carta de presentación, todos nuestros clientes nos respaldan."

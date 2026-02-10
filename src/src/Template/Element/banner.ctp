@@ -1,0 +1,1 @@
+<section id="banner" style="background-image:url('/img/banner.jpg');"></section>
