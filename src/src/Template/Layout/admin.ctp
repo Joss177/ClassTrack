@@ -19,7 +19,10 @@
 
     <aside class="sidebar">
         <div class="brand">
-            <div class="icon"></div>
+            <?= $this->Html->image('LOGOCLASSTRACK.png', [
+                'alt' => 'ClassTrack',
+                'class' => 'logo-img'
+            ]) ?>
             <span>ClassTrack</span>
         </div>
 
@@ -71,6 +74,15 @@
                 [
                     'escape' => false,
                     'class' => $this->Menu->activeClass('Gestion')
+                ]
+            ) ?>
+
+            <?= $this->Html->link(
+                '<i class="fas fa-users"></i><span>Usuarios</span>',
+                ['controller' => 'Users', 'action' => 'edit', 1],
+                [
+                    'escape' => false,
+                    'class' => $this->Menu->activeClass('Users')
                 ]
             ) ?>
 
@@ -133,7 +145,7 @@
 /* SIDEBAR */
 .sidebar {
     width: 240px;
-    background: linear-gradient(180deg, #163b63, #1f4a78);
+    background: linear-gradient(180deg, #1E3A5F, #1f4a78);
     color: #e9f1fb;
     display: flex;
     flex-direction: column;
@@ -157,6 +169,12 @@
     border-radius: 3px;
 }
 
+.logo-img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
 /* MENU */
 .menu {
     flex: 1;
@@ -178,7 +196,7 @@
 }
 
 .item.active {
-    background: #2f5f9f;
+    background: #1E3A5F;
     border-left: 4px solid #ffffff;
     padding-left: 16px;
     font-weight: 600;
@@ -194,7 +212,7 @@
 }
 
 .clock { border-radius: 50%; }
-.table { border: 1px solid #163b63; }
+.table { border: 1px solid #1E3A5F; }
 .camera { clip-path: polygon(0 25%, 20% 25%, 30% 0, 70% 0, 80% 25%, 100% 25%, 100% 100%, 0 100%); }
 .users { border-radius: 50% 50% 40% 40%; }
 .settings { clip-path: polygon(50% 0, 65% 20%, 100% 35%, 65% 50%, 50% 100%, 35% 50%, 0 35%, 35% 20%); }

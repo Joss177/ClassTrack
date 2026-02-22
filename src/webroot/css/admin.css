@@ -30,23 +30,29 @@
     flex-direction: column;
 }
 
-/* LOGO */
-.admin-layout .menuTop {
-    padding: 20px;
-    border-bottom: 1px solid rgba(255,255,255,0.15);
-}
 
-.admin-layout .menuBrand {
-    display: flex;
-    align-items: center;
-    font-size: 18px;
-    font-weight: 600;
-}
 
 .admin-layout .menuBrand i {
     margin-right: 10px;
     font-size: 20px;
 }
+
+
+/* ===== BRAND ===== */
+.admin-layout .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* FORZAR TAMAÑO IMAGEN */
+.admin-layout .brand img {
+    height: 40px !important;
+    width: auto !important;
+    max-height: 40px !important;
+    object-fit: contain;
+}
+
 
 /* ITEMS */
 .admin-layout .menuItems {

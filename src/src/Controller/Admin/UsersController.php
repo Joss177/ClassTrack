@@ -52,36 +52,36 @@ class UsersController extends AppController
      * LOGIN
      * ========================= */
     public function login()
-{
-    $this->viewBuilder()->disableAutoLayout();
+    {
+        $this->viewBuilder()->disableAutoLayout();
 
-    // Si ya está autenticado, redirigir a admin
-    if ($this->Auth->user()) {
-        return $this->redirect([
-            'controller' => 'Admin',
-            'action' => 'index',
-            'prefix' => 'admin'
-        ]);
-    }
-
-    if ($this->request->is('post')) {
-
-        $user = $this->Auth->identify();
-
-        if ($user) {
-
-            $this->Auth->setUser($user);
-
-            return $this->redirect($this->Auth->redirectUrl([
+        // Si ya está autenticado, redirigir a admin
+        if ($this->Auth->user()) {
+            return $this->redirect([
                 'controller' => 'Admin',
                 'action' => 'index',
                 'prefix' => 'admin'
-            ]));
+            ]);
         }
 
-        $this->Flash->error('Correo o contraseña incorrectos');
+        if ($this->request->is('post')) {
+
+            $user = $this->Auth->identify();
+
+            if ($user) {
+
+                $this->Auth->setUser($user);
+
+                return $this->redirect($this->Auth->redirectUrl([
+                    'controller' => 'Admin',
+                    'action' => 'index',
+                    'prefix' => 'admin'
+                ]));
+            }
+
+            $this->Flash->error('Correo o contraseña incorrectos');
+        }
     }
-}
 
 
     /* =========================
@@ -131,23 +131,30 @@ class UsersController extends AppController
     /* =========================
      * EDITAR USUARIO
      * ========================= */
-    public function edit($id)
+
+
+    public function edit($id = null)
 {
-    $editUser = $this->Users->get($id);
+    $users = $this->Users->find('all');
 
-    if ($this->request->is(['post','put'])) {
-        $this->Users->patchEntity($editUser, $this->request->getData());
+    if ($this->request->is(['post', 'put'])) {
 
-        if ($this->Users->save($editUser)) {
-            $this->Flash->success('Usuario actualizado correctamente');
-            return $this->redirect(['action' => 'index']);
+        $user = $this->Users->get($this->request->getData('id'));
+
+        $this->Users->patchEntity($user, $this->request->getData(), [
+            'fields' => ['nombre_completo', 'correo']
+        ]);
+
+        if ($this->Users->save($user)) {
+            $this->Flash->success('Usuario actualizado.');
+        } else {
+            $this->Flash->error('Error al actualizar.');
         }
 
-        $this->Flash->error('No se pudo actualizar el usuario');
+        return $this->redirect(['action' => 'edit']);
     }
 
-    $groups = $this->Users->Groups->find('list');
-    $this->set(compact('editUser','groups'));
+    $this->set(compact('users'));
 }
 
 
@@ -188,19 +195,23 @@ class UsersController extends AppController
     /* =========================
      * ELIMINAR
      * ========================= */
-    public function delete($id)
+    public function delete($id = null)
     {
+        // Solo permitir método POST o DELETE (seguridad)
         $this->request->allowMethod(['post', 'delete']);
 
+        // Buscar el usuario
         $user = $this->Users->get($id);
 
+        // Intentar eliminar
         if ($this->Users->delete($user)) {
-            $this->Flash->success('Usuario eliminado con éxito');
+            $this->Flash->success('El usuario ha sido eliminado correctamente.');
         } else {
-            $this->Flash->error('No se pudo eliminar el usuario');
+            $this->Flash->error('No se pudo eliminar el usuario. Inténtalo nuevamente.');
         }
 
-        return $this->redirect(['action' => 'index']);
+        // Redirigir al listado
+        return $this->redirect(['action' => 'edit']); // o 'index' si usas index
     }
 
     /* =========================
