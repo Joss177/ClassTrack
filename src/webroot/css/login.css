@@ -1,3 +1,14 @@
+/* RESET GLOBAL */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    overflow: hidden; /* 🔥 elimina scroll vertical */
+}
+
 /* RESET BÁSICO */
 * {
     box-sizing: border-box;
@@ -6,7 +17,7 @@
 
 /* FONDO */
 .login-page {
-    min-height: 100vh;
+    min-height: 100%;
     background: #f4f6f9;
     display: flex;
     justify-content: center;

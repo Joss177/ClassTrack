@@ -1,51 +1,69 @@
-<section id="signup" class="moduleContent">
-  <div class="title borderBottom">
-      <h2>Agregar usuario</h2>
-  </div>
-  <?= $this->Flash->render('message');?>
-  <div>
-    <?php
-      $this->Form->setTemplates([
-        'inputContainer' => '<div class="input {{required}}">{{content}}</div>',
-        'input' => '<input type="{{type}}" name="{{name}}" class="form-control is-invalid" {{attrs}} />',
-        'inputContainerError' => '<div class="input has-danger {{required}} error">{{content}}{{error}}</div>',
-        'error'=>'<div class="text-danger">{{content}}</div>'
-      ]);
-      ?>
-    <?= $this->Form->create($sign_up, ['id'=>'newUser']) ?>
-      <?php
-        echo $this->Form->control('name',['required'=>false,'label'=>['text'=>'Nombre completo'],'placeholder'=>'Juan Pérez']);
-        echo $this->Form->control('email',['required'=>false,'label'=>['text'=>'Usuario'],'placeholder'=>'example@email.com']);
-        echo $this->Form->control('password',['required'=>false,'label'=>['text'=>'Contraseña'],'placeholder'=>'Contraseña']);
-        echo $this->Form->control('confirm_pass',['type'=>'password','required'=>false,'label'=>['text'=>'Confirmar contraseña'],'placeholder'=>'Confirmar contraseña', 'onkeyup'=>'validPass(this)']);
-        echo "<div class='errorDisplay confirmError text-danger' style='display:none;'>Las contraseñas no coinciden</div>";
-        echo $this->Form->control('group_id',['class'=>'form-control', 'label'=>'Grupo', 'type'=>'select', 'options'=>$groups]);
-        echo "<div class='buttons'>";
-          echo $this->Html->link($this->Form->button('Cancelar',['class'=>'btn btnDanger', 'type'=>'button']), [ 'action' => 'index'], ['escape' => false]);
-          echo $this->Form->button('Crear usuario',['class'=>'btn btnSuccess saveButton']);
-        echo "</div>";
-      ?>
-    <?= $this->Form->end(); ?>
-  </div>
-</section>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <?= $this->Html->charset() ?>
+    <title>ClassTrack - Crear Cuenta</title>
+    <?= $this->Html->css('signup.css') ?>
+</head>
 
-<script type="text/javascript">
+<body>
 
-  var submit = false;
+<div class="login-container">
 
-  function validPass(val){
-    var pass = $('#password').val();
-    if(pass == val.value){
-      submit = true;
-      $('.confirmError').css('display','none');
-    }else{
-      submit = false;
-      $('.confirmError').css('display','block');
-    }
-  }
+    <!-- ICONO -->
+    <div class="login-icon">
+        <?= $this->Html->image('LOGOCLASSTRACK.png') ?>
+    </div>
 
-  $('#newUser').submit(function(e){
-    return submit;
-  });
+    <h2 class="brand-title">ClassTrack</h2>
+    <p class="subtitle">Crear Cuenta</p>
 
-</script>
+    <?= $this->Form->create($user, ['class' => 'login-form']) ?>
+
+<div class="form-group">
+    <label>Nombre Completo</label>
+    <?= $this->Form->text('nombre_completo', [
+        'placeholder' => 'Juan Pérez'
+    ]) ?>
+    <?= $this->Form->error('nombre_completo') ?>
+</div>
+
+<div class="form-group">
+    <label>Correo Electrónico</label>
+    <?= $this->Form->email('correo', [
+        'placeholder' => 'tu@email.com'
+    ]) ?>
+    <?= $this->Form->error('correo') ?>
+</div>
+
+<div class="form-group password-field">
+    <label>Contraseña</label>
+    <?= $this->Form->password('password', [
+        'placeholder' => 'Mínimo 6 caracteres'
+    ]) ?>
+    <span class="eye">👁</span>
+    <?= $this->Form->error('password') ?>
+</div>
+
+<div class="form-group password-field">
+    <label>Confirmar Contraseña</label>
+    <?= $this->Form->password('confirm_password', [
+                'placeholder' => 'Repite tu contraseña'
+            ]) ?>
+        </div>
+
+        <button type="submit" class="btn-primary">
+            Registrarse
+        </button>
+
+    <?= $this->Form->end() ?>
+
+    <p class="login-link">
+        ¿Ya tienes una cuenta?
+        <?= $this->Html->link('Inicia Sesión', ['controller' => 'Users', 'action' => 'login']) ?>
+    </p>
+
+</div>
+
+</body>
+</html>

@@ -51,10 +51,11 @@ class UsersController extends AppController
     /* =========================
      * LOGIN
      * ========================= */
-        public function login()
+    public function login()
 {
     $this->viewBuilder()->disableAutoLayout();
-    // Si ya está logueado, no mostrar login
+
+    // Si ya está autenticado, redirigir a admin
     if ($this->Auth->user()) {
         return $this->redirect([
             'controller' => 'Admin',
@@ -67,16 +68,15 @@ class UsersController extends AppController
 
         $user = $this->Auth->identify();
 
-
         if ($user) {
+
             $this->Auth->setUser($user);
 
-            // Redirección final después de login
-            return $this->redirect([
+            return $this->redirect($this->Auth->redirectUrl([
                 'controller' => 'Admin',
                 'action' => 'index',
                 'prefix' => 'admin'
-            ]);
+            ]));
         }
 
         $this->Flash->error('Correo o contraseña incorrectos');
@@ -89,31 +89,43 @@ class UsersController extends AppController
      * ========================= */
     public function signup()
     {
+        $this->viewBuilder()->disableAutoLayout();
+        $this->autoRender = true;
+
         $user = $this->Users->newEntity();
 
-        $groups = $this->Groups
-            ->find('list', [
-                'keyField' => 'id',
-                'valueField' => 'name'
-            ])
-            ->where(['id >' => 1])
-            ->toArray();
-
         if ($this->request->is('post')) {
-            $user = $this->Users->patchEntity($user, $this->request->getData());
 
-            if ($user->getErrors()) {
-                $this->Flash->error('Favor de llenar todos los datos');
+            $data = $this->request->getData();
+            $data['group_id'] = 1;
+
+            // Validación manual de confirmar contraseña
+            if ($data['password'] !== $data['confirm_password']) {
+
+                $this->Flash->error('Las contraseñas no coinciden.');
+                $this->set(compact('user'));
+                return;
+            }
+
+            $user = $this->Users->patchEntity($user, $data);
+
+            if ($this->Users->save($user)) {
+
+                $this->Flash->success('Usuario creado correctamente.');
+
+                return $this->redirect(['action' => 'login']);
             } else {
-                if ($this->Users->save($user)) {
-                    $this->Flash->success('Usuario agregado correctamente');
-                    return $this->redirect(['action' => 'index']);
+
+                // Si hay errores de validación (ej: correo duplicado)
+                if ($user->getErrors()) {
+                    $this->Flash->error('Verifica los datos ingresados.');
+                } else {
+                    $this->Flash->error('Error al crear el usuario.');
                 }
-                $this->Flash->error('No se puede guardar el usuario');
             }
         }
 
-        $this->set(compact('user', 'groups'));
+        $this->set(compact('user'));
     }
 
     /* =========================
@@ -142,35 +154,35 @@ class UsersController extends AppController
     /* =========================
      * CAMBIAR PASSWORD
      * ========================= */
-public function editPass($id)
-{
-    $editUser = $this->Users->get($id);
+    public function editPass($id)
+    {
+        $editUser = $this->Users->get($id);
 
-    if ($this->request->is(['post', 'put'])) {
+        if ($this->request->is(['post', 'put'])) {
 
-        $data = $this->request->getData();
+            $data = $this->request->getData();
 
-        // Validación simple
-        if (empty($data['password'])) {
-            $this->Flash->error('La contraseña no puede ir vacía');
-            return;
+            // Validación simple
+            if (empty($data['password'])) {
+                $this->Flash->error('La contraseña no puede ir vacía');
+                return;
+            }
+
+            // Eliminar campo que no existe en la entidad
+            unset($data['confirm_pass']);
+
+            $this->Users->patchEntity($editUser, $data);
+
+            if ($this->Users->save($editUser)) {
+                $this->Flash->success('Contraseña actualizada correctamente');
+                return $this->redirect(['action' => 'index']);
+            }
+
+            $this->Flash->error('No se pudo actualizar la contraseña');
         }
 
-        // Eliminar campo que no existe en la entidad
-        unset($data['confirm_pass']);
-
-        $this->Users->patchEntity($editUser, $data);
-
-        if ($this->Users->save($editUser)) {
-            $this->Flash->success('Contraseña actualizada correctamente');
-            return $this->redirect(['action' => 'index']);
-        }
-
-        $this->Flash->error('No se pudo actualizar la contraseña');
+        $this->set(compact('editUser'));
     }
-
-    $this->set(compact('editUser'));
-}
 
 
     /* =========================

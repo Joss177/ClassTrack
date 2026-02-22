@@ -13,71 +13,64 @@ class AppController extends Controller
         $this->loadComponent('RequestHandler', [
             'enableBeforeRedirect' => false,
         ]);
+
         $this->loadComponent('Flash');
 
-        if ($this->request->getParam('prefix') === 'admin') {
-            $this->loadComponent('Auth', [
-                'loginAction' => [
-                    'controller' => 'Users',
-                    'action' => 'login',
-                    'prefix' => 'admin'
-                ],
-                'loginRedirect' => [
-                    'controller' => 'Admin',
-                    'action' => 'index',
-                    'prefix' => 'admin'
-                ],
-                'logoutRedirect' => [
-                    'controller' => 'Users',
-                    'action' => 'login',
-                    'prefix' => 'admin'
-                ],
-                'authError' => false,
-                'authenticate' => [
-                    'Form' => [
-                        'fields' => [
-                            'username' => 'correo',
-                            'password' => 'password'
-                        ]
+        $this->loadComponent('Auth', [
+            'authenticate' => [
+                'Form' => [
+                    'fields' => [
+                        'username' => 'correo',
+                        'password' => 'password'
                     ]
-                ],
-                'storage' => [
-                    'className' => 'Session',
-                    'key' => 'Auth.Admin'
                 ]
-            ]);
-        }
-    }
-
-    public function beforeRender(Event $event)
-    {
-        parent::beforeRender($event);
-
-        if ($this->request->getParam('prefix') === 'admin') {
-            $this->viewBuilder()->setLayout('admin');
-        }
+            ],
+            'loginAction' => [
+                'controller' => 'Users',
+                'action' => 'login'
+            ],
+            'loginRedirect' => [
+                'controller' => 'Admin',
+                'action' => 'index',
+                'prefix' => 'admin'
+            ],
+            'logoutRedirect' => [
+                'controller' => 'Users',
+                'action' => 'login'
+            ],
+            'authError' => false,
+            'storage' => [
+                'className' => 'Session'
+            ]
+        ]);
     }
 
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
 
+        // Permitir acceso sin login a estas acciones
+        $this->Auth->allow(['login', 'signup']);
+    }
+
+    public function beforeRender(Event $event)
+    {
+        parent::beforeRender($event);
+
+        // Usar layout admin solo cuando el prefix sea admin
         if ($this->request->getParam('prefix') === 'admin') {
-            $this->Auth->allow();
+            $this->viewBuilder()->setLayout('admin');
         }
     }
 
-
     public function isAuthorized($user = null)
     {
-        if (!$this->request->getParam('prefix')) {
-            return true;
-        }
-
+        // Si es ruta admin, validar group_id
         if ($this->request->getParam('prefix') === 'admin') {
             return isset($user['group_id']) && $user['group_id'] == 1;
         }
 
-        return false;
+        // Para el resto permitir acceso
+        return true;
     }
 }

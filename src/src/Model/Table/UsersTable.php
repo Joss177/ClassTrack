@@ -4,6 +4,7 @@ namespace App\Model\Table;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 use Cake\Auth\DefaultPasswordHasher;
+use Cake\ORM\RulesChecker;
 
 class UsersTable extends Table
 {
@@ -25,18 +26,22 @@ class UsersTable extends Table
     public function validationDefault(Validator $validator)
     {
         $validator
-            ->notEmptyString('nombre_completo')
-            ->notEmptyString('correo')
-            ->email('correo')
-            ->notEmptyString('password');
+            ->notEmptyString('nombre_completo', 'El nombre es obligatorio')
+            ->notEmptyString('correo', 'El correo es obligatorio')
+            ->email('correo', 'Debe ser un correo válido')
+            ->notEmptyString('password', 'La contraseña es obligatoria')
+            ->minLength('password', 6, 'Mínimo 6 caracteres');
 
         return $validator;
     }
 
-    public function beforeSave($event, $entity, $options)
+    public function buildRules(RulesChecker $rules)
     {
-        if ($entity->isDirty('password') && !empty($entity->password)) {
-            $entity->password = (new DefaultPasswordHasher)->hash($entity->password);
-        }
+        $rules->add($rules->isUnique(
+            ['correo'],
+            'El correo ya está registrado'
+        ));
+
+        return $rules;
     }
 }

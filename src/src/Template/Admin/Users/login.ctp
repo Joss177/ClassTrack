@@ -7,7 +7,7 @@
 
         <!-- ICONO -->
         <section class="login-icon">
-            <img src="<?= $this->Url->image('login-icon.png') ?>" alt="Login Icon">
+            <img src="<?= $this->Url->image('LOGOCLASSTRACK.png') ?>" alt="Login Icon">
         </section>
 
         <!-- TITULO -->
@@ -50,25 +50,11 @@
 
         <!-- FOOTER -->
         <section class="login-footer">
-            <p>¿No tienes una cuenta? <a href="#">Regístrate</a></p>
+            <p>
+                ¿No tienes una cuenta?
+                <?= $this->Html->link('Regístrate', ['controller' => 'Users', 'action' => 'signup']) ?>
+            </p>
         </section>
 
     </section>
-</section>
-
-<!-- BOTÓN PROVISIONAL EDIT -->
-<section class="login-footer" style="margin-top: 20px; text-align: center;">
-    <?= $this->Html->link(
-        'Editar usuario (temporal)',
-        [
-            'prefix' => 'admin',
-            'controller' => 'Users',
-            'action' => 'edit_pass',
-            1 // ID del usuario a editar
-        ],
-        [
-            'class' => 'btn-login',
-            'style' => 'display: inline-block; text-decoration: none;'
-        ]
-    ) ?>
 </section>
