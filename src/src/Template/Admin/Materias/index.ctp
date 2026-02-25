@@ -44,51 +44,296 @@
         <!-- LISTADO DE MATERIAS -->
         <div class="materias-list">
 
+        <?php foreach ($materias as $m): ?>
+
             <div class="materia-card">
+
                 <div class="materia-info">
-                    <h4>Matemáticas</h4>
-                    <p class="clave">MAT-101</p>
+                    <h4><?= h($m->nombre) ?></h4>
+                    <p class="clave"><?= h($m->codigo) ?></p>
 
                     <div class="color-box">
-                        <span class="color-preview" style="background:#3b82f6;"></span>
-                        <span class="color-code">#3b82f6</span>
+                        <span class="color-preview"
+                            style="background:<?= h($m->color) ?>;">
+                        </span>
+                        <span class="color-code"><?= h($m->color) ?></span>
                     </div>
                 </div>
 
                 <hr>
 
                 <div class="materia-actions">
-                    <button class="btn-editar">Editar</button>
-                    <button class="btn-eliminar">Eliminar</button>
+
+
+                    <button
+                        class="btn-editar"
+                        data-id="<?= $m->id ?>"
+                        data-nombre="<?= h($m->nombre) ?>"
+                        data-codigo="<?= h($m->codigo) ?>"
+                        data-descripcion="<?= h($m->descripcion) ?>"
+                        data-color="<?= h($m->color) ?>"
+                        onclick="abrirModalEditar(this)">
+                        ✏ Editar
+                    </button>
+
+                    <button
+                        class="btn-eliminar"
+                        onclick="abrirModalEliminar(<?= $m->id ?>)">
+                        🗑 Eliminar
+                    </button>
+
                 </div>
             </div>
 
-            <div class="materia-card">
-                <div class="materia-info">
-                    <h4>Física</h4>
-                    <p class="clave">FIS-101</p>
+        <?php endforeach; ?>
 
-                    <div class="color-box">
-                        <span class="color-preview" style="background:#10b981;"></span>
-                        <span class="color-code">#10b981</span>
-                    </div>
-                </div>
+        </div>
+    </div>
+</div>
 
-                <hr>
+<!-- MODAL AGREGAR MATERIA -->
+<div class="modal-overlay" id="modalMateria">
 
-                <div class="materia-actions">
-                    <button class="btn-editar">Editar</button>
-                    <button class="btn-eliminar">Eliminar</button>
-                </div>
+    <div class="modal">
+
+        <div class="modal-header">
+            <h3>Agregar Materia</h3>
+            <span class="modal-close" onclick="cerrarModal()">×</span>
+        </div>
+
+        <?= $this->Form->create($materia) ?>
+
+        <div class="modal-body">
+
+            <div class="form-group">
+                <?= $this->Form->label('nombre', 'Nombre') ?>
+                <?= $this->Form->control('nombre', [
+                    'label' => false,
+                    'class' => 'form-input'
+                ]) ?>
+            </div>
+
+            <div class="form-group">
+                <?= $this->Form->label('codigo', 'Código') ?>
+                <?= $this->Form->control('codigo', [
+                    'label' => false,
+                    'class' => 'form-input'
+                ]) ?>
+            </div>
+
+            <div class="form-group">
+                <?= $this->Form->label('descripcion', 'Descripción') ?>
+                <?= $this->Form->control('descripcion', [
+                    'type' => 'textarea',
+                    'rows' => 4,
+                    'label' => false,
+                    'class' => 'form-input'
+                ]) ?>
+            </div>
+
+            <div class="form-group">
+                <?= $this->Form->label('color', 'Color') ?>
+                <?= $this->Form->control('color', [
+                    'type' => 'color',
+                    'label' => false,
+                    'value' => '#1e3a5f',
+                    'class' => 'form-input'
+                ]) ?>
             </div>
 
         </div>
 
+        <hr>
 
+        <div class="modal-footer">
+            <button type="button" class="btn-cancelar" onclick="cerrarModal()">
+                Cancelar
+            </button>
 
+            <?= $this->Form->button('Agregar', [
+                'class' => 'btn-guardar'
+            ]) ?>
+        </div>
+
+        <?= $this->Form->end() ?>
+
+    </div>
+
+</div>
+
+<!-- MODAL EDITAR MATERIA -->
+<div class="modal-overlay" id="modalEditarMateria">
+
+    <div class="modal">
+
+        <div class="modal-header">
+            <h3>Editar Materia</h3>
+            <span class="modal-close" onclick="cerrarModalEditar()">×</span>
+        </div>
+
+        <?= $this->Form->create(null, [
+            'id' => 'formEditarMateria',
+            'method' => 'post'
+        ]) ?>
+
+        <?= $this->Form->hidden('id', ['id' => 'edit-id']) ?>
+
+        <div class="modal-body">
+
+            <div class="form-group">
+                <?= $this->Form->label('nombre', 'Nombre') ?>
+                <?= $this->Form->control('nombre', [
+                    'label' => false,
+                    'class' => 'form-input',
+                    'id' => 'edit-nombre'
+                ]) ?>
+            </div>
+
+            <div class="form-group">
+                <?= $this->Form->label('codigo', 'Código') ?>
+                <?= $this->Form->control('codigo', [
+                    'label' => false,
+                    'class' => 'form-input',
+                    'id' => 'edit-codigo'
+                ]) ?>
+            </div>
+
+            <div class="form-group">
+                <?= $this->Form->label('descripcion', 'Descripción') ?>
+                <?= $this->Form->control('descripcion', [
+                    'type' => 'textarea',
+                    'rows' => 4,
+                    'label' => false,
+                    'class' => 'form-input',
+                    'id' => 'edit-descripcion'
+                ]) ?>
+            </div>
+
+            <div class="form-group">
+                <?= $this->Form->label('color', 'Color') ?>
+                <?= $this->Form->control('color', [
+                    'type' => 'color',
+                    'label' => false,
+                    'class' => 'form-input',
+                    'id' => 'edit-color'
+                ]) ?>
+            </div>
+
+        </div>
+
+        <hr>
+
+        <div class="modal-footer">
+            <button type="button" class="btn-cancelar" onclick="cerrarModalEditar()">
+                Cancelar
+            </button>
+
+            <?= $this->Form->button('Guardar', [
+                'class' => 'btn-guardar'
+            ]) ?>
+        </div>
+
+        <?= $this->Form->end() ?>
+
+    </div>
+
+</div>
+
+<!-- MODAL ELIMINAR -->
+<div class="modal-overlay" id="modalEliminar">
+    <div class="modal-confirm">
+
+        <h3>Confirmar Eliminación</h3>
+
+        <p>
+            ¿Estás seguro de que deseas eliminar este elemento?
+            Esta acción no se puede deshacer.
+        </p>
+
+        <?= $this->Form->create(null, [
+            'id' => 'formEliminar',
+            'method' => 'post'
+        ]) ?>
+
+        <div class="modal-actions">
+            <button type="button" class="btn-cancelar" onclick="cerrarModalEliminar()">
+                Cancelar
+            </button>
+
+            <?= $this->Form->button('Eliminar', ['class' => 'btn-danger']) ?>
+        </div>
+
+        <?= $this->Form->end() ?>
 
     </div>
 </div>
+
+<script>
+    /* MODAL AGREGAR */
+    function abrirModal() {
+        document.getElementById('modalMateria').style.display = 'flex';
+    }
+
+    function cerrarModal() {
+        document.getElementById('modalMateria').style.display = 'none';
+    }
+
+    /* MODAL EDITAR */
+
+   function abrirModalEditar(btn) {
+
+        let id = btn.dataset.id;
+        let nombre = btn.dataset.nombre;
+        let codigo = btn.dataset.codigo;
+        let descripcion = btn.dataset.descripcion;
+        let color = btn.dataset.color;
+
+        document.getElementById('edit-id').value = id;
+        document.getElementById('edit-nombre').value = nombre;
+        document.getElementById('edit-codigo').value = codigo;
+        document.getElementById('edit-descripcion').value = descripcion;
+        document.getElementById('edit-color').value = color;
+
+        document.getElementById('formEditarMateria').action =
+            "<?= $this->Url->build(['action' => 'edit']) ?>/" + id;
+
+        document.getElementById('modalEditarMateria').style.display = 'flex';
+    }
+
+    //MODAL ELIMINAR
+
+    function abrirModalEliminar(id) {
+
+        document.getElementById('formEliminar').action =
+            "<?= $this->Url->build(['action' => 'delete']) ?>/" + id;
+
+        document.getElementById('modalEliminar').style.display = 'flex';
+    }
+
+    function cerrarModalEliminar() {
+        document.getElementById('modalEliminar').style.display = 'none';
+    }
+
+    // Cerrar al hacer clic fuera del contenido (overlay)
+    window.onclick = function(event) {
+
+        const modales = [
+            'modalMateria',
+            'modalEditarMateria',
+            'modalEliminar'
+        ];
+
+        modales.forEach(function(id) {
+            const modal = document.getElementById(id);
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+    };
+
+
+</script>
 
 <style>
 body {
@@ -289,5 +534,204 @@ hr {
 .materia-actions {
     display: flex;
     gap: 15px;
+}
+
+/* CSS MODAL AGREGAR */
+
+/* ===== MODAL ===== */
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.modal {
+    background: #ffffff;
+    width: 420px;
+    border-radius: 10px;
+    padding: 22px 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        transform: translateY(-10px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #1f2937;
+}
+
+.modal-close {
+    cursor: pointer;
+    font-size: 18px;
+    color: #6b7280;
+}
+
+.modal-close:hover {
+    color: #111827;
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 6px;
+    color: #374151;
+}
+
+.form-group input[type="text"],
+.form-group textarea {
+    width: 100%;
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: 1px solid #d1d5db;
+    font-size: 14px;
+}
+
+.form-group input[type="text"]:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #1e3a5f;
+    box-shadow: 0 0 0 1px #1e3a5f;
+}
+
+.form-group input[type="color"] {
+    width: 100%;
+    height: 38px;
+    border-radius: 6px;
+    border: 1px solid #d1d5db;
+    padding: 2px;
+    cursor: pointer;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.btn-cancelar {
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: 1px solid #d1d5db;
+    background: #ffffff;
+    cursor: pointer;
+}
+
+.btn-cancelar:hover {
+    background: #f3f4f6;
+}
+
+.btn-guardar {
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: none;
+    background: #1e3a5f;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.btn-guardar:hover {
+    background: #162d49;
+}
+
+/* MODAL ELIMINAR */
+
+/* Fondo oscuro */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+/* Caja modal */
+.modal-confirm {
+    background: #f3f4f6;
+    width: 420px;
+    border-radius: 10px;
+    padding: 25px 30px;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Título */
+.modal-confirm h3 {
+    margin: 0 0 15px 0;
+    font-size: 18px;
+    color: #1f2937;
+}
+
+/* Texto */
+.modal-confirm p {
+    font-size: 14px;
+    color: #374151;
+    line-height: 1.5;
+    margin-bottom: 25px;
+}
+
+/* Botones alineados a la derecha */
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+/* Botón cancelar */
+.btn-cancelar {
+    padding: 8px 18px;
+    border-radius: 5px;
+    border: 1px solid #cbd5e1;
+    background: #e5e7eb;
+    cursor: pointer;
+}
+
+/* Botón eliminar rojo */
+.btn-danger {
+    padding: 8px 18px;
+    border-radius: 5px;
+    border: none;
+    background: #ef4444;
+    color: white;
+    cursor: pointer;
+}
+
+/* Hover */
+.btn-danger:hover {
+    background: #dc2626;
+}
+
+.btn-cancelar:hover {
+    background: #d1d5db;
 }
 </style>
