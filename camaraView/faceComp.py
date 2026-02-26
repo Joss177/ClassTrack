@@ -6,8 +6,8 @@ import os
 
 
 # estas son nuestras bases de datos
-pathNombresJson = 'data/nombres.json'
-pathMatrizEmb = 'data/numeros.npy'
+pathNombresJson = 'camaraView/data/nombres.json'
+pathMatrizEmb = 'camaraView/data/numeros.npy'
 
 #aqui checamos si existen. si si solo se carga su info
 if os.path.exists(pathNombresJson) and os.path.exists(pathMatrizEmb):
