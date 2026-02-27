@@ -4,8 +4,6 @@ namespace App\Model\Table;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 use Cake\ORM\RulesChecker;
-use Cake\Event\EventInterface;
-use ArrayObject;
 
 class HorariosTable extends Table
 {
@@ -72,20 +70,23 @@ class HorariosTable extends Table
             ->notEmptyString('dia_semana');
 
         $validator
-            ->time('hora_inicio')
+            ->scalar('hora_inicio')
+            ->maxLength('hora_inicio', 5)
             ->requirePresence('hora_inicio')
-            ->notEmptyTime('hora_inicio');
+            ->notEmptyString('hora_inicio');
 
         $validator
-            ->time('hora_fin')
+            ->scalar('hora_fin')
+            ->maxLength('hora_fin', 5)
             ->requirePresence('hora_fin')
-            ->notEmptyTime('hora_fin')
+            ->notEmptyString('hora_fin')
             ->add('hora_fin', 'custom', [
                 'rule' => function ($value, $context) {
                     if (empty($context['data']['hora_inicio'])) {
                         return false;
                     }
-                    return $value > $context['data']['hora_inicio'];
+
+                    return strtotime($value) > strtotime($context['data']['hora_inicio']);
                 },
                 'message' => 'La hora fin debe ser mayor a la hora inicio'
             ]);
@@ -109,12 +110,8 @@ class HorariosTable extends Table
                 ->where([
                     'aula_id' => $entity->aula_id,
                     'dia_semana' => $entity->dia_semana,
-                    'OR' => [
-                        [
-                            'hora_inicio <' => $entity->hora_fin,
-                            'hora_fin >' => $entity->hora_inicio
-                        ]
-                    ]
+                    'hora_inicio <' => $entity->hora_fin,
+                    'hora_fin >' => $entity->hora_inicio
                 ]);
 
             if (!$entity->isNew()) {
