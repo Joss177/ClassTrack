@@ -37,7 +37,7 @@ $cakeDescription = 'OnePage';
         <?= $this->Html->css('https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css') ?>
         <?= $this->Html->css('style'.MIN) ?>
         <?= $this->Html->css('responsive'.MIN) ?>
-
+        <?= $this->Html->css('gestion') ?>
         <?= $this->fetch('meta') ?>
         <?= $this->fetch('css') ?>
         <?= $this->fetch('script') ?>

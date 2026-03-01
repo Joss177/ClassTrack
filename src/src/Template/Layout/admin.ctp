@@ -312,7 +312,6 @@ body {
 .content {
     flex: 1;
     padding: 30px;
-    transition: all .3s ease;
 }
 
 /* ============================= */

@@ -126,7 +126,7 @@
         top: 12px;
         right: 32px;
     }
-    
+
     #barras-menu span {
         background: #FFFFFF;
         height: 5px;
@@ -141,7 +141,7 @@
         transition: transform 0.5s linear;
         -webkit-transition: transform 0.5s linear;
     }
-    
+
     #barras-menu span::before {
         top: -8px;
         transform-origin: left top 0;
@@ -149,7 +149,7 @@
         transition: transform 0.5s ease 0s, width 0.5s ease 0s, top 0.5s ease 0s;
         -webkit-transition: transform 0.5s ease 0s, width 0.5s ease 0s, top 0.5s ease 0s;
     }
-    
+
     #barras-menu span::after {
         bottom: -8px;
         transform-origin: left bottom 0;
@@ -157,7 +157,7 @@
         transition: transform 0.5s ease 0s, width 0.5s ease 0s, bottom 0.5s ease 0s;
         -webkit-transition: transform 0.5s ease 0s, width 0.5s ease 0s, bottom 0.5s ease 0s;
     }
-    
+
     #barras-menu span::after, #barras-menu span::before {
         background-color: #FFFFFF;
         content: "";
@@ -170,22 +170,22 @@
         width: 100%;
         border-radius: 5px;
     }
-    
+
     #barras-menu.close span {
         background-color: transparent;
     }
-    
+
     #barras-menu.close span:before, #barras-menu.close span:after {
         -webkit-transform-origin: 50% 50%;
         transform-origin: 50% 50%;
     }
-    
+
     #barras-menu.close span:before {
         top: 0px;
         -webkit-transform: rotate(45deg);
         transform: rotate(45deg);
     }
-    
+
     #barras-menu.close span:after {
         bottom: 0px;
         -webkit-transform: rotate(-45deg);
