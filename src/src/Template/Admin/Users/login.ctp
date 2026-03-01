@@ -3,6 +3,7 @@
 
 <section class="login-page">
 
+
     <section class="login-container">
 
         <!-- ICONO -->
@@ -18,6 +19,9 @@
 
         <!-- FORMULARIO -->
         <section class="login-form">
+
+            <?= $this->Flash->render() ?>
+
             <?= $this->Form->create(null, ['class' => 'form']) ?>
 
                 <section class="form-group">
@@ -58,3 +62,47 @@
 
     </section>
 </section>
+
+<style>
+    .message {
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 14px;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.message.error {
+    background-color: #e6f0ff;
+    color: #1a3d7c;
+    border: 1px solid #99c2ff;
+}
+
+.message.success {
+    background-color: #e0f7f4;
+    color: #0f4d4a;
+    border: 1px solid #66d9cc;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+</style>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const message = document.querySelector('.message');
+    if (message) {
+        setTimeout(function () {
+            message.style.transition = "opacity 0.5s ease";
+            message.style.opacity = "0";
+            setTimeout(function () {
+                message.remove();
+            }, 500);
+        }, 2000); // 3 segundos
+    }
+});
+</script>

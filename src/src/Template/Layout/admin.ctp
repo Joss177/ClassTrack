@@ -17,13 +17,22 @@
 
 <div class="layout">
 
-    <aside class="sidebar">
+    <!-- SIDEBAR -->
+    <aside class="sidebar collapsed" id="sidebar">
+
         <div class="brand">
+
+            <div class="hamburger" id="toggleMenu">
+                <i class="fas fa-bars"></i>
+            </div>
+
             <?= $this->Html->image('LOGOCLASSTRACK.png', [
                 'alt' => 'ClassTrack',
                 'class' => 'logo-img'
             ]) ?>
-            <span>ClassTrack</span>
+
+            <span class="brand-text">ClassTrack</span>
+
         </div>
 
         <nav class="menu">
@@ -33,7 +42,7 @@
                 ['prefix' => 'admin', 'controller' => 'Admin', 'action' => 'index'],
                 [
                     'escape' => false,
-                    'class' => $this->Menu->activeClass('Admin', 'index', 'admin')
+                    'class' => 'item ' . $this->Menu->activeClass('Admin', 'index', 'admin')
                 ]
             ) ?>
 
@@ -46,7 +55,7 @@
                 ],
                 [
                     'escape' => false,
-                    'class' => $this->Menu->activeClass('Horarios', 'index', 'admin')
+                    'class' => 'item ' . $this->Menu->activeClass('Horarios', 'index', 'admin')
                 ]
             ) ?>
 
@@ -55,7 +64,7 @@
                 ['controller' => 'Sheets', 'action' => 'index'],
                 [
                     'escape' => false,
-                    'class' => $this->Menu->activeClass('Sheets')
+                    'class' => 'item ' . $this->Menu->activeClass('Sheets')
                 ]
             ) ?>
 
@@ -64,7 +73,7 @@
                 ['controller' => 'Camaras', 'action' => 'index'],
                 [
                     'escape' => false,
-                    'class' => $this->Menu->activeClass('Camaras')
+                    'class' => 'item ' . $this->Menu->activeClass('Camaras')
                 ]
             ) ?>
 
@@ -73,7 +82,7 @@
                 ['controller' => 'Gestion', 'action' => 'index'],
                 [
                     'escape' => false,
-                    'class' => $this->Menu->activeClass('Gestion')
+                    'class' => 'item ' . $this->Menu->activeClass('Gestion')
                 ]
             ) ?>
 
@@ -82,7 +91,7 @@
                 ['controller' => 'Users', 'action' => 'edit', 1],
                 [
                     'escape' => false,
-                    'class' => $this->Menu->activeClass('Users')
+                    'class' => 'item ' . $this->Menu->activeClass('Users')
                 ]
             ) ?>
 
@@ -91,7 +100,7 @@
                 ['controller' => 'Configuracion', 'action' => 'index'],
                 [
                     'escape' => false,
-                    'class' => $this->Menu->activeClass('Configuracion')
+                    'class' => 'item ' . $this->Menu->activeClass('Configuracion')
                 ]
             ) ?>
 
@@ -108,135 +117,275 @@
 
     </aside>
 
+    <!-- CONTENIDO -->
     <main class="content">
         <?= $this->fetch('content') ?>
     </main>
 
 </div>
 
+<div class="overlay" id="overlay"></div>
+
 <?= $this->fetch('script') ?>
+
+
 </body>
 </html>
 
 <style>
 
-    .item i {
-    width: 18px;
-    text-align: center;
-    font-size: 15px;
-}
+/* ============================= */
+/* RESET Y FUENTE GLOBAL */
+/* ============================= */
 
-/* Fuente global: Inter 14px */
+
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-    font-size: 14px;
-    font-weight: 400; /* Regular */
 }
 
+body {
+    min-height: 100vh;
+    background: #f6f8fb;
+}
+
+/* ============================= */
+/* LAYOUT */
+/* ============================= */
 
 .layout {
     display: flex;
-    min-height: 100vh;
 }
 
+/* ============================= */
 /* SIDEBAR */
+/* ============================= */
+
 .sidebar {
-    width: 240px;
+    width: 220px;
     background: linear-gradient(180deg, #1E3A5F, #1f4a78);
     color: #e9f1fb;
     display: flex;
     flex-direction: column;
+    transition: width .3s ease;
+    overflow: hidden;
+    position: sticky;
+    top: 0;
+    height: 100vh;
 }
 
+.sidebar.collapsed {
+    width: 55px;
+}
+
+/* ============================= */
 /* BRAND */
+/* ============================= */
+
 .brand {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 20px;
+    gap: 12px;              /* igual que .item */
+    padding: 14px 20px;     /* igual que .item */
     font-weight: 600;
     font-size: 15px;
     border-bottom: 1px solid rgba(255,255,255,.1);
 }
 
-.brand .icon {
-    width: 18px;
-    height: 18px;
-    border: 2px solid #fff;
-    border-radius: 3px;
-}
-
 .logo-img {
-    width: 40px;
-    height: 40px;
+    width: 38px;
+    height: 38px;
     object-fit: contain;
 }
 
+.brand-text {
+    white-space: nowrap;
+    transition: opacity .2s ease;
+}
+
+.hamburger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    min-width: 18px;
+    font-size: 15px;
+    cursor: pointer;
+    color: white;
+}
+
+/* ============================= */
 /* MENU */
+/* ============================= */
+
 .menu {
     flex: 1;
     padding-top: 10px;
 }
 
-.item {
+/* ITEMS Y LOGOUT COMPARTEN BASE */
+
+.item,
+.logout {
+    margin-top: auto;
     display: flex;
     align-items: center;
     gap: 12px;
     padding: 14px 20px;
-    color: #dbe7f5;
     text-decoration: none;
-    font-size: 14px;
+    white-space: nowrap;
+    transition: background .2s ease;
 }
+
+.item {
+    color: #dbe7f5;
+}
+
+.logout {
+    color: #ffdede;
+    border-top: 1px solid rgba(255,255,255,.1);
+}
+
+/* ICONOS (MISMO TAMAÑO SIEMPRE) */
+
+.item i,
+.logout i {
+    width: 18px;
+    min-width: 18px;
+    text-align: center;
+    font-size: 15px;
+}
+
+/* OCULTAR TEXTO EN MODO COLAPSADO SIN MOVER ICONOS */
+
+.sidebar.collapsed .brand-text,
+.sidebar.collapsed .item span,
+.sidebar.collapsed .logout span {
+    opacity: 0;
+    width: 0;
+    overflow: hidden;
+}
+
+/* NO CAMBIAMOS padding NI justify → NO HAY SALTO */
+
+/* HOVER */
 
 .item:hover {
     background: rgba(255,255,255,.07);
-}
-
-.item.active {
-    background: #1E3A5F;
-    border-left: 4px solid #ffffff;
-    padding-left: 16px;
-    font-weight: 600;
-}
-
-/* ICONOS (CSS PURO) */
-.menu-icon {
-    width: 14px;
-    height: 14px;
-    border-radius: 3px;
-    background: #dbe7f5;
-    opacity: .85;
-}
-
-.clock { border-radius: 50%; }
-.table { border: 1px solid #1E3A5F; }
-.camera { clip-path: polygon(0 25%, 20% 25%, 30% 0, 70% 0, 80% 25%, 100% 25%, 100% 100%, 0 100%); }
-.users { border-radius: 50% 50% 40% 40%; }
-.settings { clip-path: polygon(50% 0, 65% 20%, 100% 35%, 65% 50%, 50% 100%, 35% 50%, 0 35%, 35% 20%); }
-
-/* LOGOUT */
-.logout {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 16px 20px;
-    border-top: 1px solid rgba(255,255,255,.1);
-    color: #ffdede;
-    text-decoration: none;
 }
 
 .logout:hover {
     background: #a83232;
 }
 
+/* ACTIVO */
+
+.item.active {
+    background: rgba(255,255,255,.1);
+    border-left: 4px solid #ffffff;
+    font-weight: 600;
+}
+
+.sidebar.collapsed .item.active {
+    border-left: none;
+    position: relative;
+}
+
+.sidebar.collapsed .item.active::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 8px;
+    bottom: 8px;
+    width: 4px;
+    background: #ffffff;
+    border-radius: 4px;
+}
+
+/* ============================= */
 /* CONTENT */
+/* ============================= */
+
 .content {
     flex: 1;
     padding: 30px;
-    background: #f6f8fb;
+    transition: all .3s ease;
+}
+
+/* ============================= */
+/* RESPONSIVE */
+/* ============================= */
+
+@media (max-width: 768px) {
+
+    .sidebar {
+        position: fixed;
+        height: 100%;
+        z-index: 1000;
+        left: -220px;
+    }
+
+    .sidebar.active {
+        left: 0;
+    }
+
+    .overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,.3);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity .3s ease;
+    }
+
+    .overlay.active {
+        opacity: 1;
+        pointer-events: all;
+    }
 }
 
 </style>
+
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+    const sidebar = document.getElementById("sidebar");
+    const toggleBtn = document.getElementById("toggleMenu");
+    const overlay = document.getElementById("overlay");
+
+    // Restaurar estado guardado
+    const saved = localStorage.getItem("sidebarCollapsed");
+
+    if (saved === "false") {
+        sidebar.classList.remove("collapsed");
+    }
+
+    toggleBtn.addEventListener("click", function () {
+
+        if (window.innerWidth > 768) {
+
+            sidebar.classList.toggle("collapsed");
+
+            localStorage.setItem(
+                "sidebarCollapsed",
+                sidebar.classList.contains("collapsed")
+            );
+
+        } else {
+            sidebar.classList.toggle("active");
+            overlay.classList.toggle("active");
+        }
+    });
+
+    overlay.addEventListener("click", function () {
+        sidebar.classList.remove("active");
+        overlay.classList.remove("active");
+    });
+
+});
+</script>

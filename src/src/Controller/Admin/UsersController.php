@@ -52,36 +52,52 @@ class UsersController extends AppController
      * LOGIN
      * ========================= */
     public function login()
-    {
-        $this->viewBuilder()->disableAutoLayout();
+{
+    $this->viewBuilder()->disableAutoLayout();
 
-        // Si ya está autenticado, redirigir a admin
-        if ($this->Auth->user()) {
-            return $this->redirect([
+    if ($this->Auth->user()) {
+        return $this->redirect([
+            'controller' => 'Admin',
+            'action' => 'index',
+            'prefix' => 'admin'
+        ]);
+    }
+
+    if ($this->request->is('post')) {
+
+        $correo = $this->request->getData('correo');
+        $password = $this->request->getData('password');
+
+        if (empty($correo) || empty($password)) {
+            $this->Flash->error('Llenar todos los campos');
+            return;
+        }
+
+        $usuario = $this->Users->find()
+            ->where(['correo' => $correo])
+            ->first();
+
+        if (!$usuario) {
+            $this->Flash->error('Usuario no encontrado');
+            return;
+        }
+
+        $user = $this->Auth->identify();
+
+        if ($user) {
+
+            $this->Auth->setUser($user);
+
+            return $this->redirect($this->Auth->redirectUrl([
                 'controller' => 'Admin',
                 'action' => 'index',
                 'prefix' => 'admin'
-            ]);
+            ]));
         }
 
-        if ($this->request->is('post')) {
-
-            $user = $this->Auth->identify();
-
-            if ($user) {
-
-                $this->Auth->setUser($user);
-
-                return $this->redirect($this->Auth->redirectUrl([
-                    'controller' => 'Admin',
-                    'action' => 'index',
-                    'prefix' => 'admin'
-                ]));
-            }
-
-            $this->Flash->error('Correo o contraseña incorrectos');
-        }
+        $this->Flash->error('Contraseña o Correo Incorrectas');
     }
+}
 
 
     /* =========================
