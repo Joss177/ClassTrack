@@ -3,6 +3,7 @@ import numpy as np
 from insightface.app import FaceAnalysis
 import json
 import os
+from checkList import registrar_asistencia
 
 '''Aqui abajo es la base de datos del reconocimiento facila. NO TOCAR'''
 
@@ -62,11 +63,14 @@ def videoCara():
             caras = app.get(frame_resultado)
             listaAsistencia=carasDetectadaas(frame_resultado,caras)
             print(listaAsistencia)
-            '''
-            Aqui cano podrias ya a empezar a hacer la logica del pase de asistencia. 
-            de preferencia haslo en otro archivo y aqui solo importa la funcion y 
-            pasa los argumentos aqui para que tengamos orden
-            '''
+
+            for nombre in listaAsistencia:
+                registrar_asistencia(nombre,1)
+            
+        elif tecla == ord('f'): 
+            registrar_asistencia(finalizar_clase=True)
+            print("clase finalizada")
+        
 
 
             
@@ -86,7 +90,7 @@ def carasDetectadaas(frame,carasDetctadas):
                     encontrarPersona=np.dot(matrizEmbeddings,persona) #evalua la cara de la persona con toda lainfo que tenemos y da un np array de cual es el mas cercabno
                     certezaPersona=np.max(encontrarPersona) #da el valor de 0 a 1 de similitud
                     print(certezaPersona)
-                    if  certezaPersona>230: # el rango con el que debo de jugar es de 200 a 250. menos y da falso postivo mas y es muy estricto a la hora de juzgar a la persona
+                    if  certezaPersona>200: # el rango con el que debo de jugar es de 200 a 250. menos y da falso postivo mas y es muy estricto a la hora de juzgar a la persona
 
                         personaMasCercana=np.argmax(encontrarPersona) #devuelve el indice del np array de ese valor
                         nombre=listaNombres[personaMasCercana]
@@ -102,6 +106,11 @@ def carasDetectadaas(frame,carasDetctadas):
 
 # por facor que de preferencia solo este una cara a la vez cuando se vaya a guardar una nueva cara
 def caraNuevaGuarda(CaraDetectada):
+    #esto lo agregue porque no me dejaba correrlo cuando guardaba una nueva cara
+    #le tuve que preguntar a chat que pedo pero pues nomas me dijo tu ponlo wey
+    global listaNombres
+    global matrizEmbeddings
+
     if  CaraDetectada:
         for cara in CaraDetectada:
             #primero cargo la info de la cara
