@@ -1,0 +1,212 @@
+body{
+    font-family: 'Inter', sans-serif;
+    background:#f4f6f9;
+}
+
+.config-container{
+    width:900px;
+    margin:auto;
+    padding:20px;
+}
+
+.title{
+    font-size:24px;
+    margin-bottom:20px;
+}
+
+.card{
+    background:#fff;
+    border-radius:8px;
+    padding:20px;
+    margin-bottom:20px;
+    box-shadow:0 1px 3px rgba(0,0,0,0.1);
+}
+
+.card-title{
+    font-size:18px;
+    font-weight:600;
+    margin-bottom:15px;
+    display:flex;
+    align-items:center;
+}
+
+.icon{
+    margin-right:10px;
+}
+
+.form-group{
+    margin-bottom:15px;
+}
+
+.form-group label{
+    display:block;
+    font-size:14px;
+    margin-bottom:5px;
+    color:#444;
+}
+
+.form-group input{
+    width:100%;
+    padding:10px;
+    border:1px solid #ccc;
+    border-radius:6px;
+    font-size:14px;
+}
+
+.btn{
+    background:#2f5f9e;
+    color:#fff;
+    border:none;
+    padding:10px 16px;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.btn:hover{
+    background:#244a7a;
+}
+
+.subtext{
+    font-size:14px;
+    margin-bottom:10px;
+    color:#555;
+}
+
+.radio{
+    margin-right:15px;
+    font-size:14px;
+}
+
+.info-row{
+    display:flex;
+    justify-content:space-between;
+    padding:8px 0;
+    border-bottom:1px solid #eee;
+}
+
+.info-row:last-child{
+    border-bottom:none;
+}
+
+
+/* BOTON */
+.btn{
+    background:#2f5f9e;
+    color:white;
+    border:none;
+    padding:10px 16px;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+/* MODAL FONDO */
+.modal{
+    display:none;
+    position:fixed;
+    z-index:1000;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.75);
+
+    justify-content:center;
+    align-items:center;
+}
+
+/* CAJA MODAL */
+.modal-content{
+    background:white;
+    width:400px;
+    border-radius:8px;
+    padding:20px;
+    animation:fade .2s ease;
+}
+
+/* HEADER */
+.modal-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:15px;
+}
+
+.close{
+    font-size:20px;
+    cursor:pointer;
+}
+
+/* FORM */
+.form-group{
+    margin-bottom:15px;
+}
+
+.form-group label{
+    display:block;
+    margin-bottom:6px;
+    font-size:14px;
+}
+
+.form-group input{
+    width:100%;
+    padding:10px;
+    border:1px solid #ccc;
+    border-radius:6px;
+}
+
+/* INPUT ICON */
+.input-icon{
+    position:relative;
+}
+
+.eye{
+    position:absolute;
+    right:10px;
+    top:50%;
+    transform:translateY(-50%);
+    cursor:pointer;
+}
+
+/* ANIMACION */
+@keyframes fade{
+    from{
+        transform:scale(.9);
+        opacity:0;
+    }
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+
+/* Base del flash */
+.message {
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 14px;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Éxito */
+.message.success {
+    background-color: #e0f7f4;
+    color: #0f4d4a;
+    border: 1px solid #66d9cc;
+}
+
+/* Error */
+.message.error {
+    background-color: #e6f0ff;
+    color: #1a3d7c;
+    border: 1px solid #99c2ff;
+}
+
+/* Delete u otros */
+.message.delete {
+    background-color: #ffeaea;
+    color: #7c1a1a;
+    border: 1px solid #ff9999;
+}
