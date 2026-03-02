@@ -20,10 +20,40 @@ class GruposController extends AppController
         $grupo = $this->Grupos->newEntity();
         $grupo = $this->Grupos->patchEntity($grupo, $this->request->getData());
 
-        if ($this->Grupos->save($grupo)) {
-            $this->Flash->success('Grupo agregado correctamente');
+        $existe = $this->Grupos->find()
+            ->where(['nombre' => $grupo->nombre])
+            ->first();
+
+        if ($existe) {
+
+            $this->Flash->set(
+                'El nombre del grupo no se puede repetir',
+                [
+                    'key' => 'grupo',
+                    'params' => ['class' => 'error']
+                ]
+            );
+
+        } elseif ($this->Grupos->save($grupo)) {
+
+            $this->Flash->set(
+                'Grupo agregado correctamente',
+                [
+                    'key' => 'grupo',
+                    'params' => ['class' => 'success']
+                ]
+            );
+
         } else {
-            $this->Flash->error('Error al agregar el grupo');
+
+            $this->Flash->set(
+                'Error al agregar el grupo',
+                [
+                    'key' => 'grupo',
+                    'params' => ['class' => 'error']
+                ]
+            );
+
         }
 
         return $this->redirect(['action' => 'index']);
@@ -37,15 +67,47 @@ class GruposController extends AppController
         $grupo = $this->Grupos->get($id);
         $grupo = $this->Grupos->patchEntity($grupo, $this->request->getData());
 
-        if ($this->Grupos->save($grupo)) {
-            $this->Flash->success('Grupo actualizado correctamente');
+        $existe = $this->Grupos->find()
+            ->where([
+                'nombre' => $grupo->nombre,
+                'id !=' => $id
+            ])
+            ->first();
+
+        if ($existe) {
+
+            $this->Flash->set(
+                'El nombre del grupo no se puede repetir',
+                [
+                    'key' => 'grupo',
+                    'params' => ['class' => 'error']
+                ]
+            );
+
+        } elseif ($this->Grupos->save($grupo)) {
+
+            $this->Flash->set(
+                'Grupo actualizado correctamente',
+                [
+                    'key' => 'grupo',
+                    'params' => ['class' => 'success']
+                ]
+            );
+
         } else {
-            $this->Flash->error('Error al actualizar el grupo');
+
+            $this->Flash->set(
+                'Error al actualizar el grupo',
+                [
+                    'key' => 'grupo',
+                    'params' => ['class' => 'error']
+                ]
+            );
+
         }
 
         return $this->redirect(['action' => 'index']);
     }
-
 
     public function delete($id = null)
     {
@@ -54,9 +116,25 @@ class GruposController extends AppController
         $grupo = $this->Grupos->get($id);
 
         if ($this->Grupos->delete($grupo)) {
-            $this->Flash->success('Grupo eliminado correctamente');
+
+            $this->Flash->set(
+                'Grupo eliminado correctamente',
+                [
+                    'key' => 'grupo',
+                    'params' => ['class' => 'delete']
+                ]
+            );
+
         } else {
-            $this->Flash->error('No se pudo eliminar el grupo');
+
+            $this->Flash->set(
+                'No se pudo eliminar el grupo',
+                [
+                    'key' => 'grupo',
+                    'params' => ['class' => 'error']
+                ]
+            );
+
         }
 
         return $this->redirect(['action' => 'index']);

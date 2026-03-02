@@ -3,6 +3,8 @@
 
     <h2 class="titulo">Gestión</h2>
 
+    <?= $this->Flash->render('materia', ['escape' => false]) ?>
+
     <div class="card-gestion">
 
         <!-- Tabs -->
@@ -102,12 +104,15 @@
             <span class="modal-close" onclick="cerrarModal()">×</span>
         </div>
 
-        <?= $this->Form->create($materia) ?>
+        <?= $this->Form->create(null, [
+            'url' => ['action' => 'add'],
+            'method' => 'post'
+        ]) ?>
 
         <div class="modal-body">
 
             <div class="form-group">
-                <?= $this->Form->label('nombre', 'Nombre') ?>
+                <?= $this->Form->label('nombre', 'Nombre <span class="required">*Requerido</span>', ['escape' => false]) ?>
                 <?= $this->Form->control('nombre', [
                     'label' => false,
                     'class' => 'form-input'
@@ -115,7 +120,7 @@
             </div>
 
             <div class="form-group">
-                <?= $this->Form->label('codigo', 'Código') ?>
+                <?= $this->Form->label('codigo', 'Código <span class="required">*Requerido</span>', ['escape' => false]) ?>
                 <?= $this->Form->control('codigo', [
                     'label' => false,
                     'class' => 'form-input'
@@ -133,7 +138,7 @@
             </div>
 
             <div class="form-group">
-                <?= $this->Form->label('color', 'Color') ?>
+                <?= $this->Form->label('color', 'Color <span class="required">*Requerido</span>', ['escape' => false]) ?>
                 <?= $this->Form->control('color', [
                     'type' => 'color',
                     'label' => false,
@@ -182,7 +187,7 @@
         <div class="modal-body">
 
             <div class="form-group">
-                <?= $this->Form->label('nombre', 'Nombre') ?>
+                <?= $this->Form->label('nombre', 'Nombre <span class="required">*Requerido</span>', ['escape' => false]) ?>
                 <?= $this->Form->control('nombre', [
                     'label' => false,
                     'class' => 'form-input',
@@ -191,7 +196,7 @@
             </div>
 
             <div class="form-group">
-                <?= $this->Form->label('codigo', 'Código') ?>
+               <?= $this->Form->label('codigo', 'Código <span class="required">*Requerido</span>', ['escape' => false]) ?>
                 <?= $this->Form->control('codigo', [
                     'label' => false,
                     'class' => 'form-input',
@@ -211,7 +216,7 @@
             </div>
 
             <div class="form-group">
-                <?= $this->Form->label('color', 'Color') ?>
+               <?= $this->Form->label('color', 'Color <span class="required">*Requerido</span>', ['escape' => false]) ?>
                 <?= $this->Form->control('color', [
                     'type' => 'color',
                     'label' => false,
@@ -332,6 +337,23 @@
         });
 
     };
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const mensajes = document.querySelectorAll(".message");
+
+        mensajes.forEach(function(msg) {
+            setTimeout(function() {
+                msg.style.opacity = "0";
+                msg.style.transition = "opacity 0.5s";
+
+                setTimeout(function() {
+                    msg.remove();
+                }, 500);
+
+            }, 3000); // 3 segundos
+        });
+    });
 
 
 </script>

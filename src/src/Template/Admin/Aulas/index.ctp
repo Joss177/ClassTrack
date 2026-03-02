@@ -3,6 +3,8 @@
 
     <h2 class="titulo">Gestión</h2>
 
+    <?= $this->Flash->render('aula', ['escape' => false]) ?>
+
     <div class="card-gestion">
 
         <!-- Tabs -->
@@ -109,7 +111,11 @@
         <div class="modal-body">
 
             <div class="form-group">
-                <?= $this->Form->label('nombre', 'Nombre') ?>
+                <label>
+                    Nombre
+                    <span class="required">*Requerido</span>
+                </label>
+
                 <?= $this->Form->control('nombre', [
                     'label' => false,
                     'placeholder' => 'Aula 1',
@@ -118,7 +124,11 @@
             </div>
 
             <div class="form-group">
-                <?= $this->Form->label('capacidad', 'Capacidad') ?>
+                <label>
+                    Capacidad
+                    <span class="required">*Requerido</span>
+                </label>
+
                 <?= $this->Form->control('capacidad', [
                     'label' => false,
                     'type' => 'number',
@@ -127,7 +137,11 @@
             </div>
 
             <div class="form-group">
-                <?= $this->Form->label('piso', 'Piso') ?>
+                <label>
+                    Piso
+                    <span class="required">*Requerido</span>
+                </label>
+
                 <?= $this->Form->control('piso', [
                     'label' => false,
                     'type' => 'number',
@@ -136,7 +150,11 @@
             </div>
 
             <div class="form-group">
-                <?= $this->Form->label('edificio', 'Edificio') ?>
+                <label>
+                    Edificio
+                    <span class="required">*Requerido</span>
+                </label>
+
                 <?= $this->Form->control('edificio', [
                     'label' => false,
                     'required' => true
@@ -161,8 +179,7 @@
         <?= $this->Form->end() ?>
 
     </div>
-</div>>
-
+</div>
 <!-- MODAL EDITAR -->
 <div class="modal-overlay" id="modalEditarAula">
     <div class="modal">
@@ -184,22 +201,22 @@
         <div class="modal-body">
 
             <div class="form-group">
-                <label>Nombre</label>
+                <label>Nombre <span class="required">*Requerido</span></label>
                 <input type="text" name="nombre" id="editNombre" required>
             </div>
 
             <div class="form-group">
-                <label>Capacidad</label>
+                <label>Capacidad <span class="required">*Requerido</span></label>
                 <input type="number" name="capacidad" id="editCapacidad" required>
             </div>
 
             <div class="form-group">
-                <label>Piso</label>
+                <label>Piso <span class="required">*Requerido</span></label>
                 <input type="number" name="piso" id="editPiso" required>
             </div>
 
             <div class="form-group">
-                <label>Edificio</label>
+                <label>Edificio <span class="required">*Requerido</span></label>
                 <input type="text" name="edificio" id="editEdificio" required>
             </div>
 
@@ -322,6 +339,22 @@
             }
         });
     };
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const mensajes = document.querySelectorAll(".message");
+
+        mensajes.forEach(function(msg) {
+            setTimeout(function() {
+                msg.style.opacity = "0";
+                msg.style.transition = "opacity 0.5s";
+
+                setTimeout(function() {
+                    msg.remove();
+                }, 500);
+
+            }, 3000); // 3 segundos
+        });
+    });
 
 </script>
 

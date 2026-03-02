@@ -3,6 +3,8 @@
 
     <h2 class="titulo">Gestión</h2>
 
+    <?= $this->Flash->render('docente', ['escape' => false]) ?>
+
     <div class="card-gestion">
 
         <!-- Tabs -->
@@ -48,7 +50,6 @@
                 <div class="docente-info">
                     <h4><?= h($docente->nombre . ' ' . $docente->apellido) ?></h4>
                     <p class="correo"><?= h($docente->email) ?></p>
-                    <p class="materia">Sin materia</p>
                 </div>
 
                 <hr>
@@ -92,14 +93,16 @@
         ]) ?>
 
         <div class="modal-body">
-            <label>Nombre</label>
+
+            <label>Nombre <span class="required">*Requerido</span></label>
             <input type="text" name="nombre" required>
 
-            <label>Apellido</label>
+            <label>Apellido <span class="required">*Requerido</span></label>
             <input type="text" name="apellido" required>
 
-            <label>Email</label>
+            <label>Email <span class="required">*Requerido</span></label>
             <input type="email" name="email" required>
+
         </div>
 
         <hr>
@@ -129,13 +132,13 @@
         ]) ?>
 
         <div class="modal-body">
-            <label>Nombre</label>
+            <label>Nombre <span class="required">*Requerido</span></label>
             <input type="text" name="nombre" id="editNombre" required>
 
-            <label>Apellido</label>
+            <label>Apellido <span class="required">*Requerido</span></label>
             <input type="text" name="apellido" id="editApellido" required>
 
-            <label>Email</label>
+            <label>Email <span class="required">*Requerido</span></label>
             <input type="email" name="email" id="editEmail" required>
         </div>
 
@@ -173,7 +176,7 @@
 
         <div class="modal-footer">
             <button type="button" class="btn-cancelar" onclick="cerrarModalEliminar()">Cancelar</button>
-            <button type="submit" class="btn-confirmar-eliminar">Eliminar</button>
+            <?= $this->Form->button('Eliminar', ['class' => 'btn-danger']) ?>
         </div>
 
         <?= $this->Form->end() ?>
@@ -251,6 +254,24 @@
         if (event.target === modalEliminar) {
             cerrarModalEliminar();
         }
+    });
+
+    /*Para cerrar el flash despues de 3 segundos */
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const mensajes = document.querySelectorAll(".message");
+
+        mensajes.forEach(function(msg) {
+            setTimeout(function() {
+                msg.style.opacity = "0";
+                msg.style.transition = "opacity 0.5s";
+
+                setTimeout(function() {
+                    msg.remove();
+                }, 500);
+
+            }, 3000); // 3 segundos
+        });
     });
 
 

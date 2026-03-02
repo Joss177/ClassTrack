@@ -3,6 +3,8 @@
 
     <h2 class="titulo">Gestión</h2>
 
+    <?= $this->Flash->render('grupo') ?>
+
     <div class="card-gestion">
 
         <!-- Tabs -->
@@ -97,18 +99,29 @@
         <div class="modal-body">
 
             <div class="form-group">
-                <label>Nombre</label>
+                <label>
+                    Nombre
+                    <span class="required">*Requerido</span>
+                </label>
+
                 <?= $this->Form->control('nombre', [
                     'label' => false,
-                    'class' => 'form-control'
+                    'class' => 'form-control',
+                    'required' => true
                 ]) ?>
             </div>
 
             <div class="form-group">
-                <label>Cantidad de Estudiantes</label>
+                <label>
+                    Cantidad de Estudiantes
+                    <span class="required">*Requerido</span>
+                </label>
+
                 <?= $this->Form->control('cantidad_estudiantes', [
                     'label' => false,
-                    'type' => 'number'
+                    'type' => 'number',
+                    'class' => 'form-control',
+                    'required' => true
                 ]) ?>
             </div>
 
@@ -145,12 +158,12 @@
         <div class="modal-body">
 
             <div class="form-group">
-                <label>Nombre</label>
+                <label>Nombre <span class="required">*Requerido</span></label>
                 <input type="text" name="nombre" id="editar-nombre">
             </div>
 
             <div class="form-group">
-                <label>Cantidad de Estudiantes</label>
+                <label>Cantidad de Estudiantes <span class="required">*Requerido</span></label>
                 <input type="number" name="cantidad_estudiantes" id="editar-cantidad">
             </div>
 
@@ -254,4 +267,20 @@ window.onclick = function(event) {
         }
     });
 };
+
+document.addEventListener("DOMContentLoaded", function () {
+        const mensajes = document.querySelectorAll(".message");
+
+        mensajes.forEach(function(msg) {
+            setTimeout(function() {
+                msg.style.opacity = "0";
+                msg.style.transition = "opacity 0.5s";
+
+                setTimeout(function() {
+                    msg.remove();
+                }, 500);
+
+            }, 3000); // 3 segundos
+        });
+    });
 </script>

@@ -36,21 +36,43 @@ class AulasController extends AppController
      */
     public function add()
     {
+        $this->request->allowMethod(['post']);
+
         $aula = $this->Aulas->newEntity();
+        $data = $this->request->getData();
 
-        if ($this->request->is('post')) {
+        $existe = $this->Aulas->find()
+            ->where(['nombre' => $data['nombre']])
+            ->first();
 
-            $aula = $this->Aulas->patchEntity($aula, $this->request->getData());
+        if ($existe) {
 
-            if ($this->Aulas->save($aula)) {
-                $this->Flash->success(__('El aula fue creada correctamente.'));
-                return $this->redirect(['action' => 'index']);
-            }
+            $this->Flash->error(
+                'El nombre del aula no se puede repetir.',
+                ['key' => 'aula']
+            );
 
-            $this->Flash->error(__('No se pudo crear el aula. Verifica los datos.'));
+            return $this->redirect(['action' => 'index']);
         }
 
-        $this->set(compact('aula'));
+        $aula = $this->Aulas->patchEntity($aula, $data);
+
+        if ($this->Aulas->save($aula)) {
+
+            $this->Flash->success(
+                'El aula fue creada correctamente.',
+                ['key' => 'aula']
+            );
+
+        } else {
+
+            $this->Flash->error(
+                'No se pudo crear el aula. Verifica los datos.',
+                ['key' => 'aula']
+            );
+        }
+
+        return $this->redirect(['action' => 'index']);
     }
 
     /*
@@ -59,21 +81,48 @@ class AulasController extends AppController
     public function edit($id = null)
     {
         if (!$id) {
-            throw new NotFoundException(__('Aula no encontrada.'));
+            throw new NotFoundException('Aula no encontrada.');
         }
 
         $aula = $this->Aulas->get($id);
 
         if ($this->request->is(['post', 'put', 'patch'])) {
 
-            $aula = $this->Aulas->patchEntity($aula, $this->request->getData());
+            $data = $this->request->getData();
 
-            if ($this->Aulas->save($aula)) {
-                $this->Flash->success(__('El aula fue actualizada correctamente.'));
-                return $this->redirect(['action' => 'index']);
+            $existe = $this->Aulas->find()
+                ->where([
+                    'nombre' => $data['nombre'],
+                    'id !=' => $id
+                ])
+                ->first();
+
+            if ($existe) {
+
+                $this->Flash->error(
+                    'El nombre del aula no se puede repetir.',
+                    ['key' => 'aula']
+                );
+
+            } else {
+
+                $aula = $this->Aulas->patchEntity($aula, $data);
+
+                if ($this->Aulas->save($aula)) {
+
+                    $this->Flash->success(
+                        'El aula fue actualizada correctamente.',
+                        ['key' => 'aula']
+                    );
+
+                    return $this->redirect(['action' => 'index']);
+                }
+
+                $this->Flash->error(
+                    'No se pudo actualizar el aula. Verifica los datos.',
+                    ['key' => 'aula']
+                );
             }
-
-            $this->Flash->error(__('No se pudo actualizar el aula. Verifica los datos.'));
         }
 
         $this->set(compact('aula'));
@@ -87,15 +136,27 @@ class AulasController extends AppController
         $this->request->allowMethod(['post', 'delete']);
 
         if (!$id) {
-            throw new NotFoundException(__('Aula no encontrada.'));
+            throw new NotFoundException('Aula no encontrada.');
         }
 
         $aula = $this->Aulas->get($id);
 
         if ($this->Aulas->delete($aula)) {
-            $this->Flash->success(__('El aula fue eliminada correctamente.'));
+
+            $this->Flash->set(
+                'El aula fue eliminada correctamente.',
+                [
+                    'key' => 'aula',
+                    'params' => ['class' => 'delete']
+                ]
+            );
+
         } else {
-            $this->Flash->error(__('No se pudo eliminar el aula.'));
+
+            $this->Flash->error(
+                'No se pudo eliminar el aula.',
+                ['key' => 'aula']
+            );
         }
 
         return $this->redirect(['action' => 'index']);

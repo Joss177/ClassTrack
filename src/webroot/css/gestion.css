@@ -431,3 +431,40 @@ hr {
         opacity: 1;
     }
 }
+
+
+/* CSS PARA LOS MENSAJES DE ALERTA*/
+
+.message {
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 14px;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.message.error {
+    background-color: #e6f0ff;
+    color: #1a3d7c;
+    border: 1px solid #99c2ff;
+}
+
+.message.success {
+    background-color: #e0f7f4;
+    color: #0f4d4a;
+    border: 1px solid #66d9cc;
+}
+
+.message.delete {
+    background-color: #ffeaea;
+    color: #7c1a1a;
+    border: 1px solid #ff9999;
+}
+
+.required {
+    color: #162d49; /* azul */
+    font-size: 12px;
+    margin-left: 5px;
+    font-weight: 500;
+}

@@ -7,64 +7,122 @@ class MateriasController extends AppController
 {
     public function index()
     {
-        // Listado de materias
         $materias = $this->Materias->find('all');
 
-        // Entidad nueva (para modal agregar)
-        $materia = $this->Materias->newEntity();
-
-        // Guardar desde modal agregar
-        if ($this->request->is('post')) {
-
-            $materia = $this->Materias->patchEntity(
-                $materia,
-                $this->request->getData()
-            );
-
-            if ($this->Materias->save($materia)) {
-                $this->Flash->success('Materia guardada correctamente.');
-                return $this->redirect(['action' => 'index']);
-            }
-
-            $this->Flash->error('Error al guardar la materia.');
-        }
-
-        $this->set(compact('materias', 'materia'));
+        $this->set(compact('materias'));
     }
 
-    public function edit($id = null)
+    public function add()
     {
-        $materia = $this->Materias->get($id);
+        if ($this->request->is('post')) {
 
-        if ($this->request->is(['post', 'put', 'patch'])) {
+            $materia = $this->Materias->newEntity();
 
             $materia = $this->Materias->patchEntity(
                 $materia,
                 $this->request->getData()
             );
 
-            if ($this->Materias->save($materia)) {
-                $this->Flash->success('Materia actualizada correctamente.');
-            } else {
-                $this->Flash->error('No se pudo actualizar la materia.');
-            }
+            $existe = $this->Materias->find()
+                ->where(['codigo' => $materia->codigo])
+                ->first();
 
-            return $this->redirect(['action' => 'index']);
+            if ($existe) {
+
+                $this->Flash->error(
+                    'El código de la materia no se puede repetir',
+                    ['key' => 'materia']
+                );
+
+            } elseif ($this->Materias->save($materia)) {
+
+                $this->Flash->success(
+                    'Materia registrada correctamente',
+                    ['key' => 'materia']
+                );
+
+            } else {
+
+                $this->Flash->error(
+                    'Error al registrar la materia',
+                    ['key' => 'materia']
+                );
+
+            }
         }
 
         return $this->redirect(['action' => 'index']);
     }
 
+
+    public function edit($id = null)
+    {
+        $this->request->allowMethod(['post']);
+
+        $materia = $this->Materias->get($id);
+
+        $materia = $this->Materias->patchEntity(
+            $materia,
+            $this->request->getData()
+        );
+
+        $existe = $this->Materias->find()
+            ->where([
+                'codigo' => $materia->codigo,
+                'id !=' => $id
+            ])
+            ->first();
+
+        if ($existe) {
+
+            $this->Flash->error(
+                'El código de la materia no se puede repetir',
+                ['key' => 'materia']
+            );
+
+        } elseif ($this->Materias->save($materia)) {
+
+            $this->Flash->success(
+                'Materia actualizada correctamente',
+                ['key' => 'materia']
+            );
+
+        } else {
+
+            $this->Flash->error(
+                'Error al actualizar la materia',
+                ['key' => 'materia']
+            );
+
+        }
+
+        return $this->redirect(['action' => 'index']);
+    }
+
+
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
+        $this->request->allowMethod(['post']);
 
         $materia = $this->Materias->get($id);
 
         if ($this->Materias->delete($materia)) {
-            $this->Flash->success('Materia eliminada correctamente.');
+
+            $this->Flash->set(
+                'Materia eliminada correctamente',
+                [
+                    'key' => 'materia',
+                    'params' => ['class' => 'delete']
+                ]
+            );
+
         } else {
-            $this->Flash->error('No se pudo eliminar la materia.');
+
+            $this->Flash->error(
+                'Error al eliminar la materia',
+                ['key' => 'materia']
+            );
+
         }
 
         return $this->redirect(['action' => 'index']);
