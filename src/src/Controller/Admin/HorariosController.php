@@ -45,7 +45,6 @@ class HorariosController extends AppController
             'valueField' => 'nombre'
         ]);
 
-        // 🔥 TRAER HORARIOS GUARDADOS
         $horarios = $this->Horarios->find()
             ->contain(['Docentes', 'Materias', 'Grupos', 'Aulas'])
             ->all();

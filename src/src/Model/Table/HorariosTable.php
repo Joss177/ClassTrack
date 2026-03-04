@@ -17,7 +17,8 @@ class HorariosTable extends Table
 
         $this->addBehavior('Timestamp');
 
-        // Relaciones
+        // ================= RELACIONES =================
+
         $this->belongsTo('Docentes', [
             'foreignKey' => 'docente_id',
             'joinType' => 'INNER'
@@ -45,43 +46,46 @@ class HorariosTable extends Table
     {
         $validator
             ->integer('docente_id')
-            ->requirePresence('docente_id')
+            ->requirePresence('docente_id', 'create')
             ->notEmptyString('docente_id');
 
         $validator
             ->integer('materia_id')
-            ->requirePresence('materia_id')
+            ->requirePresence('materia_id', 'create')
             ->notEmptyString('materia_id');
 
         $validator
             ->integer('grupo_id')
-            ->requirePresence('grupo_id')
+            ->requirePresence('grupo_id', 'create')
             ->notEmptyString('grupo_id');
 
         $validator
             ->integer('aula_id')
-            ->requirePresence('aula_id')
+            ->requirePresence('aula_id', 'create')
             ->notEmptyString('aula_id');
 
         $validator
             ->integer('dia_semana')
-            ->range('dia_semana', [1, 5], 'Día inválido')
-            ->requirePresence('dia_semana')
-            ->notEmptyString('dia_semana');
+            ->requirePresence('dia_semana', 'create')
+            ->notEmptyString('dia_semana')
+            ->inList('dia_semana', [1,2,3,4,5], 'Día inválido');
 
         $validator
             ->scalar('hora_inicio')
             ->maxLength('hora_inicio', 5)
-            ->requirePresence('hora_inicio')
-            ->notEmptyString('hora_inicio');
+            ->requirePresence('hora_inicio', 'create')
+            ->notEmptyString('hora_inicio')
+            ->regex('hora_inicio', '/^\d{2}:\d{2}$/', 'Formato inválido (HH:MM)');
 
         $validator
             ->scalar('hora_fin')
             ->maxLength('hora_fin', 5)
-            ->requirePresence('hora_fin')
+            ->requirePresence('hora_fin', 'create')
             ->notEmptyString('hora_fin')
-            ->add('hora_fin', 'custom', [
+            ->regex('hora_fin', '/^\d{2}:\d{2}$/', 'Formato inválido (HH:MM)')
+            ->add('hora_fin', 'horaMayor', [
                 'rule' => function ($value, $context) {
+
                     if (empty($context['data']['hora_inicio'])) {
                         return false;
                     }
@@ -103,8 +107,15 @@ class HorariosTable extends Table
         $rules->add($rules->existsIn(['grupo_id'], 'Grupos'));
         $rules->add($rules->existsIn(['aula_id'], 'Aulas'));
 
-        // Validación anti-traslape
+
         $rules->add(function ($entity, $options) {
+
+            if (empty($entity->aula_id) ||
+                empty($entity->dia_semana) ||
+                empty($entity->hora_inicio) ||
+                empty($entity->hora_fin)) {
+                return true;
+            }
 
             $query = $this->find()
                 ->where([
@@ -114,6 +125,7 @@ class HorariosTable extends Table
                     'hora_fin >' => $entity->hora_inicio
                 ]);
 
+            // Si es edición, excluir el mismo registro
             if (!$entity->isNew()) {
                 $query->where(['id !=' => $entity->id]);
             }
