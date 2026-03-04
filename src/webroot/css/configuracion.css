@@ -179,34 +179,3 @@ body{
     }
 }
 
-
-/* Base del flash */
-.message {
-    padding: 10px;
-    border-radius: 6px;
-    margin-bottom: 15px;
-    text-align: center;
-    font-size: 14px;
-    animation: fadeIn 0.3s ease-in-out;
-}
-
-/* Éxito */
-.message.success {
-    background-color: #e0f7f4;
-    color: #0f4d4a;
-    border: 1px solid #66d9cc;
-}
-
-/* Error */
-.message.error {
-    background-color: #e6f0ff;
-    color: #1a3d7c;
-    border: 1px solid #99c2ff;
-}
-
-/* Delete u otros */
-.message.delete {
-    background-color: #ffeaea;
-    color: #7c1a1a;
-    border: 1px solid #ff9999;
-}

@@ -16,6 +16,13 @@ class AulasTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+
+        // Relación: Un aula puede tener varias cámaras
+        $this->hasMany('Camaras', [
+            'foreignKey' => 'aula_id',
+            'dependent' => true,
+            'cascadeCallbacks' => true
+        ]);
     }
 
     public function validationDefault(Validator $validator)
@@ -53,7 +60,7 @@ class AulasTable extends Table
             ->requirePresence('edificio', 'create')
             ->notEmptyString('edificio', 'El edificio es obligatorio.');
 
-        // Tiene cámara
+        // Tiene cámara (puedes dejarlo temporalmente si aún lo usas)
         $validator
             ->boolean('tiene_camara', 'El valor de cámara debe ser verdadero o falso.')
             ->allowEmptyString('tiene_camara');

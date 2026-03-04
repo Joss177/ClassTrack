@@ -1,0 +1,570 @@
+
+    .camaras-container {
+    padding: 30px;
+    background-color: #f4f6f9;
+    min-height: 100vh;
+}
+
+.title {
+    font-size: 24px;
+    margin-bottom: 25px;
+    color: #1f2d3d;
+}
+
+.cards {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.camera-card {
+    width: 340px;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.camera-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+}
+
+.image-container {
+    position: relative;
+    height: 190px;
+    overflow: hidden;
+}
+
+.image-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.image-container img {
+    width: 100%;
+    display: block;
+}
+
+/* Botón elegante tipo dashboard */
+
+.edit-badge {
+    position: absolute;
+    top: 14px;
+    right: 12px;
+
+    width: 38px;
+    height: 38px;
+
+    border-radius: 12px; /* más moderno que círculo */
+    border: none;
+
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(4px);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+    z-index: 20;
+
+    transition: all 0.2s ease;
+}
+
+.edit-badge svg {
+    width: 18px;
+    height: 18px;
+    color: #fff;
+}
+
+
+.edit-badge i {
+    color: #1f2d3d;
+    font-size: 14px;
+}
+
+.edit-badge:hover {
+    transform: scale(1.1);
+    background: #111;
+}
+
+.delete-badge {
+    position: absolute;
+    top: 60px; /* debajo del editar */
+    right: 12px;
+
+    width: 38px;
+    height: 38px;
+
+    border-radius: 12px;
+    border: none;
+
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(4px);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+    z-index: 20;
+
+    transition: all 0.2s ease;
+}
+
+.delete-badge svg {
+    width: 18px;
+    height: 18px;
+    color: #ff4d4d; /* rojo elegante */
+}
+
+.delete-badge:hover {
+    transform: scale(1.1);
+    background: #111;
+}
+
+
+
+
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.live-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: rgba(0, 0, 0, 0.75);
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+
+
+.dot {
+    width: 8px;
+    height: 8px;
+    background: #ff3b3b;
+    border-radius: 50%;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0.4; }
+    100% { opacity: 1; }
+}
+
+.card-body {
+    padding: 18px;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.card-header h3 {
+    font-size: 16px;
+    color: #1f2d3d;
+}
+
+.status {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+/* Activa → verde suave */
+.status-activa {
+    background-color: #e6f4ea;
+    color: #2e7d32;
+}
+
+/* Inactiva → gris suave */
+.status-inactiva {
+    background-color: #f1f3f5;
+    color: #6c757d;
+}
+
+/* Mantenimiento → ámbar suave */
+.status-mantenimiento {
+    background-color: #fff4e5;
+    color: #b26a00;
+}
+
+.card-body p {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 4px;
+}
+
+
+/* ===== MODAL ===== */
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.modal-content {
+    width: 900px;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    animation: fadeIn 0.2s ease;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 25px;
+    background: #f4f4f4;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.modal-header span {
+    font-size: 14px;
+    color: #666;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.modal-image {
+    position: relative;
+    height: 350px;
+}
+
+.modal-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.time-badge {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    background: rgba(0,0,0,0.75);
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 13px;
+}
+
+.modal-info {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 20px 25px;
+    background: #f4f4f4;
+    gap: 20px;
+}
+
+.modal-info label {
+    font-size: 13px;
+    color: #666;
+}
+
+.modal-info p {
+    margin: 5px 0 0;
+    font-weight: 600;
+}
+
+.active-text {
+    color: #28a745;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.98); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* ============================= */
+/* BOTONES GENERALES */
+/* ============================= */
+
+.btn-agregar,
+.btn-guardar {
+    background-color: #1e3a5f;
+    color: #ffffff;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.btn-agregar:hover,
+.btn-guardar:hover {
+    background-color: #162d49;
+}
+
+.btn-cancelar {
+    padding: 8px 18px;
+    border-radius: 6px;
+    border: 1px solid #d1d5db;
+    background: #ffffff;
+    cursor: pointer;
+}
+
+.btn-cancelar:hover {
+    background: #f3f4f6;
+}
+
+.header-camaras {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+/*MODAL DE REGISTRO*/
+
+/* ============================= */
+/* MODAL REGISTRO INDEPENDIENTE */
+/* ============================= */
+
+.modal-registro-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.modal-registro {
+    width: 480px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    animation: fadeRegistro 0.2s ease;
+    overflow: hidden;
+}
+
+.modal-registro-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 25px;
+}
+
+.modal-registro-header h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #1f2d3d;
+}
+
+.modal-registro-close {
+    cursor: pointer;
+    font-size: 18px;
+    color: #999;
+}
+
+.modal-registro-close:hover {
+    color: #000;
+}
+
+.modal-registro-body {
+    padding: 0 25px 20px 25px;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 6px;
+    color: #1f2d3d;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 9px 10px;
+    border-radius: 6px;
+    border: 1px solid #d1d5db;
+    font-size: 14px;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #1e3a5f;
+    box-shadow: 0 0 0 2px rgba(30,58,95,0.1);
+}
+
+.modal-registro-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 15px 25px 20px 25px;
+    border-top: 1px solid #eee;
+}
+
+.required {
+    font-size: 12px;
+    color: #64748b;
+}
+
+@keyframes fadeRegistro {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.form-group input[readonly] {
+    background-color: #f3f4f6;
+    cursor: not-allowed;
+}
+
+/* CSS PARA LOS MENSAJES DE ALERTA*/
+
+.message {
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 14px;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.message.error {
+    background-color: #e6f0ff;
+    color: #1a3d7c;
+    border: 1px solid #99c2ff;
+}
+
+.message.success {
+    background-color: #e0f7f4;
+    color: #0f4d4a;
+    border: 1px solid #66d9cc;
+}
+
+.message.delete {
+    background-color: #ffeaea;
+    color: #7c1a1a;
+    border: 1px solid #ff9999;
+}
+
+/* ============================= */
+/* MODAL ELIMINAR INDEPENDIENTE */
+/* ============================= */
+
+/* ============================= */
+/* MODAL ELIMINAR CAMARAS */
+/* ============================= */
+
+.cam-delete-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.cam-delete-modal {
+    background: #ffffff;
+    width: 420px;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+    animation: fadeIn 0.2s ease;
+}
+
+.cam-delete-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.cam-delete-header h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #1f2937;
+}
+
+.cam-delete-close {
+    cursor: pointer;
+    font-size: 20px;
+    color: #6b7280;
+}
+
+.cam-delete-close:hover {
+    color: #111827;
+}
+
+.cam-delete-body p {
+    font-size: 14px;
+    color: #374151;
+    margin-bottom: 20px;
+}
+
+.cam-delete-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+/* BOTONES */
+
+.cam-btn-cancelar {
+    padding: 8px 18px;
+    border-radius: 6px;
+    border: 1px solid #d1d5db;
+    background: #ffffff;
+    cursor: pointer;
+}
+
+.cam-btn-cancelar:hover {
+    background: #f3f4f6;
+}
+
+.cam-btn-danger {
+    padding: 8px 18px;
+    border-radius: 6px;
+    border: none;
+    background: #ef4444;
+    color: white;
+    cursor: pointer;
+}
+
+.cam-btn-danger:hover {
+    background: #dc2626;
+}

@@ -87,15 +87,6 @@
             ) ?>
 
             <?= $this->Html->link(
-                '<i class="fas fa-users"></i><span>Usuarios</span>',
-                ['controller' => 'Users', 'action' => 'edit', 1],
-                [
-                    'escape' => false,
-                    'class' => 'item ' . $this->Menu->activeClass('Users')
-                ]
-            ) ?>
-
-            <?= $this->Html->link(
                 '<i class="fas fa-cog"></i><span>Configuración</span>',
                 ['controller' => 'Configuracion', 'action' => 'index'],
                 [

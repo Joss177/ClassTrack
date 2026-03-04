@@ -26,11 +26,16 @@ class UsersTable extends Table
     public function validationDefault(Validator $validator)
     {
         $validator
-            ->notEmptyString('nombre_completo', 'El nombre es obligatorio')
-            ->notEmptyString('correo', 'El correo es obligatorio')
-            ->email('correo', 'Debe ser un correo válido')
-            ->notEmptyString('password', 'La contraseña es obligatoria')
-            ->minLength('password', 6, 'Mínimo 6 caracteres');
+            ->notEmpty('nombre_completo', 'El nombre es obligatorio')
+            ->notEmpty('correo', 'El correo es obligatorio')
+            ->email('correo', false, 'Debe ser un correo válido')
+
+            // Password obligatoria solo al crear
+            ->notEmpty('password', 'La contraseña es obligatoria', 'create')
+            ->minLength('password', 6, 'Mínimo 6 caracteres')
+
+            // Tema
+            ->inList('tema', ['claro', 'oscuro'], 'Tema inválido');
 
         return $validator;
     }
@@ -41,6 +46,8 @@ class UsersTable extends Table
             ['correo'],
             'El correo ya está registrado'
         ));
+
+        $rules->add($rules->existsIn(['group_id'], 'Groups'));
 
         return $rules;
     }

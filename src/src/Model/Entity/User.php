@@ -11,7 +11,7 @@ class User extends Entity
         'nombre_completo' => true,
         'correo' => true,
         'password' => true,
-        'group_id' => true,
+        'group_id' => false,
         'tema' => true,
         'created' => true,
         'modified' => true,

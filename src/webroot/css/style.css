@@ -13,7 +13,7 @@
     src: url('/font/CenturyGothic.woff') format('woff'),
     url('/font/CenturyGothic.woff2') format('woff2'),
     url('/font/CenturyGothic.ttf') format('truetype');
-}
+}s
 
 *{
     margin: 0px;
