@@ -42,7 +42,7 @@ foreach ($horarios as $h) {
 
         // Si el bloque está dentro del rango del horario
         if ($inicioBloque >= $inicioHorario && $inicioBloque < $finHorario) {
-            $horariosMap[$h->aula_id][$h->dia_semana][$bloque['inicio']] = $h;
+            $horariosMap[$h->grupo_id][$h->dia_semana][$bloque['inicio']] = $h;
         }
     }
 }
@@ -53,21 +53,33 @@ foreach ($horarios as $h) {
     <h1 class="title">Horarios</h1>
 
     <div class="top-bar">
-        <div>
-            <label>Horarios</label>
-            <select>
-                <option>Todas las aulas</option>
-            </select>
-        </div>
+        <?= $this->Form->create(null, ['type' => 'get', 'style' => 'display:inline;']) ?>
+
+            <div>
+                <label>Grupo:</label>
+                <select name="grupo_id" onchange="this.form.submit()">
+                    <option value="">Todas las aulas</option>
+
+                    <?php foreach ($grupos as $id => $nombre): ?>
+                        <option value="<?= $id ?>"
+                            <?= ($this->request->getQuery('grupo_id') == $id) ? 'selected' : '' ?>>
+                            <?= h($nombre) ?>
+                        </option>
+                    <?php endforeach; ?>
+
+                </select>
+            </div>
+
+        <?= $this->Form->end() ?>
 
         <button class="btn-primary" onclick="openModal()">Agregar Horario</button>
     </div>
 
-    <?php foreach ($aulas as $aulaId => $aulaNombre): ?>
+    <?php foreach ($grupos as $grupoId => $grupoNombre): ?>
 
         <div class="card">
 
-            <h2 class="aula-title"><?= h($aulaNombre) ?></h2>
+            <h2 class="aula-title"><?= h($grupoNombre) ?></h2>
 
             <div class="schedule">
 
@@ -92,26 +104,34 @@ foreach ($horarios as $h) {
                     </div>
 
                     <?php for ($dia = 1; $dia <= 5; $dia++): ?>
-                        <div class="cell">
+                        <div class="cell"
+                            data-grupo="<?= $grupoId ?>"
+                            data-dia="<?= $dia ?>"
+                            data-hora="<?= $bloque['inicio'] ?>">
 
-                            <?php if (!empty($horariosMap[$aulaId][$dia][$bloque['inicio']])):
-                                $h = $horariosMap[$aulaId][$dia][$bloque['inicio']];
+                        <?php if (!empty($horariosMap[$grupoId][$dia][$bloque['inicio']])):
+                                $h = $horariosMap[$grupoId][$dia][$bloque['inicio']];
+                                $duracion = (strtotime($h->hora_fin) - strtotime($h->hora_inicio)) / 60;
                             ?>
                                 <div class="materia-bloque abrir-detalle"
                                     style="background: <?= h($h->materia->color) ?>"
+
                                     data-id="<?= $h->id ?>"
-                                    data-materia="<?= h($h->materia->nombre) ?>"
+
+                                    data-materia="<?= h($h->materia->nombre ?? '') ?>"
                                     data-codigo="<?= h($h->materia->codigo ?? '') ?>"
                                     data-docente="<?= h($h->docente->nombre ?? '') ?>"
                                     data-grupo="<?= h($h->grupo->nombre ?? '') ?>"
-                                    data-aula="<?= h($aulaNombre) ?>"
-                                    data-dia="<?= $dia ?>"
-                                    data-hora="<?= substr($h->hora_inicio,0,5) ?> - <?= substr($h->hora_fin,0,5) ?>">
+                                    data-aula="<?= h($h->aula->nombre ?? '') ?>"
 
-                                    <strong><?= h($h->materia->nombre) ?></strong><br>
-                                    <?= h($h->grupo->nombre ?? '') ?><br>
-                                    <?= h($h->docente->nombre ?? '') ?><br>
-                                    <?= h($h->hora_inicio) ?> - <?= h($h->hora_fin) ?>
+                                    data-dia="<?= $h->dia_semana ?>"
+                                    data-hora="<?= $h->hora_inicio ?> - <?= $h->hora_fin ?>"
+
+                                    data-duracion="<?= $duracion ?>"
+                                >
+
+                                <strong><?= h($h->materia->codigo ?? '') ?></strong><br>
+                                <?= h($h->aula->nombre ?? '') ?>
 
                                 </div>
                             <?php endif; ?>
@@ -287,20 +307,170 @@ foreach ($horarios as $h) {
 
         <div class="modal-footer">
 
-            <button type="button" id="btnEditar" class="btn-editar">
-                Editar
+        <button type="button" id="btnEditar" class="btn-editar">
+            Editar
+        </button>
+
+        <?= $this->Form->create(null, [
+            'id' => 'formEliminar',
+            'method' => 'post'
+        ]) ?>
+
+            <button type="submit" class="btn-eliminar">
+                Eliminar
             </button>
 
-            <form id="formEliminar" method="post" style="display:inline;">
-                <button type="submit" class="btn-eliminar">
-                    Eliminar
-                </button>
-            </form>
+        <?= $this->Form->end() ?>
 
-        </div>
+    </div>
 
     </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    if (typeof Sortable === "undefined") {
+        console.error("SortableJS no se cargó");
+        return;
+    }
+
+    const celdas = document.querySelectorAll(".cell");
+
+    celdas.forEach(function(cell) {
+
+        new Sortable(cell, {
+            group: "horarios",
+            animation: 150,
+            draggable: ".materia-bloque",
+
+            onMove: function (evt) {
+
+                const destino = evt.to;
+
+                if (!destino) {
+                    return false;
+                }
+
+                // 🔒 Solo una materia por celda
+                if (destino.children.length > 0) {
+                    return false;
+                }
+
+                return true;
+            },
+
+            onEnd: function (evt) {
+
+                const item = evt.item;
+
+                if (!item) return;
+
+                const id = item.dataset.id;
+                const duracion = parseInt(item.dataset.duracion) || 0;
+
+                const destino = evt.to;
+
+                if (!destino) return;
+
+                const nuevoGrupo = destino.dataset.grupo;
+                const nuevoDia = destino.dataset.dia;
+                const nuevaHoraInicio = destino.dataset.hora;
+
+                if (!id || !nuevoGrupo || !nuevoDia || !nuevaHoraInicio) {
+                    console.error("Datos incompletos");
+                    location.reload();
+                    return;
+                }
+
+                moverHorario(
+                    id,
+                    nuevoGrupo,
+                    nuevoDia,
+                    nuevaHoraInicio,
+                    duracion
+                );
+            }
+
+        });
+
+    });
+
+    function horaToMin(h) {
+
+        if (!h) return 0;
+
+        const partes = h.split(":");
+
+        const horas = parseInt(partes[0]) || 0;
+        const minutos = parseInt(partes[1]) || 0;
+
+        return (horas * 60) + minutos;
+    }
+
+    function minToHora(min) {
+
+        const h = Math.floor(min / 60);
+        const m = min % 60;
+
+        const hh = ("0" + h).slice(-2);
+        const mm = ("0" + m).slice(-2);
+
+        return hh + ":" + mm;
+    }
+
+    function moverHorario(id, grupo, dia, horaInicio, duracion) {
+
+        const minInicio = horaToMin(horaInicio);
+        const minFin = minInicio + duracion;
+        const horaFin = minToHora(minFin);
+
+        fetch("<?= $this->Url->build(['action' => 'mover']) ?>", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-Token": "<?= $this->request->getParam('_csrfToken') ?>"
+            },
+            body: JSON.stringify({
+                id: id,
+                grupo_id: grupo,
+                dia_semana: dia,
+                hora_inicio: horaInicio,
+                hora_fin: horaFin
+            })
+        })
+        .then(function(res) {
+
+            if (!res.ok) {
+                throw new Error("Error HTTP");
+            }
+
+            return res.json();
+
+        })
+        .then(function(data) {
+
+            if (!data.success) {
+                alert("Conflicto de horario");
+                location.reload();
+            }
+
+        })
+        .catch(function(error) {
+
+            console.error(error);
+            alert("Error del servidor");
+            location.reload();
+
+        });
+
+    }
+
+});
+</script>
+
 
 <script>
 const horariosExistentes = <?= json_encode($horarios) ?>;
@@ -433,25 +603,28 @@ document.addEventListener("DOMContentLoaded", function() {
 
         bloque.addEventListener("click", function() {
 
-            const id = this.dataset.id;
+    const id = this.dataset.id;
 
-            document.getElementById("m_materia").innerText = this.dataset.materia;
-            document.getElementById("m_codigo").innerText = this.dataset.codigo;
-            document.getElementById("m_docente").innerText = this.dataset.docente;
-            document.getElementById("m_grupo").innerText = this.dataset.grupo;
-            document.getElementById("m_aula").innerText = this.dataset.aula;
-            document.getElementById("m_dia").innerText = nombreDia(this.dataset.dia);
-            document.getElementById("m_hora").innerText = this.dataset.hora;
+    // llenar datos del modal
+    document.getElementById("m_materia").innerText = this.dataset.materia;
+    document.getElementById("m_codigo").innerText = this.dataset.codigo;
+    document.getElementById("m_docente").innerText = this.dataset.docente;
+    document.getElementById("m_grupo").innerText = this.dataset.grupo;
+    document.getElementById("m_aula").innerText = this.dataset.aula;
+    document.getElementById("m_dia").innerText = nombreDia(this.dataset.dia);
+    document.getElementById("m_hora").innerText = this.dataset.hora;
 
-            document.getElementById("btnEditar").href =
-                "/admin/horarios/edit/" + id;
+    // botón editar
+    document.getElementById("btnEditar").href =
+        "/admin/horarios/edit/" + id;
 
-            document.getElementById("formEliminar").innerHTML =
-                '<input type="hidden" name="_method" value="POST">' +
-                '<button type="submit" formaction="/admin/horarios/delete/' + id + '" class="btn-eliminar">Eliminar</button>';
+    // formulario eliminar (solo cambiamos action)
+    document.getElementById("formEliminar").action =
+        "/admin/horarios/delete/" + id;
 
-            document.getElementById("modalHorario").style.display = "flex";
-        });
+    // mostrar modal
+    document.getElementById("modalHorario").style.display = "flex";
+});
 
     });
 
@@ -503,3 +676,33 @@ window.onclick = function(e) {
     }
 };
 </script>
+
+
+<style>
+    .materia-bloque {
+    background: #3b82f6;
+    color: white;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 1.0;
+    cursor: pointer;
+
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 8px;
+}
+
+.materia-bloque {
+    color: rgb(58, 58, 58);
+    padding: 6px;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: transform .15s ease, box-shadow .15s ease;
+}
+</style>

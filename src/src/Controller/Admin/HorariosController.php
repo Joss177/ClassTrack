@@ -23,6 +23,8 @@ class HorariosController extends AppController
      */
     public function index()
     {
+        $grupoId = $this->request->getQuery('grupo_id');
+
         $horario = $this->Horarios->newEntity();
 
         $docentes = $this->Docentes->find('list', [
@@ -45,9 +47,15 @@ class HorariosController extends AppController
             'valueField' => 'nombre'
         ]);
 
-        $horarios = $this->Horarios->find()
-            ->contain(['Docentes', 'Materias', 'Grupos', 'Aulas'])
-            ->all();
+        $query = $this->Horarios->find()
+            ->contain(['Docentes', 'Materias', 'Grupos', 'Aulas']);
+
+        // Filtro por grupo si viene seleccionado
+        if (!empty($grupoId)) {
+            $query->where(['Horarios.grupo_id' => $grupoId]);
+        }
+
+        $horarios = $query->all();
 
         $this->set(compact(
             'horario',
@@ -55,7 +63,8 @@ class HorariosController extends AppController
             'materias',
             'grupos',
             'aulas',
-            'horarios'
+            'horarios',
+            'grupoId'
         ));
     }
 
@@ -89,4 +98,72 @@ class HorariosController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
+    public function mover()
+    {
+        $this->request->allowMethod(['post']);
+        $this->autoRender = false;
+
+        $data = $this->request->input('json_decode', true);
+
+        $horario = $this->Horarios->get($data['id']);
+
+        $existe = $this->Horarios->find()
+            ->where([
+                'grupo_id' => $data['grupo_id'],
+                'dia_semana' => $data['dia_semana'],
+                'id !=' => $data['id'],
+                'hora_inicio <' => $data['hora_fin'],
+                'hora_fin >' => $data['hora_inicio']
+            ])
+            ->count();
+
+        if ($existe > 0) {
+            echo json_encode(['success' => false]);
+            return;
+        }
+
+        $horario->grupo_id = $data['grupo_id'];
+        $horario->dia_semana = $data['dia_semana'];
+        $horario->hora_inicio = $data['hora_inicio'];
+        $horario->hora_fin = $data['hora_fin'];
+
+        if ($this->Horarios->save($horario)) {
+            echo json_encode(['success' => true]);
+        } else {
+            echo json_encode(['success' => false]);
+        }
+    }
+
+    public function delete($id = null)
+{
+    $this->request->allowMethod(['post']);
+
+    $horario = $this->Horarios->get($id);
+
+    if ($this->Horarios->delete($horario)) {
+        $this->Flash->success('Horario eliminado.');
+    } else {
+        $this->Flash->error('No se pudo eliminar.');
+    }
+
+    return $this->redirect(['action' => 'index']);
+}
+
+public function edit($id = null)
+{
+    $this->request->allowMethod(['post','put']);
+
+    $horario = $this->Horarios->get($id);
+
+    $horario = $this->Horarios->patchEntity($horario, $this->request->getData());
+
+    if ($this->Horarios->save($horario)) {
+        $this->Flash->success('Horario actualizado');
+    } else {
+        $this->Flash->error('Error al actualizar');
+    }
+
+    return $this->redirect(['action'=>'index']);
+}
 }
