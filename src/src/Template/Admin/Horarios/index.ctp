@@ -71,8 +71,21 @@ foreach ($horarios as $h) {
             </div>
 
         <?= $this->Form->end() ?>
+        <?= $this->Form->create(null, ['type' => 'file']) ?>
 
-        <button class="btn-primary" onclick="openModal()">Agregar Horario</button>
+            <div class="botones">
+                <button type="button" class="btn-primary" onclick="abrirBuscador()">Subir Horario</button>
+                <button type="button" class="btn-primary" onclick="openModal()">Agregar Horario Manual</button>
+            </div>
+
+            <?= $this->Form->file('archivoHorario', [
+                'id' => 'archivoHorario',
+                'accept' => '.pdf,.png,.jpg,.jpeg',
+                'style' => 'display:none'
+            ]) ?>
+
+            <?= $this->Form->end() ?>
+
     </div>
 
     <?php foreach ($grupos as $grupoId => $grupoNombre): ?>
@@ -327,9 +340,11 @@ foreach ($horarios as $h) {
     </div>
 </div>
 
+
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
 
 <script>
+    /* SCRIPT PARA PODER MOVER LOS CONTENEDORES DE COLORES HECHO CON IA NO LE ENTIENDO LA NETA SALUDOS */
 document.addEventListener("DOMContentLoaded", function () {
 
     if (typeof Sortable === "undefined") {
@@ -675,6 +690,17 @@ window.onclick = function(e) {
         modalDetalle.style.display = "none";
     }
 };
+
+/* para abrir el explorador de archivos */
+function abrirBuscador() {
+    document.getElementById("archivoHorario").click();
+}
+
+document.getElementById("archivoHorario").addEventListener("change", function () {
+    if (this.files.length > 0) {
+        this.form.submit();
+    }
+});
 </script>
 
 
