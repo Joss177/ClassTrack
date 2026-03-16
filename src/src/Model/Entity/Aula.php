@@ -5,6 +5,10 @@ use Cake\ORM\Entity;
 
 class Aula extends Entity
 {
+
+    /**
+     * Campos que pueden asignarse masivamente
+     */
     protected $_accessible = [
         'nombre' => true,
         'capacidad' => true,
@@ -12,6 +16,10 @@ class Aula extends Entity
         'edificio' => true,
         'tiene_camara' => true,
         'created' => true,
-        'modified' => true
+        'modified' => true,
+
+        // permitir asociaciones si existen
+        'horarios' => true
     ];
+
 }

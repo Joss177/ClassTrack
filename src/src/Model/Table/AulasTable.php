@@ -15,9 +15,15 @@ class AulasTable extends Table
         $this->setDisplayField('nombre');
         $this->setPrimaryKey('id');
 
+        // timestamps automáticos
         $this->addBehavior('Timestamp');
 
-        // Relación: Un aula puede tener varias cámaras
+        // Relación con horarios
+        $this->hasMany('Horarios', [
+            'foreignKey' => 'aula_id'
+        ]);
+
+        // Relación con cámaras
         $this->hasMany('Camaras', [
             'foreignKey' => 'aula_id',
             'dependent' => true,
@@ -27,42 +33,38 @@ class AulasTable extends Table
 
     public function validationDefault(Validator $validator)
     {
+
         // ID
         $validator
             ->integer('id')
             ->allowEmptyString('id', 'create');
 
-        // Nombre
+        // Nombre del aula (único dato que viene del PDF)
         $validator
             ->scalar('nombre')
-            ->maxLength('nombre', 100, 'El nombre no puede exceder 100 caracteres.')
+            ->maxLength('nombre', 100)
             ->requirePresence('nombre', 'create')
-            ->notEmptyString('nombre', 'El nombre es obligatorio.');
+            ->notEmptyString('nombre', 'El nombre del aula es obligatorio.');
 
-        // Capacidad
+        // Capacidad (opcional)
         $validator
-            ->integer('capacidad', 'La capacidad debe ser un número entero.')
-            ->greaterThan('capacidad', 0, 'La capacidad debe ser mayor a 0.')
-            ->requirePresence('capacidad', 'create')
-            ->notEmptyString('capacidad', 'La capacidad es obligatoria.');
+            ->integer('capacidad')
+            ->allowEmptyString('capacidad');
 
-        // Piso
+        // Piso (opcional)
         $validator
-            ->integer('piso', 'El piso debe ser un número entero.')
-            ->greaterThanOrEqual('piso', 0, 'El piso no puede ser negativo.')
-            ->requirePresence('piso', 'create')
-            ->notEmptyString('piso', 'El piso es obligatorio.');
+            ->integer('piso')
+            ->allowEmptyString('piso');
 
-        // Edificio
+        // Edificio (opcional)
         $validator
             ->scalar('edificio')
-            ->maxLength('edificio', 50, 'El edificio no puede exceder 50 caracteres.')
-            ->requirePresence('edificio', 'create')
-            ->notEmptyString('edificio', 'El edificio es obligatorio.');
+            ->maxLength('edificio', 50)
+            ->allowEmptyString('edificio');
 
-        // Tiene cámara (puedes dejarlo temporalmente si aún lo usas)
+        // Tiene cámara
         $validator
-            ->boolean('tiene_camara', 'El valor de cámara debe ser verdadero o falso.')
+            ->boolean('tiene_camara')
             ->allowEmptyString('tiene_camara');
 
         return $validator;
@@ -70,11 +72,11 @@ class AulasTable extends Table
 
     public function buildRules(RulesChecker $rules)
     {
-        // Evitar nombres duplicados en el mismo edificio
-        $rules->add($rules->isUnique(
-            ['nombre', 'edificio'],
-            'Ya existe un aula con ese nombre en ese edificio.'
-        ));
+        // Evitar duplicados de aulas
+        $rules->add(
+            $rules->isUnique(['nombre']),
+            ['errorField' => 'nombre', 'message' => 'Ya existe un aula con ese nombre.']
+        );
 
         return $rules;
     }

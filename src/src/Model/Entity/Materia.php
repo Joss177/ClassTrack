@@ -11,6 +11,7 @@ class Materia extends Entity
         'descripcion' => true,
         'color' => true,
         'created' => true,
-        'modified' => true
+        'modified' => true,
+        'horarios' => true
     ];
 }

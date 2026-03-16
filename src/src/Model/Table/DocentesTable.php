@@ -15,8 +15,12 @@ class DocentesTable extends Table
         $this->setDisplayField('nombre');
         $this->setPrimaryKey('id');
 
-        // Si usas created y modified en la tabla
         $this->addBehavior('Timestamp');
+
+        // Relación con horarios
+        $this->hasMany('Horarios', [
+            'foreignKey' => 'docente_id'
+        ]);
     }
 
     public function validationDefault(Validator $validator)
@@ -26,36 +30,24 @@ class DocentesTable extends Table
             ->integer('id')
             ->allowEmptyString('id', 'create');
 
-        // Nombre
+        // Nombre completo del docente (único dato usado desde el PDF)
         $validator
             ->scalar('nombre')
-            ->maxLength('nombre', 100, 'Máximo 100 caracteres.')
+            ->maxLength('nombre', 100)
             ->requirePresence('nombre', 'create')
-            ->notEmptyString('nombre', 'El nombre es obligatorio.')
-            ->regex(
-                'nombre',
-                '/^[a-zA-ZÁÉÍÓÚáéíóúÑñ\s]+$/',
-                'El nombre solo puede contener letras.'
-            );
+            ->notEmptyString('nombre', 'El nombre del docente es obligatorio.');
 
-        // Apellido
+        // Apellido (opcional porque el PDF no lo separa)
         $validator
             ->scalar('apellido')
-            ->maxLength('apellido', 100, 'Máximo 100 caracteres.')
-            ->requirePresence('apellido', 'create')
-            ->notEmptyString('apellido', 'El apellido es obligatorio.')
-            ->regex(
-                'apellido',
-                '/^[a-zA-ZÁÉÍÓÚáéíóúÑñ\s]+$/',
-                'El apellido solo puede contener letras.'
-            );
+            ->maxLength('apellido', 100)
+            ->allowEmptyString('apellido');
 
-        // Email
+        // Email (opcional porque el PDF no lo incluye)
         $validator
             ->scalar('email')
-            ->maxLength('email', 150, 'Máximo 150 caracteres.')
-            ->requirePresence('email', 'create')
-            ->notEmptyString('email', 'El email es obligatorio.')
+            ->maxLength('email', 150)
+            ->allowEmptyString('email')
             ->email('email', false, 'Debe ingresar un email válido.');
 
         return $validator;
@@ -63,10 +55,10 @@ class DocentesTable extends Table
 
     public function buildRules(RulesChecker $rules)
     {
-        // Evitar correos duplicados
+        // Evitar docentes duplicados
         $rules->add(
-            $rules->isUnique(['email']),
-            ['errorField' => 'email', 'message' => 'Este email ya está registrado.']
+            $rules->isUnique(['nombre']),
+            ['errorField' => 'nombre', 'message' => 'Este docente ya existe.']
         );
 
         return $rules;

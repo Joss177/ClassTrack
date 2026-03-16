@@ -71,20 +71,36 @@ foreach ($horarios as $h) {
             </div>
 
         <?= $this->Form->end() ?>
-        <?= $this->Form->create(null, ['type' => 'file']) ?>
+        <?= $this->Form->create(null, [
+            'type' => 'file',
+            'method' => 'post',
+            'url' => [
+                'prefix' => 'admin',
+                'controller' => 'Horarios',
+                'action' => 'index'
+            ],
+            'id' => 'formHorario'
+        ]) ?>
 
-            <div class="botones">
-                <button type="button" class="btn-primary" onclick="abrirBuscador()">Subir Horario</button>
-                <button type="button" class="btn-primary" onclick="openModal()">Agregar Horario Manual</button>
-            </div>
+        <div class="botones">
 
-            <?= $this->Form->file('archivoHorario', [
-                'id' => 'archivoHorario',
-                'accept' => '.pdf,.png,.jpg,.jpeg',
-                'style' => 'display:none'
-            ]) ?>
+            <button type="button" class="btn-primary" onclick="abrirBuscador()">
+                Subir Horario
+            </button>
 
-            <?= $this->Form->end() ?>
+            <button type="button" class="btn-primary" onclick="openModal()">
+                Agregar Horario Manual
+            </button>
+
+        </div>
+
+        <?= $this->Form->file('archivoHorario', [
+            'id' => 'archivoHorario',
+            'accept' => '.pdf',
+            'style' => 'display:none'
+        ]) ?>
+
+        <?= $this->Form->end() ?>
 
     </div>
 
@@ -692,15 +708,31 @@ window.onclick = function(e) {
 };
 
 /* para abrir el explorador de archivos */
+document.addEventListener("DOMContentLoaded", function () {
+
+    const form = document.getElementById("formHorario");
+    const input = document.getElementById("archivoHorario");
+
+    console.log(form);
+    console.log(input);
+
+    input.addEventListener("change", function () {
+
+        const archivo = this.files[0];
+
+        if (!archivo) return;
+
+        console.log("Enviando formulario POST...");
+
+        form.submit();
+
+    });
+
+});
+
 function abrirBuscador() {
     document.getElementById("archivoHorario").click();
 }
-
-document.getElementById("archivoHorario").addEventListener("change", function () {
-    if (this.files.length > 0) {
-        this.form.submit();
-    }
-});
 </script>
 
 

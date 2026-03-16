@@ -9,6 +9,7 @@ class Grupo extends Entity
         'nombre' => true,
         'cantidad_estudiantes' => true,
         'created' => true,
-        'modified' => true
+        'modified' => true,
+        'horarios' => true
     ];
 }

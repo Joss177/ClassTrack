@@ -5,7 +5,6 @@ use Cake\ORM\Entity;
 
 class Docente extends Entity
 {
-    // Permitir asignación masiva segura
     protected $_accessible = [
         'nombre' => true,
         'apellido' => true,

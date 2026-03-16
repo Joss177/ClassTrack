@@ -16,44 +16,51 @@ class MateriasTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+
+        // Relación con horarios
+        $this->hasMany('Horarios', [
+            'foreignKey' => 'materia_id'
+        ]);
     }
 
     public function validationDefault(Validator $validator)
     {
+        // ID
         $validator
             ->integer('id')
             ->allowEmptyString('id', 'create');
 
+        // Nombre de la materia (viene del PDF)
         $validator
             ->scalar('nombre')
-            ->maxLength('nombre', 150, 'El nombre no puede exceder 150 caracteres.')
+            ->maxLength('nombre', 150)
             ->requirePresence('nombre', 'create')
-            ->notEmptyString('nombre', 'El nombre es obligatorio.');
+            ->notEmptyString('nombre', 'El nombre de la materia es obligatorio.');
 
+        // Código de la materia (clave del PDF)
         $validator
             ->scalar('codigo')
-            ->maxLength('codigo', 50, 'El código no puede exceder 50 caracteres.')
+            ->maxLength('codigo', 50)
             ->requirePresence('codigo', 'create')
-            ->notEmptyString('codigo', 'El código es obligatorio.');
-
-        $validator
+            ->notEmptyString('codigo', 'El código es obligatorio.')
             ->add('codigo', 'formato', [
                 'rule' => ['custom', '/^[A-Z0-9\-]+$/'],
                 'message' => 'El código solo puede contener letras mayúsculas, números y guiones.'
             ]);
 
+        // Descripción (opcional, el PDF no la incluye)
         $validator
             ->scalar('descripcion')
             ->allowEmptyString('descripcion');
 
+        // Color (opcional porque el PDF no lo trae, se puede usar default de la BD)
         $validator
             ->scalar('color')
             ->maxLength('color', 7)
-            ->requirePresence('color', 'create')
-            ->notEmptyString('color', 'El color es obligatorio.')
+            ->allowEmptyString('color')
             ->add('color', 'formatoHex', [
                 'rule' => ['custom', '/^#[A-Fa-f0-9]{6}$/'],
-                'message' => 'El color debe estar en formato hexadecimal válido (ej: #3b82f6).'
+                'message' => 'El color debe estar en formato hexadecimal válido.'
             ]);
 
         return $validator;
@@ -61,7 +68,11 @@ class MateriasTable extends Table
 
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->isUnique(['codigo'], 'El código ya está registrado.'));
+        // Evitar materias duplicadas
+        $rules->add(
+            $rules->isUnique(['codigo']),
+            ['errorField' => 'codigo', 'message' => 'Este código de materia ya existe.']
+        );
 
         return $rules;
     }

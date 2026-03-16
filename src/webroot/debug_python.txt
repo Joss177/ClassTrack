@@ -1,0 +1,1921 @@
+{
+  "grupos": [
+    {
+      "nombre": "N",
+      "materias": [
+        {
+          "codigo": "B-CDI-1",
+          "nombre": "CÁLCULO DIFERENCIAL",
+          "docente": "Lic. Ana Isabel Melgarejo Rodríguez 6",
+          "color": "#f87171"
+        },
+        {
+          "codigo": "B-PES-F-1",
+          "nombre": "PROBABILIDAD Y ESTADÍSTICA",
+          "docente": "MC. Patricia Guadalupe Torrero Martínez 5",
+          "color": "#34d399"
+        },
+        {
+          "codigo": "E-PRE-1",
+          "nombre": "PROGRAMACIÓN ESTRUCTURADA",
+          "docente": "MC. Francisco Javier Real Angulo 5",
+          "color": "#fbbf24"
+        },
+        {
+          "codigo": "E-SIOP-1",
+          "nombre": "SISTEMAS OPERATIVOS",
+          "docente": "Ing. Daniel Omar Cuellar Álvarez 4",
+          "color": "#60a5fa"
+        }
+      ],
+      "horarios": [
+        {
+          "hora_inicio": "09:30",
+          "hora_fin": "10:20",
+          "codigo": "B-CDI-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "09:30",
+          "hora_fin": "10:20",
+          "codigo": "B-PES-F-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "09:30",
+          "hora_fin": "10:20",
+          "codigo": "B-CDI-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "10:50",
+          "hora_fin": "11:40",
+          "codigo": "B-PES-F-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "10:50",
+          "hora_fin": "11:40",
+          "codigo": "B-PES-F-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "12:30",
+          "hora_fin": "13:20",
+          "codigo": "B-CDI-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "12:30",
+          "hora_fin": "13:20",
+          "codigo": "B-PES-F-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "13:20",
+          "hora_fin": "14:10",
+          "codigo": "B-CDI-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "13:20",
+          "hora_fin": "14:10",
+          "codigo": "B-PES-F-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "14:10",
+          "hora_fin": "15:00",
+          "codigo": "Tutoría",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "7:00",
+          "hora_fin": "7:50",
+          "codigo": "E-SIOP-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "7:00",
+          "hora_fin": "7:50",
+          "codigo": "E-SIOP-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "7:00",
+          "hora_fin": "7:50",
+          "codigo": "E-PRE-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "7:00",
+          "hora_fin": "7:50",
+          "codigo": "E-PRE-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "7:50",
+          "hora_fin": "8:40",
+          "codigo": "E-SIOP-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "7:50",
+          "hora_fin": "8:40",
+          "codigo": "E-SIOP-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "7:50",
+          "hora_fin": "8:40",
+          "codigo": "E-PRE-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "7:50",
+          "hora_fin": "8:40",
+          "codigo": "E-PRE-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "8:40",
+          "hora_fin": "9:30",
+          "codigo": "B-CDI-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "8:40",
+          "hora_fin": "9:30",
+          "codigo": "E-PRE-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "8:40",
+          "hora_fin": "9:30",
+          "codigo": "B-CDI-1",
+          "aula": "",
+          "dia_semana": 1
+        }
+      ]
+    },
+    {
+      "nombre": "N",
+      "materias": [
+        {
+          "codigo": "B-CDI-1",
+          "nombre": "CÁLCULO DIFERENCIAL",
+          "docente": "Lic. Ana Isabel Melgarejo Rodríguez 6",
+          "color": "#f87171"
+        },
+        {
+          "codigo": "B-PES-F-1",
+          "nombre": "PROBABILIDAD Y ESTADÍSTICA",
+          "docente": "MC. Patricia Guadalupe Torrero Martínez 5",
+          "color": "#34d399"
+        },
+        {
+          "codigo": "E-PRE-1",
+          "nombre": "PROGRAMACIÓN ESTRUCTURADA",
+          "docente": "MC. Melissa Osuna Cárdenas 5",
+          "color": "#fbbf24"
+        },
+        {
+          "codigo": "E-SIOP-1",
+          "nombre": "SISTEMAS OPERATIVOS",
+          "docente": "Ing. Daniel Omar Cuellar Álvarez 4",
+          "color": "#60a5fa"
+        }
+      ],
+      "horarios": [
+        {
+          "hora_inicio": "09:30",
+          "hora_fin": "10:20",
+          "codigo": "Tutoría",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "09:30",
+          "hora_fin": "10:20",
+          "codigo": "E-PRE-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "09:30",
+          "hora_fin": "10:20",
+          "codigo": "B-PES-F-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "10:50",
+          "hora_fin": "11:40",
+          "codigo": "B-CDI-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "10:50",
+          "hora_fin": "11:40",
+          "codigo": "B-CDI-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "10:50",
+          "hora_fin": "12:30",
+          "codigo": "B-CDI-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "11:40",
+          "hora_fin": "12:30",
+          "codigo": "B-CDI-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "11:40",
+          "hora_fin": "12:30",
+          "codigo": "B-PES-F-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "11:40",
+          "hora_fin": "12:30",
+          "codigo": "B-CDI-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "12:30",
+          "hora_fin": "14:10",
+          "codigo": "E-PRE-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "14:10",
+          "hora_fin": "15:00",
+          "codigo": "B-PES-F-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "7:00",
+          "hora_fin": "7:50",
+          "codigo": "E-SIOP-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "7:00",
+          "hora_fin": "7:50",
+          "codigo": "B-PES-F-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "7:50",
+          "hora_fin": "8:40",
+          "codigo": "E-SIOP-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "7:50",
+          "hora_fin": "8:40",
+          "codigo": "E-PRE-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "7:50",
+          "hora_fin": "8:40",
+          "codigo": "B-PES-F-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "8:40",
+          "hora_fin": "9:30",
+          "codigo": "E-SIOP-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "8:40",
+          "hora_fin": "9:30",
+          "codigo": "E-SIOP-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "8:40",
+          "hora_fin": "9:30",
+          "codigo": "E-PRE-1",
+          "aula": "",
+          "dia_semana": 1
+        }
+      ]
+    },
+    {
+      "nombre": "N",
+      "materias": [
+        {
+          "codigo": "B-CDI-1",
+          "nombre": "CÁLCULO DIFERENCIAL",
+          "docente": "Lic. Ana Isabel Melgarejo Rodríguez 6",
+          "color": "#f87171"
+        },
+        {
+          "codigo": "B-PES-F-1",
+          "nombre": "PROBABILIDAD Y ESTADÍSTICA",
+          "docente": "MC. Patricia Guadalupe Torrero Martínez 5",
+          "color": "#34d399"
+        },
+        {
+          "codigo": "E-PRE-1",
+          "nombre": "PROGRAMACIÓN ESTRUCTURADA",
+          "docente": "MC. Gloria Irene Téllez Rodríguez 5",
+          "color": "#fbbf24"
+        },
+        {
+          "codigo": "E-SIOP-1",
+          "nombre": "SISTEMAS OPERATIVOS",
+          "docente": "Ing. Daniel Omar Cuellar Álvarez 4",
+          "color": "#60a5fa"
+        }
+      ],
+      "horarios": [
+        {
+          "hora_inicio": "09:30",
+          "hora_fin": "10:20",
+          "codigo": "B-CDI-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "10:50",
+          "hora_fin": "12:30",
+          "codigo": "E-PRE-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "11:40",
+          "hora_fin": "12:30",
+          "codigo": "B-PES-F-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "11:40",
+          "hora_fin": "13:20",
+          "codigo": "E-PRE-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "12:30",
+          "hora_fin": "13:20",
+          "codigo": "B-CDI-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "12:30",
+          "hora_fin": "13:20",
+          "codigo": "B-CDI-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "12:30",
+          "hora_fin": "13:20",
+          "codigo": "E-PRE-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "13:20",
+          "hora_fin": "14:10",
+          "codigo": "B-CDI-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "13:20",
+          "hora_fin": "14:10",
+          "codigo": "B-CDI-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "14:10",
+          "hora_fin": "15:00",
+          "codigo": "Tutoría",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "15:00",
+          "hora_fin": "15:50",
+          "codigo": "B-PES-F-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "7:00",
+          "hora_fin": "7:50",
+          "codigo": "B-PES-F-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "7:00",
+          "hora_fin": "7:50",
+          "codigo": "E-SIOP-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "7:50",
+          "hora_fin": "8:40",
+          "codigo": "B-PES-F-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "7:50",
+          "hora_fin": "8:40",
+          "codigo": "E-SIOP-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "8:40",
+          "hora_fin": "9:30",
+          "codigo": "B-CDI-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "8:40",
+          "hora_fin": "9:30",
+          "codigo": "E-SIOP-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "8:40",
+          "hora_fin": "9:30",
+          "codigo": "E-SIOP-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "8:40",
+          "hora_fin": "9:30",
+          "codigo": "B-PES-F-1",
+          "aula": "",
+          "dia_semana": 1
+        }
+      ]
+    },
+    {
+      "nombre": "N",
+      "materias": [
+        {
+          "codigo": "B-CDI-1",
+          "nombre": "CÁLCULO DIFERENCIAL",
+          "docente": "Lic. Ana Isabel Melgarejo Rodríguez 6",
+          "color": "#f87171"
+        },
+        {
+          "codigo": "B-PES-F-1",
+          "nombre": "PROBABILIDAD Y ESTADÍSTICA",
+          "docente": "MC. Patricia Guadalupe Torrero Martínez 5",
+          "color": "#34d399"
+        },
+        {
+          "codigo": "E-PRE-1",
+          "nombre": "PROGRAMACIÓN ESTRUCTURADA",
+          "docente": "MC. Roberto Antonio Martínez Thompson 5",
+          "color": "#fbbf24"
+        },
+        {
+          "codigo": "E-SIOP-1",
+          "nombre": "SISTEMAS OPERATIVOS",
+          "docente": "MC. Gloria Irene Téllez Rodríguez 4",
+          "color": "#60a5fa"
+        }
+      ],
+      "horarios": [
+        {
+          "hora_inicio": "09:30",
+          "hora_fin": "10:20",
+          "codigo": "E-SIOP-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "09:30",
+          "hora_fin": "10:20",
+          "codigo": "B-PES-F-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "10:50",
+          "hora_fin": "11:40",
+          "codigo": "E-SIOP-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "10:50",
+          "hora_fin": "11:40",
+          "codigo": "B-PES-F-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "11:40",
+          "hora_fin": "12:30",
+          "codigo": "Tutoría",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "11:40",
+          "hora_fin": "13:20",
+          "codigo": "B-PES-F-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "12:30",
+          "hora_fin": "13:20",
+          "codigo": "E-SIOP-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "12:30",
+          "hora_fin": "13:20",
+          "codigo": "E-PRE-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "13:20",
+          "hora_fin": "14:10",
+          "codigo": "E-SIOP-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "13:20",
+          "hora_fin": "14:10",
+          "codigo": "B-PES-F-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "13:20",
+          "hora_fin": "15:00",
+          "codigo": "E-PRE-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "14:10",
+          "hora_fin": "15:00",
+          "codigo": "E-PRE-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "14:10",
+          "hora_fin": "15:50",
+          "codigo": "B-CDI-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "15:00",
+          "hora_fin": "15:50",
+          "codigo": "B-CDI-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "15:00",
+          "hora_fin": "15:50",
+          "codigo": "E-PRE-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "15:00",
+          "hora_fin": "15:50",
+          "codigo": "B-CDI-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "16:20",
+          "hora_fin": "17:10",
+          "codigo": "B-CDI-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "16:20",
+          "hora_fin": "17:10",
+          "codigo": "B-CDI-1",
+          "aula": "",
+          "dia_semana": 1
+        }
+      ]
+    },
+    {
+      "nombre": "N",
+      "materias": [
+        {
+          "codigo": "B-PES-F-1",
+          "nombre": "PROBABILIDAD Y ESTADÍSTICA",
+          "docente": "MC. Patricia Guadalupe Torrero Martínez 5",
+          "color": "#f87171"
+        },
+        {
+          "codigo": "E-PRE-1",
+          "nombre": "PROGRAMACIÓN ESTRUCTURADA",
+          "docente": "MC. Luis Armando Aguayo Medina 5",
+          "color": "#34d399"
+        },
+        {
+          "codigo": "E-SIOP-1",
+          "nombre": "SISTEMAS OPERATIVOS",
+          "docente": "MC. Gloria Irene Téllez Rodríguez 4",
+          "color": "#fbbf24"
+        }
+      ],
+      "horarios": [
+        {
+          "hora_inicio": "10:50",
+          "hora_fin": "11:40",
+          "codigo": "B-PES-F-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "10:50",
+          "hora_fin": "11:40",
+          "codigo": "Tutoría",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "11:40",
+          "hora_fin": "12:30",
+          "codigo": "B-PES-F-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "11:40",
+          "hora_fin": "12:30",
+          "codigo": "E-PRE-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "12:30",
+          "hora_fin": "13:20",
+          "codigo": "B-PES-F-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "12:30",
+          "hora_fin": "14:10",
+          "codigo": "E-PRE-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "13:20",
+          "hora_fin": "14:10",
+          "codigo": "B-PES-F-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "13:20",
+          "hora_fin": "15:00",
+          "codigo": "E-SIOP-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "14:10",
+          "hora_fin": "15:00",
+          "codigo": "B-PES-F-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "14:10",
+          "hora_fin": "15:50",
+          "codigo": "E-SIOP-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "15:00",
+          "hora_fin": "15:50",
+          "codigo": "E-PRE-1",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "16:20",
+          "hora_fin": "17:10",
+          "codigo": "E-PRE-1",
+          "aula": "",
+          "dia_semana": 1
+        }
+      ]
+    },
+    {
+      "nombre": "N",
+      "materias": [
+        {
+          "codigo": "E-PIN2-2",
+          "nombre": "PROYECTO INTEGRADOR II",
+          "docente": "Ing. Anabel Estrada Hernández 4",
+          "color": "#f87171"
+        },
+        {
+          "codigo": "E-BDAV-2",
+          "nombre": "BASES DE DATOS AVANZADAS",
+          "docente": "MC. Melissa Osuna Cárdenas 5",
+          "color": "#34d399"
+        }
+      ],
+      "horarios": [
+        {
+          "hora_inicio": "09:30",
+          "hora_fin": "10:20",
+          "codigo": "Tutoría",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "13:20",
+          "hora_fin": "15:00",
+          "codigo": "E-BDAV-2",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "14:10",
+          "hora_fin": "15:00",
+          "codigo": "E-BDAV-2",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "7:00",
+          "hora_fin": "7:50",
+          "codigo": "E-PIN2-2",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "7:00",
+          "hora_fin": "8:40",
+          "codigo": "E-PIN2-2",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "7:50",
+          "hora_fin": "8:40",
+          "codigo": "E-BDAV-2",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "7:50",
+          "hora_fin": "8:40",
+          "codigo": "E-PIN2-2",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "8:40",
+          "hora_fin": "9:30",
+          "codigo": "E-BDAV-2",
+          "aula": "",
+          "dia_semana": 1
+        }
+      ]
+    },
+    {
+      "nombre": "N",
+      "materias": [
+        {
+          "codigo": "E-PIN2-2",
+          "nombre": "PROYECTO INTEGRADOR II",
+          "docente": "Ing. Anabel Estrada Hernández 4",
+          "color": "#f87171"
+        },
+        {
+          "codigo": "E-BDAV-2",
+          "nombre": "BASES DE DATOS AVANZADAS",
+          "docente": "MC. Melissa Osuna Cárdenas 5",
+          "color": "#34d399"
+        }
+      ],
+      "horarios": [
+        {
+          "hora_inicio": "09:30",
+          "hora_fin": "10:20",
+          "codigo": "E-PIN2-2",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "09:30",
+          "hora_fin": "10:20",
+          "codigo": "E-PIN2-2",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "10:50",
+          "hora_fin": "11:40",
+          "codigo": "E-BDAV-2",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "10:50",
+          "hora_fin": "11:40",
+          "codigo": "Tutoría",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "10:50",
+          "hora_fin": "12:30",
+          "codigo": "E-BDAV-2",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "11:40",
+          "hora_fin": "13:20",
+          "codigo": "E-BDAV-2",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "8:40",
+          "hora_fin": "9:30",
+          "codigo": "E-PIN2-2",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "8:40",
+          "hora_fin": "9:30",
+          "codigo": "E-PIN2-2",
+          "aula": "",
+          "dia_semana": 1
+        }
+      ]
+    },
+    {
+      "nombre": "N",
+      "materias": [
+        {
+          "codigo": "E-PIN2-2",
+          "nombre": "PROYECTO INTEGRADOR II",
+          "docente": "Ing. Anabel Estrada Hernández 4",
+          "color": "#f87171"
+        },
+        {
+          "codigo": "E-BDAV-2",
+          "nombre": "BASES DE DATOS AVANZADAS",
+          "docente": "MC. Melissa Osuna Cárdenas 5",
+          "color": "#34d399"
+        },
+        {
+          "codigo": "B-EDI-2",
+          "nombre": "ECUACIONES DIFERENCIALES",
+          "docente": "MC. Adrian Berrelleza Toledo 5",
+          "color": "#fbbf24"
+        }
+      ],
+      "horarios": [
+        {
+          "hora_inicio": "09:30",
+          "hora_fin": "10:20",
+          "codigo": "E-PIN2-2",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "09:30",
+          "hora_fin": "10:20",
+          "codigo": "E-BDAV-2",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "09:30",
+          "hora_fin": "10:20",
+          "codigo": "E-PIN2-2",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "10:50",
+          "hora_fin": "11:40",
+          "codigo": "E-BDAV-2",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "10:50",
+          "hora_fin": "11:40",
+          "codigo": "B-EDI-2",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "11:40",
+          "hora_fin": "12:30",
+          "codigo": "E-BDAV-2",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "11:40",
+          "hora_fin": "12:30",
+          "codigo": "B-EDI-2",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "11:40",
+          "hora_fin": "12:30",
+          "codigo": "B-EDI-2",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "13:20",
+          "hora_fin": "14:10",
+          "codigo": "Tutoría",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "13:20",
+          "hora_fin": "15:00",
+          "codigo": "B-EDI-2",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "7:50",
+          "hora_fin": "8:40",
+          "codigo": "E-BDAV-2",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "8:40",
+          "hora_fin": "9:30",
+          "codigo": "E-PIN2-2",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "8:40",
+          "hora_fin": "9:30",
+          "codigo": "E-BDAV-2",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "8:40",
+          "hora_fin": "9:30",
+          "codigo": "E-PIN2-2",
+          "aula": "",
+          "dia_semana": 1
+        }
+      ]
+    },
+    {
+      "nombre": "N",
+      "materias": [
+        {
+          "codigo": "E-PIN2-2",
+          "nombre": "PROYECTO INTEGRADOR II",
+          "docente": "MC. Luis Armando Aguayo Medina 4",
+          "color": "#f87171"
+        },
+        {
+          "codigo": "E-BDAV-2",
+          "nombre": "BASES DE DATOS AVANZADAS",
+          "docente": "MC. Melissa Osuna Cárdenas 5",
+          "color": "#34d399"
+        }
+      ],
+      "horarios": [
+        {
+          "hora_inicio": "11:40",
+          "hora_fin": "12:30",
+          "codigo": "E-BDAV-2",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "11:40",
+          "hora_fin": "12:30",
+          "codigo": "Tutoría",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "12:30",
+          "hora_fin": "13:20",
+          "codigo": "E-BDAV-2",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "12:30",
+          "hora_fin": "13:20",
+          "codigo": "E-BDAV-2",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "13:20",
+          "hora_fin": "14:10",
+          "codigo": "E-PIN2-2",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "13:20",
+          "hora_fin": "14:10",
+          "codigo": "E-BDAV-2",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "13:20",
+          "hora_fin": "14:10",
+          "codigo": "E-BDAV-2",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "14:10",
+          "hora_fin": "15:00",
+          "codigo": "E-PIN2-2",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "14:10",
+          "hora_fin": "15:50",
+          "codigo": "E-PIN2-2",
+          "aula": "",
+          "dia_semana": 1
+        }
+      ]
+    },
+    {
+      "nombre": "N",
+      "materias": [
+        {
+          "codigo": "V-FT",
+          "nombre": "TECNOLOGÍAS DE VIRTUALIZACIÓN",
+          "docente": "MC. Roberto Antonio Martínez Thompson 5",
+          "color": "#f87171"
+        },
+        {
+          "codigo": "I-FT",
+          "nombre": "DISEÑO DE INTERFACES",
+          "docente": "MC. Gloria Irene Téllez Rodríguez 5",
+          "color": "#34d399"
+        },
+        {
+          "codigo": "S-FT",
+          "nombre": "GESTIÓN DE DESARROLLO DE SOFTWARE",
+          "docente": "MC. Luis Armando Aguayo Medina 5",
+          "color": "#fbbf24"
+        }
+      ],
+      "horarios": [
+        {
+          "hora_inicio": "09:30",
+          "hora_fin": "10:20",
+          "codigo": "I-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "09:30",
+          "hora_fin": "10:20",
+          "codigo": "V-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "09:30",
+          "hora_fin": "10:20",
+          "codigo": "I-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "09:30",
+          "hora_fin": "10:20",
+          "codigo": "I-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "10:50",
+          "hora_fin": "11:40",
+          "codigo": "V-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "10:50",
+          "hora_fin": "11:40",
+          "codigo": "V-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "10:50",
+          "hora_fin": "11:40",
+          "codigo": "I-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "11:40",
+          "hora_fin": "12:30",
+          "codigo": "V-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "11:40",
+          "hora_fin": "12:30",
+          "codigo": "I-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "11:40",
+          "hora_fin": "12:30",
+          "codigo": "I-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "11:40",
+          "hora_fin": "12:30",
+          "codigo": "Tutoría",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "12:30",
+          "hora_fin": "13:20",
+          "codigo": "V-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "12:30",
+          "hora_fin": "13:20",
+          "codigo": "S-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "12:30",
+          "hora_fin": "14:10",
+          "codigo": "S-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "13:20",
+          "hora_fin": "15:00",
+          "codigo": "S-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "7:00",
+          "hora_fin": "7:50",
+          "codigo": "I-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "7:00",
+          "hora_fin": "8:40",
+          "codigo": "I-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "7:50",
+          "hora_fin": "8:40",
+          "codigo": "I-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "7:50",
+          "hora_fin": "9:30",
+          "codigo": "I-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "8:40",
+          "hora_fin": "9:30",
+          "codigo": "I-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "8:40",
+          "hora_fin": "9:30",
+          "codigo": "I-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "8:40",
+          "hora_fin": "9:30",
+          "codigo": "I-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "8:40",
+          "hora_fin": "9:30",
+          "codigo": "I-FT",
+          "aula": "",
+          "dia_semana": 1
+        }
+      ]
+    },
+    {
+      "nombre": "N",
+      "materias": [
+        {
+          "codigo": "V-FT",
+          "nombre": "TECNOLOGÍAS DE VIRTUALIZACIÓN",
+          "docente": "MC. Roberto Antonio Martínez Thompson 5",
+          "color": "#f87171"
+        },
+        {
+          "codigo": "I-FT",
+          "nombre": "DISEÑO DE INTERFACES",
+          "docente": "MC. Gloria Irene Téllez Rodríguez 5",
+          "color": "#34d399"
+        },
+        {
+          "codigo": "I-FT",
+          "nombre": "SISTEMAS INTELIGENTES",
+          "docente": "MC. Jesús Ernesto Ramírez Díaz 6",
+          "color": "#fbbf24"
+        },
+        {
+          "codigo": "S-FT",
+          "nombre": "GESTIÓN DE DESARROLLO DE SOFTWARE",
+          "docente": "MC. Luis Armando Aguayo Medina 5",
+          "color": "#60a5fa"
+        }
+      ],
+      "horarios": [
+        {
+          "hora_inicio": "09:30",
+          "hora_fin": "10:20",
+          "codigo": "I-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "09:30",
+          "hora_fin": "10:20",
+          "codigo": "I-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "09:30",
+          "hora_fin": "10:20",
+          "codigo": "S-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "09:30",
+          "hora_fin": "10:20",
+          "codigo": "V-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "10:50",
+          "hora_fin": "11:40",
+          "codigo": "Tutoría",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "10:50",
+          "hora_fin": "11:40",
+          "codigo": "I-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "10:50",
+          "hora_fin": "11:40",
+          "codigo": "V-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "10:50",
+          "hora_fin": "11:40",
+          "codigo": "S-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "10:50",
+          "hora_fin": "11:40",
+          "codigo": "S-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "11:40",
+          "hora_fin": "12:30",
+          "codigo": "V-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "11:40",
+          "hora_fin": "12:30",
+          "codigo": "S-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "11:40",
+          "hora_fin": "12:30",
+          "codigo": "S-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "13:20",
+          "hora_fin": "14:10",
+          "codigo": "I-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "13:20",
+          "hora_fin": "14:10",
+          "codigo": "I-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "13:20",
+          "hora_fin": "15:00",
+          "codigo": "I-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "14:10",
+          "hora_fin": "15:50",
+          "codigo": "I-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "7:00",
+          "hora_fin": "7:50",
+          "codigo": "I-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "7:00",
+          "hora_fin": "8:40",
+          "codigo": "I-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "7:50",
+          "hora_fin": "8:40",
+          "codigo": "I-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "7:50",
+          "hora_fin": "8:40",
+          "codigo": "V-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "8:40",
+          "hora_fin": "9:30",
+          "codigo": "I-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "8:40",
+          "hora_fin": "9:30",
+          "codigo": "I-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "8:40",
+          "hora_fin": "9:30",
+          "codigo": "I-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "8:40",
+          "hora_fin": "9:30",
+          "codigo": "V-FT",
+          "aula": "",
+          "dia_semana": 1
+        }
+      ]
+    },
+    {
+      "nombre": "N",
+      "materias": [
+        {
+          "codigo": "V-FT",
+          "nombre": "TECNOLOGÍAS DE VIRTUALIZACIÓN",
+          "docente": "MC. Roberto Antonio Martínez Thompson 5",
+          "color": "#f87171"
+        },
+        {
+          "codigo": "I-FT",
+          "nombre": "DISEÑO DE INTERFACES",
+          "docente": "MC. Gloria Irene Téllez Rodríguez 5",
+          "color": "#34d399"
+        },
+        {
+          "codigo": "I-FT",
+          "nombre": "SISTEMAS INTELIGENTES",
+          "docente": "MC. Jesús Ernesto Ramírez Díaz 6",
+          "color": "#fbbf24"
+        },
+        {
+          "codigo": "S-FT",
+          "nombre": "GESTIÓN DE DESARROLLO DE SOFTWARE",
+          "docente": "MC. Iliana Amabely Silva Hernández 5",
+          "color": "#60a5fa"
+        }
+      ],
+      "horarios": [
+        {
+          "hora_inicio": "09:30",
+          "hora_fin": "10:20",
+          "codigo": "S-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "09:30",
+          "hora_fin": "10:20",
+          "codigo": "S-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "09:30",
+          "hora_fin": "10:20",
+          "codigo": "S-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "10:50",
+          "hora_fin": "11:40",
+          "codigo": "S-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "10:50",
+          "hora_fin": "11:40",
+          "codigo": "Tutoría",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "10:50",
+          "hora_fin": "11:40",
+          "codigo": "V-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "10:50",
+          "hora_fin": "11:40",
+          "codigo": "I-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "11:40",
+          "hora_fin": "12:30",
+          "codigo": "V-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "11:40",
+          "hora_fin": "12:30",
+          "codigo": "I-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "11:40",
+          "hora_fin": "12:30",
+          "codigo": "I-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "12:30",
+          "hora_fin": "13:20",
+          "codigo": "V-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "12:30",
+          "hora_fin": "13:20",
+          "codigo": "I-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "13:20",
+          "hora_fin": "14:10",
+          "codigo": "V-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "13:20",
+          "hora_fin": "15:00",
+          "codigo": "I-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "14:10",
+          "hora_fin": "15:50",
+          "codigo": "I-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "15:00",
+          "hora_fin": "15:50",
+          "codigo": "I-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "7:00",
+          "hora_fin": "8:40",
+          "codigo": "I-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "7:50",
+          "hora_fin": "8:40",
+          "codigo": "I-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "7:50",
+          "hora_fin": "8:40",
+          "codigo": "V-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "8:40",
+          "hora_fin": "9:30",
+          "codigo": "I-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "8:40",
+          "hora_fin": "9:30",
+          "codigo": "I-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "8:40",
+          "hora_fin": "9:30",
+          "codigo": "S-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "8:40",
+          "hora_fin": "9:30",
+          "codigo": "I-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "8:40",
+          "hora_fin": "9:30",
+          "codigo": "I-FT",
+          "aula": "",
+          "dia_semana": 1
+        }
+      ]
+    },
+    {
+      "nombre": "N",
+      "materias": [
+        {
+          "codigo": "V-FT",
+          "nombre": "TECNOLOGÍAS DE VIRTUALIZACIÓN",
+          "docente": "MC. Roberto Antonio Martínez Thompson 5",
+          "color": "#f87171"
+        },
+        {
+          "codigo": "I-FT",
+          "nombre": "DISEÑO DE INTERFACES",
+          "docente": "MC. Gloria Irene Téllez Rodríguez 5",
+          "color": "#34d399"
+        },
+        {
+          "codigo": "I-FT",
+          "nombre": "SISTEMAS INTELIGENTES",
+          "docente": "MC. Jesús Ernesto Ramírez Díaz 6",
+          "color": "#fbbf24"
+        },
+        {
+          "codigo": "S-FT",
+          "nombre": "GESTIÓN DE DESARROLLO DE SOFTWARE",
+          "docente": "MC. Iliana Amabely Silva Hernández 5",
+          "color": "#60a5fa"
+        }
+      ],
+      "horarios": [
+        {
+          "hora_inicio": "10:50",
+          "hora_fin": "11:40",
+          "codigo": "I-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "10:50",
+          "hora_fin": "11:40",
+          "codigo": "S-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "10:50",
+          "hora_fin": "11:40",
+          "codigo": "S-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "10:50",
+          "hora_fin": "11:40",
+          "codigo": "S-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "11:40",
+          "hora_fin": "12:30",
+          "codigo": "Tutoría",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "11:40",
+          "hora_fin": "12:30",
+          "codigo": "S-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "11:40",
+          "hora_fin": "12:30",
+          "codigo": "S-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "11:40",
+          "hora_fin": "12:30",
+          "codigo": "V-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "12:30",
+          "hora_fin": "13:20",
+          "codigo": "I-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "12:30",
+          "hora_fin": "13:20",
+          "codigo": "I-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "12:30",
+          "hora_fin": "13:20",
+          "codigo": "V-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "13:20",
+          "hora_fin": "14:10",
+          "codigo": "I-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "13:20",
+          "hora_fin": "15:00",
+          "codigo": "V-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "14:10",
+          "hora_fin": "15:00",
+          "codigo": "I-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "14:10",
+          "hora_fin": "15:00",
+          "codigo": "I-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "15:00",
+          "hora_fin": "15:50",
+          "codigo": "V-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "15:00",
+          "hora_fin": "15:50",
+          "codigo": "I-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "15:00",
+          "hora_fin": "15:50",
+          "codigo": "I-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "16:20",
+          "hora_fin": "17:10",
+          "codigo": "I-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "16:20",
+          "hora_fin": "17:10",
+          "codigo": "I-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "16:20",
+          "hora_fin": "17:10",
+          "codigo": "I-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "16:20",
+          "hora_fin": "18:00",
+          "codigo": "I-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "17:10",
+          "hora_fin": "18:00",
+          "codigo": "I-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "17:10",
+          "hora_fin": "18:00",
+          "codigo": "I-FT",
+          "aula": "",
+          "dia_semana": 1
+        },
+        {
+          "hora_inicio": "17:10",
+          "hora_fin": "18:00",
+          "codigo": "I-FT",
+          "aula": "",
+          "dia_semana": 1
+        }
+      ]
+    }
+  ]
+}

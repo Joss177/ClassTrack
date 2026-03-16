@@ -23,3 +23,9 @@
 /app/Config/core.php
 /app/Config/database.php
 /vendors/*
+
+# ignorar webroot completo
+src/webroot/
+
+# ignorar solo archivos dentro pero mantener carpeta
+#src/webroot/*

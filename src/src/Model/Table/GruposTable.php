@@ -16,6 +16,11 @@ class GruposTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+
+        // Relación con horarios
+        $this->hasMany('Horarios', [
+            'foreignKey' => 'grupo_id'
+        ]);
     }
 
     public function validationDefault(Validator $validator)
@@ -23,20 +28,19 @@ class GruposTable extends Table
         // ID
         $validator
             ->integer('id')
-            ->allowEmptyString('id', null, 'create');
+            ->allowEmptyString('id', 'create');
 
-        // Nombre
+        // Nombre del grupo (dato que viene del PDF)
         $validator
             ->scalar('nombre')
-            ->maxLength('nombre', 50, 'El nombre no debe superar los 50 caracteres')
-            ->requirePresence('nombre', 'create', 'El nombre es obligatorio')
-            ->notEmptyString('nombre', 'El nombre no puede estar vacío');
+            ->maxLength('nombre', 50)
+            ->requirePresence('nombre', 'create')
+            ->notEmptyString('nombre', 'El nombre del grupo es obligatorio.');
 
-        // Cantidad de estudiantes
+        // Cantidad de estudiantes (opcional porque el PDF no lo incluye)
         $validator
-            ->integer('cantidad_estudiantes', 'Debe ser un número entero')
-            ->requirePresence('cantidad_estudiantes', 'create', 'La cantidad es obligatoria')
-            ->notEmptyString('cantidad_estudiantes', 'La cantidad no puede estar vacía')
+            ->integer('cantidad_estudiantes')
+            ->allowEmptyString('cantidad_estudiantes')
             ->greaterThanOrEqual(
                 'cantidad_estudiantes',
                 0,
@@ -48,9 +52,10 @@ class GruposTable extends Table
 
     public function buildRules(RulesChecker $rules)
     {
-        // Evitar nombres repetidos
+        // Evitar grupos duplicados
         $rules->add(
-            $rules->isUnique(['nombre'], 'Este grupo ya existe')
+            $rules->isUnique(['nombre']),
+            ['errorField' => 'nombre', 'message' => 'Este grupo ya existe.']
         );
 
         return $rules;
