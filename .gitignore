@@ -1,5 +1,4 @@
 # CakePHP 3
-
 /vendor/*
 /config/app.php
 
@@ -18,14 +17,13 @@
 !/logs/empty
 
 # CakePHP 2
-
 /app/tmp/*
 /app/Config/core.php
 /app/Config/database.php
 /vendors/*
 
-# ignorar webroot completo
-src/webroot/
+# ignorar bases de datos
+*.db
 
-# ignorar solo archivos dentro pero mantener carpeta
-#src/webroot/*
+# ignorar uploads
+src/webroot/uploads/

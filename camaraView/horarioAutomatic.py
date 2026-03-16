@@ -3,31 +3,11 @@
 # Llamado por CakePHP — recibe ruta del PDF, devuelve JSON.
 # NO toca la base de datos. La inserción la hace CakePHP.
 #
-# Formato de salida:
-# {
-#   "grupos": [
-#     {
-#       "nombre": "TIID2-1",
-#       "materias": [
-#         {
-#           "codigo":  "B-CDI-1",
-#           "nombre":  "Cálculo Diferencial",
-#           "color":   "#f87171",
-#           "docente": "Lic. Ana Isabel Melgarejo Rodríguez"
-#         }
-#       ],
-#       "horarios": [
-#         {
-#           "codigo":      "B-CDI-1",
-#           "aula":        "B-219",
-#           "dia_semana":  1,
-#           "hora_inicio": "07:00",
-#           "hora_fin":    "08:40"
-#         }
-#       ]
-#     }
-#   ]
-# }
+# BUGS CORREGIDOS (confirmados con pruebas sobre el PDF real):
+#   1. El grupo viene ANTES del label "GRUPO/GRADO:" en el texto
+#      extraído, no después. El regex original nunca encontraba nada.
+#   2. La tabla tiene columnas dobles (cada día ocupa 2 columnas).
+#      Los datos reales están en índices 2,4,6,8,10 — no en 1,2,3,4,5.
 #
 # pip install pdfplumber
 # ============================================================
@@ -39,10 +19,9 @@ import json
 
 sys.stdout.reconfigure(encoding="utf-8")
 
-# ──────────────────────────────────────────────
-# CONSTANTES
-# ──────────────────────────────────────────────
 DIAS = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes"]
+# Índices reales de cada día en la tabla (columnas dobles)
+INDICES_DIAS = [2, 4, 6, 8, 10]
 
 COLORES = [
     "#f87171", "#34d399", "#fbbf24", "#60a5fa",
@@ -54,60 +33,58 @@ COLORES = [
 TITULOS = r"(?:Lic\.|MC\.|Ing\.|Lcda\.|Dra?\.|MEC\.|M\.|MTIC\.|Dr\.)"
 
 
-# ──────────────────────────────────────────────
-# UTILIDADES
-# ──────────────────────────────────────────────
 def limpiar(texto):
-    """Elimina espacios múltiples y saltos de línea."""
     if not texto:
         return ""
     return re.sub(r"\s+", " ", texto.strip())
 
 
 def normalizar_hora(hora):
-    """
-    Garantiza formato HH:MM con cero inicial.
-    '7:00'  → '07:00'
-    '07:50' → '07:50'
-    Fix para que strtotime() de PHP funcione correctamente.
-    """
+    """Garantiza HH:MM con cero inicial."""
     hora = hora.strip()
     partes = hora.split(":")
     if len(partes) == 2:
-        h = partes[0].zfill(2)   # rellenar con cero a la izquierda
-        m = partes[1].zfill(2)
-        return f"{h}:{m}"
+        return partes[0].zfill(2) + ":" + partes[1].zfill(2)
     return hora
 
 
 def normalizar_docente(nombre):
-    """
-    Normaliza el nombre del docente para evitar duplicados:
-    - Elimina espacios múltiples (doble espacio entre título y nombre)
-    - Capitaliza de forma consistente
-    Fix para evitar duplicados por diferencias de espaciado en el PDF.
-    """
+    """Colapsa espacios múltiples para evitar duplicados en BD."""
     if not nombre:
         return "Sin asignar"
-    # Colapsar múltiples espacios en uno solo
-    nombre = re.sub(r"\s+", " ", nombre.strip())
-    return nombre
+    return re.sub(r"\s+", " ", nombre.strip())
 
 
-# ──────────────────────────────────────────────
-# EXTRACCIÓN DE UNA PÁGINA
-# ──────────────────────────────────────────────
+def extraer_nombre_grupo(texto):
+    """
+    FIX: En este PDF el nombre del grupo viene ANTES del label.
+    Texto real extraído: '...TIID2-1\\nGRUPO/GRADO:\\n...'
+    Se busca en ambos sentidos para cubrir cualquier variación.
+    """
+    # Caso real: nombre ANTES del label
+    m = re.search(
+        r"([A-Z0-9][A-Z0-9\-]{3,})\s*\n?\s*GRUPO/GRADO:",
+        texto
+    )
+    if m:
+        return m.group(1).strip()
+
+    # Fallback: nombre DESPUÉS del label (otros PDFs)
+    m = re.search(
+        r"GRUPO/GRADO:\s*\n?\s*([A-Z0-9][A-Z0-9\-]{3,})",
+        texto
+    )
+    if m:
+        return m.group(1).strip()
+
+    return "SIN_GRUPO"
+
+
 def extraer_pagina(page):
     texto = page.extract_text() or ""
 
     # ── Nombre del grupo ──────────────────────
-    # FIX: el regex ahora acepta con o sin espacio después de ':'
-    # y captura hasta el fin de línea para evitar cortes
-    grupo_match = re.search(
-        r"GRUPO/GRADO:\s*([A-Z0-9][A-Z0-9\-]*)",
-        texto
-    )
-    nombre_grupo = grupo_match.group(1).strip() if grupo_match else "SIN_GRUPO"
+    nombre_grupo = extraer_nombre_grupo(texto)
 
     # ── Materias y docentes ───────────────────
     patron_materia = re.compile(
@@ -122,12 +99,11 @@ def extraer_pagina(page):
         if m:
             clave   = limpiar(m.group(1))
             nombre  = limpiar(m.group(2))
-            # FIX docentes duplicados: normalizar espaciado
             docente = normalizar_docente(m.group(3))
             if clave not in materias_raw:
                 materias_raw[clave] = {"nombre": nombre, "docente": docente}
 
-    # ── Tabla del horario (cuadrícula) ────────
+    # ── Tabla del horario ─────────────────────
     table = page.extract_table()
     bloques_raw = []
 
@@ -144,12 +120,12 @@ def extraer_pagina(page):
             if not hm:
                 continue
 
-            # FIX horas: normalizar a HH:MM con cero inicial
             h_ini = normalizar_hora(hm.group(1))
             h_fin = normalizar_hora(hm.group(2))
 
-            for i, _dia in enumerate(DIAS, start=1):
-                celda = limpiar(fila[i]) if i < len(fila) else ""
+            # FIX: usar índices 2,4,6,8,10 — no 1,2,3,4,5
+            for dia_num, idx in enumerate(INDICES_DIAS, start=1):
+                celda = limpiar(fila[idx]) if idx < len(fila) else ""
                 if not celda:
                     continue
 
@@ -163,7 +139,7 @@ def extraer_pagina(page):
                 bloques_raw.append({
                     "codigo":      codigo,
                     "aula":        aula,
-                    "dia_semana":  i,
+                    "dia_semana":  dia_num,   # 1=Lunes … 5=Viernes
                     "hora_inicio": h_ini,
                     "hora_fin":    h_fin,
                 })
@@ -199,9 +175,6 @@ def extraer_pagina(page):
     }
 
 
-# ──────────────────────────────────────────────
-# MAIN
-# ──────────────────────────────────────────────
 def main():
     if len(sys.argv) < 2:
         print(json.dumps({"error": "No se recibió la ruta del PDF"}, ensure_ascii=False))
@@ -224,7 +197,6 @@ def main():
                         "error":    str(e),
                     })
 
-        # Un solo print al final — sin texto extra antes del JSON
         print(json.dumps(resultado, ensure_ascii=False))
 
     except Exception as e:
