@@ -20,6 +20,7 @@ COLORES = [
 TITULOS = r"(?:Lic\.|MC\.|Ing\.|Lcda\.|Lcd\.|Dra?\.|MEC\.|M\.|MTIC\.|Dr\.)"
 
 
+# ── Helpers ───────────────────────────────────────────────────
 def limpiar(texto):
     if not texto: return ""
     return re.sub(r"\s+", " ", texto.strip())
@@ -53,14 +54,25 @@ def extraer_nombre_grupo(texto):
     if m: return m.group(1).strip()
     return "SIN_GRUPO"
 
+def extraer_periodo(texto):
+    """Busca el periodo en el texto del PDF."""
+    m = re.search(r"PERIODO:\s*(.+)", texto, re.IGNORECASE)
+    if m: return m.group(1).strip()
+    return "SIN_PERIODO"
 
+# ── Extracción principal ───────────────────────────────────────
 def extraer_pagina(page):
     texto = page.extract_text() or ""
     nombre_grupo = extraer_nombre_grupo(texto)
+    periodo = extraer_periodo(texto)
 
     all_tables = page.extract_tables()
     materias_raw = {}
     bloques_raw = []
+    
+    # Declaramos los Sets vacíos para recolectar datos únicos
+    aulas_set = set()
+    docentes_set = set()
 
     for table in all_tables:
         for fila in table:
@@ -68,7 +80,6 @@ def extraer_pagina(page):
             
             celda_0 = limpiar(fila[0])
             
-           
             hm = re.match(r"(\d{1,2}:\d{2})\s*[-–]\s*(\d{1,2}:\d{2})", celda_0)
             if hm and "RECESO" not in celda_0.upper():
                 h_ini = normalizar_hora(hm.group(1))
@@ -93,14 +104,13 @@ def extraer_pagina(page):
                     })
                 continue 
 
-            
             if "CLAVE" in celda_0.upper(): continue # Ignorar encabezado
             
             m_clave = re.match(r"^([A-Z][A-Z0-9]*-[A-Z0-9\-]+|Tutoría)$", celda_0, re.IGNORECASE)
             if m_clave and len(fila) >= 3:
                 clave = m_clave.group(1)
                 
-                # FILTROS DE BASURA: Ignorar códigos de doc y aulas
+                # FILTROS DE BASURA
                 if "DPE-RG" in clave.upper() or es_aula_valida(clave): 
                     continue
                 
@@ -109,13 +119,12 @@ def extraer_pagina(page):
                 nombre_mat = limpiar(fila[1])
                 docente_mat = normalizar_docente(fila[2])
                 
-                # Omitir si nombre o docente están vacíos
                 if not nombre_mat or "Sin asignar" in docente_mat:
                     continue
                     
                 materias_raw[clave] = {"nombre": nombre_mat, "docente": docente_mat}
 
-    # ── 2. Fallback por Texto (Por si alguna materia no estaba en tabla) ──
+    # ── 2. Fallback por Texto ──
     patron_materia = re.compile(r"^([A-Z][A-Z0-9]*-[A-Z0-9\-]+|Tutoría)\s+(.+)", re.IGNORECASE)
     for linea in texto.split("\n"):
         linea = limpiar(linea)
@@ -124,7 +133,7 @@ def extraer_pagina(page):
             clave = limpiar(m.group(1))
             if "DPE-RG" in clave or es_aula_valida(clave): continue
             
-            if clave in materias_raw: continue # Ya se extrajo perfecta desde la tabla
+            if clave in materias_raw: continue 
             
             resto_linea = m.group(2)
             m_titulo = re.search(TITULOS, resto_linea, re.IGNORECASE)
@@ -161,9 +170,14 @@ def extraer_pagina(page):
                 ult["dia_semana"] == b["dia_semana"] and ult["hora_fin"] == b["hora_inicio"]):
                 ult["hora_fin"] = b["hora_fin"]
                 continue
-        horarios_final.append(b)
+        
+        # AGREGAR AULA AL SET SI NO ES "SIN_AULA"
+        if b["aula"] != "SIN_AULA":
+            aulas_set.add(b["aula"])
+            
+        horarios_final.append(dict(b))
 
-    # ── 5. Seguro contra Materias Huérfanas (Protege CakePHP) ──
+    # ── 5. Seguro contra Materias Huérfanas ──
     codigos_en_horario = set(b["codigo"] for b in horarios_final)
     for cod in codigos_en_horario:
         if cod not in materias_raw:
@@ -171,23 +185,40 @@ def extraer_pagina(page):
 
     materias_lista = []
     for idx, (clave, info) in enumerate(materias_raw.items()):
+        docente_actual = info["docente"]
         materias_lista.append({
             "codigo":  clave,
             "nombre":  info["nombre"],
             "color":   COLORES[idx % len(COLORES)],
-            "docente": info["docente"],
+            "docente": docente_actual,
         })
+        # AGREGAR DOCENTE AL SET
+        if docente_actual and docente_actual != "Sin asignar":
+            docentes_set.add(docente_actual)
 
+    # ── 8. Lista de aulas y docentes únicos ───────────────────
+    aulas_lista = [{"nombre": a} for a in sorted(aulas_set)]
+    docentes_lista = [{"nombre": d} for d in sorted(docentes_set)]
+    
+    # ── Extraer al Tutor (Busca la materia Tutoría) ───────────
+    tutor = materias_raw.get("Tutoría", {}).get("docente", "Sin asignar")
+
+    # ── 10. JSON final ───────────────────────────────────────
     return {
         "nombre":   nombre_grupo,
+        "tutor":    tutor,
+        "periodo":  periodo,
+        "aulas":    aulas_lista,
+        "docentes": docentes_lista,
         "materias": materias_lista,
         "horarios": horarios_final,
     }
 
 
+# ── Entry point ───────────────────────────────────────────────
 def main():
     if len(sys.argv) < 2:
-        print("Error: No se recibió la ruta del PDF.")
+        print(json.dumps({"error": "No se recibió la ruta del PDF"}, ensure_ascii=False))
         sys.exit(1)
 
     pdf_path = sys.argv[1]
@@ -198,7 +229,8 @@ def main():
             for num, page in enumerate(pdf.pages, start=1):
                 try:
                     datos = extraer_pagina(page)
-                    resultado["grupos"].append(datos)
+                    if datos:
+                        resultado["grupos"].append(datos)
                 except Exception as e:
                     resultado["grupos"].append({
                         "nombre":   f"ERROR_PAGINA_{num}",
@@ -207,13 +239,15 @@ def main():
                         "error":    str(e),
                     })
 
+        # Imprime para CakePHP
+        print(json.dumps(resultado, ensure_ascii=False))
+
+        # Guarda el archivo res.json para tu debug manual
         with open("res.json", "w", encoding="utf-8") as f:
             json.dump(resultado, f, ensure_ascii=False, indent=4)
-            
-        print("¡Éxito! El archivo 'res.json' ha sido generado correctamente.")
 
     except Exception as e:
-        print(f"Error al abrir el PDF: {str(e)}")
+        print(json.dumps({"error": str(e)}, ensure_ascii=False))
 
 if __name__ == "__main__":
     main()

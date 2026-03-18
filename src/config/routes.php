@@ -60,7 +60,10 @@ Router::prefix('admin', function (RouteBuilder $routes) {
     $routes->connect('/users/delete/*', ['controller' => 'Users', 'action' => 'delete']);
     $routes->connect('/users/edit/*', ['controller' => 'Users', 'action' => 'edit']);
     $routes->connect('/users/editPass/*', ['controller' => 'Users', 'action' => 'editPass']);
-
+    $routes->connect(
+        '/admin/users/editPass/*',
+        ['controller' => 'Users', 'action' => 'editPass', 'prefix' => 'admin']
+    );
     $routes->fallbacks(DashedRoute::class);
 });
 

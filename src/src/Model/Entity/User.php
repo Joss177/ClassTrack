@@ -15,11 +15,14 @@ class User extends Entity
         'tema' => true,
         'created' => true,
         'modified' => true,
+        'token' => true,
+        'token_expira' => true,
     ];
 
     // Campos ocultos al serializar (ej. JSON)
     protected $_hidden = [
         'password',
+        'token',
     ];
 
     // Hash automático al asignar contraseña
