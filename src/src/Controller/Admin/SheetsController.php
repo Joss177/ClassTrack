@@ -1,6 +1,6 @@
 <?php
 namespace App\Controller\Admin;
-
+use Cake\Event\Event;
 use App\Controller\AppController;
 
 class SheetsController extends AppController
@@ -129,5 +129,25 @@ class SheetsController extends AppController
             'materiaId',
             'grupoId'
         ));
+    }
+
+
+
+    public function beforeFilter(Event $event)
+    {
+        parent::beforeFilter($event);
+
+        $user = $this->Auth->user();
+
+        if (!$user || $user['group_id'] != 2) {
+
+            $this->Flash->error('No tienes permisos para acceder.');
+
+            return $this->redirect([
+                'prefix' => 'Admin',
+                'controller' => 'Users',
+                'action' => 'login'
+            ]);
+        }
     }
 }
