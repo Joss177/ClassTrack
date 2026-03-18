@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 use App\Controller\AppController;
 use Cake\Event\Event;
 use Cake\Mailer\Email;
+use Cake\Routing\Router;
 
 class UsersController extends AppController
 {
@@ -238,32 +239,83 @@ class UsersController extends AppController
         return $this->redirect($this->Auth->logout());
     }
 
-    public function recuperarPassword()
-    {
-        if ($this->request->is('post')) {
 
-            $correo = $this->request->getData('correo');
 
-            $user = $this->Users->find()
-                ->where(['correo' => $correo])
-                ->first();
 
-            if (!$user) {
-                $this->Flash->error('Correo no encontrado');
-                return $this->redirect([
-                    'prefix' => 'admin',
-                    'controller' => 'Users',
-                    'action' => 'login'
-                ]);
-            }
+public function recuperarPassword()
+{
+    if ($this->request->is('post')) {
 
-            $this->Flash->success('Revisa tu correo para continuar.');
+        $correo = $this->request->getData('correo');
 
+        $user = $this->Users->find()
+            ->where(['correo' => $correo])
+            ->first();
+
+        if (!$user) {
+            $this->Flash->error('Correo no encontrado');
             return $this->redirect([
                 'prefix' => 'admin',
                 'controller' => 'Users',
                 'action' => 'login'
             ]);
         }
+
+        // Generar token
+        $token = bin2hex(random_bytes(16));
+
+        // Guardar token sin validar
+        $user = $this->Users->patchEntity($user, [
+            'token' => $token,
+            'token_expira' => date('Y-m-d H:i:s', strtotime('+1 hour'))
+        ], ['validate' => false]);
+
+        $this->Users->save($user);
+
+        // Crear link de recuperación
+        $link = Router::url([
+            'prefix' => 'admin',
+            'controller' => 'Users',
+            'action' => 'editPass',
+            $token
+        ], true);
+
+        // Enviar correo
+        $email = new Email('default');
+
+        $email->setTo($correo)
+            ->setSubject('Recuperar contraseña')
+            ->setEmailFormat('html')
+            ->send(
+                '<p>Hola <strong>' . $user->nombre_completo . '</strong>,</p>
+
+                <p>¡Se ha solicitado cambiar tu contraseña!</p>
+
+                <p>Si no realizaste esta solicitud, por favor, ignora este correo.</p>
+
+                <p>De lo contrario, haz clic en el siguiente botón para cambiar tu contraseña:</p>
+
+                <p>
+                    <a href="' . $link . '" style="
+                        display:inline-block;
+                        padding:12px 25px;
+                        background:#007bff;
+                        color:#ffffff;
+                        text-decoration:none;
+                        border-radius:5px;
+                        font-weight:bold;">
+                        Recuperar contraseña
+                    </a>
+                </p>
+            ');
+
+        $this->Flash->success('Revisa tu correo para continuar.');
+
+        return $this->redirect([
+            'prefix' => 'admin',
+            'controller' => 'Users',
+            'action' => 'login'
+        ]);
     }
+}
 }
