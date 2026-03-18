@@ -1,0 +1,2756 @@
+{
+    "grupos": [
+        {
+            "nombre": "TIID2-1",
+            "materias": [
+                {
+                    "codigo": "Tutoría",
+                    "nombre": "Tutoría",
+                    "color": "#f87171",
+                    "docente": "Iliana Amabely Silva Hernández"
+                },
+                {
+                    "codigo": "B-CDI-1",
+                    "nombre": "CÁLCULO DIFERENCIAL",
+                    "color": "#34d399",
+                    "docente": "Ana Isabel Melgarejo Rodríguez"
+                },
+                {
+                    "codigo": "B-PES-F-1",
+                    "nombre": "PROBABILIDAD Y ESTADÍSTICA",
+                    "color": "#fbbf24",
+                    "docente": "Patricia Guadalupe Torrero Martínez"
+                },
+                {
+                    "codigo": "E-PRE-1",
+                    "nombre": "PROGRAMACIÓN ESTRUCTURADA",
+                    "color": "#60a5fa",
+                    "docente": "Francisco Javier Real Angulo"
+                },
+                {
+                    "codigo": "E-CTER-1",
+                    "nombre": "CONMUTACIÓN Y ENRUTAMIENTO DE RED",
+                    "color": "#a78bfa",
+                    "docente": "ESMC. Alejandro Pérez Pasten Borja"
+                },
+                {
+                    "codigo": "E-SIOP-1",
+                    "nombre": "SISTEMAS OPERATIVOS",
+                    "color": "#f472b6",
+                    "docente": "Daniel Omar Cuellar Álvarez"
+                },
+                {
+                    "codigo": "T-HSMC-1",
+                    "nombre": "HABILIDADES SOCIOEMOCIONALES Y MA",
+                    "color": "#22d3ee",
+                    "docente": "NEJSOe lDenEe C EOliNzaFLbIeCthTO GSarcía Gamez"
+                },
+                {
+                    "codigo": "B-ING2-1",
+                    "nombre": "INGLÉS II",
+                    "color": "#0ea5e9",
+                    "docente": "Rocio Yeraldi Islas Enciso"
+                }
+            ],
+            "horarios": [
+                {
+                    "codigo": "E-SIOP-1",
+                    "aula": "B-310",
+                    "dia_semana": 1,
+                    "hora_inicio": "07:00",
+                    "hora_fin": "08:40"
+                },
+                {
+                    "codigo": "B-ING2-1",
+                    "aula": "B-210",
+                    "dia_semana": 1,
+                    "hora_inicio": "08:40",
+                    "hora_fin": "10:20"
+                },
+                {
+                    "codigo": "E-CTER-1",
+                    "aula": "B-202",
+                    "dia_semana": 1,
+                    "hora_inicio": "10:50",
+                    "hora_fin": "12:30"
+                },
+                {
+                    "codigo": "B-CDI-1",
+                    "aula": "B-219",
+                    "dia_semana": 1,
+                    "hora_inicio": "12:30",
+                    "hora_fin": "14:10"
+                },
+                {
+                    "codigo": "Tutoría",
+                    "aula": "B-310",
+                    "dia_semana": 1,
+                    "hora_inicio": "14:10",
+                    "hora_fin": "15:00"
+                },
+                {
+                    "codigo": "E-SIOP-1",
+                    "aula": "B-310",
+                    "dia_semana": 2,
+                    "hora_inicio": "07:00",
+                    "hora_fin": "08:40"
+                },
+                {
+                    "codigo": "B-CDI-1",
+                    "aula": "B-201",
+                    "dia_semana": 2,
+                    "hora_inicio": "08:40",
+                    "hora_fin": "10:20"
+                },
+                {
+                    "codigo": "T-HSMC-1",
+                    "aula": "B-210",
+                    "dia_semana": 2,
+                    "hora_inicio": "10:50",
+                    "hora_fin": "12:30"
+                },
+                {
+                    "codigo": "E-CTER-1",
+                    "aula": "B-202",
+                    "dia_semana": 2,
+                    "hora_inicio": "12:30",
+                    "hora_fin": "13:20"
+                },
+                {
+                    "codigo": "B-PES-F-1",
+                    "aula": "D-105",
+                    "dia_semana": 2,
+                    "hora_inicio": "13:20",
+                    "hora_fin": "14:10"
+                },
+                {
+                    "codigo": "E-PRE-1",
+                    "aula": "B-312",
+                    "dia_semana": 3,
+                    "hora_inicio": "07:00",
+                    "hora_fin": "09:30"
+                },
+                {
+                    "codigo": "B-PES-F-1",
+                    "aula": "D-105",
+                    "dia_semana": 3,
+                    "hora_inicio": "09:30",
+                    "hora_fin": "10:20"
+                },
+                {
+                    "codigo": "B-PES-F-1",
+                    "aula": "D-105",
+                    "dia_semana": 3,
+                    "hora_inicio": "10:50",
+                    "hora_fin": "11:40"
+                },
+                {
+                    "codigo": "E-PRE-1",
+                    "aula": "B-202",
+                    "dia_semana": 4,
+                    "hora_inicio": "07:00",
+                    "hora_fin": "08:40"
+                },
+                {
+                    "codigo": "B-CDI-1",
+                    "aula": "B-201",
+                    "dia_semana": 4,
+                    "hora_inicio": "08:40",
+                    "hora_fin": "10:20"
+                },
+                {
+                    "codigo": "B-PES-F-1",
+                    "aula": "D-105",
+                    "dia_semana": 4,
+                    "hora_inicio": "10:50",
+                    "hora_fin": "11:40"
+                },
+                {
+                    "codigo": "B-ING2-1",
+                    "aula": "D-105",
+                    "dia_semana": 4,
+                    "hora_inicio": "11:40",
+                    "hora_fin": "12:30"
+                },
+                {
+                    "codigo": "E-CTER-1",
+                    "aula": "B-202",
+                    "dia_semana": 5,
+                    "hora_inicio": "07:00",
+                    "hora_fin": "08:40"
+                },
+                {
+                    "codigo": "T-HSMC-1",
+                    "aula": "B-211",
+                    "dia_semana": 5,
+                    "hora_inicio": "08:40",
+                    "hora_fin": "10:20"
+                },
+                {
+                    "codigo": "B-ING2-1",
+                    "aula": "B-313",
+                    "dia_semana": 5,
+                    "hora_inicio": "10:50",
+                    "hora_fin": "12:30"
+                },
+                {
+                    "codigo": "B-PES-F-1",
+                    "aula": "D-105",
+                    "dia_semana": 5,
+                    "hora_inicio": "12:30",
+                    "hora_fin": "13:20"
+                }
+            ]
+        },
+        {
+            "nombre": "TIID2-2",
+            "materias": [
+                {
+                    "codigo": "Tutoría",
+                    "nombre": "Tutoría",
+                    "color": "#f87171",
+                    "docente": "Gloria Irene Téllez Rodríguez"
+                },
+                {
+                    "codigo": "B-CDI-1",
+                    "nombre": "CÁLCULO DIFERENCIAL",
+                    "color": "#34d399",
+                    "docente": "Ana Isabel Melgarejo Rodríguez"
+                },
+                {
+                    "codigo": "B-PES-F-1",
+                    "nombre": "PROBABILIDAD Y ESTADÍSTICA",
+                    "color": "#fbbf24",
+                    "docente": "Patricia Guadalupe Torrero Martínez"
+                },
+                {
+                    "codigo": "E-PRE-1",
+                    "nombre": "PROGRAMACIÓN ESTRUCTURADA",
+                    "color": "#60a5fa",
+                    "docente": "Melissa Osuna Cárdenas"
+                },
+                {
+                    "codigo": "E-CTER-1",
+                    "nombre": "CONMUTACIÓN Y ENRUTAMIENTO DE RED",
+                    "color": "#a78bfa",
+                    "docente": "ESMC. Alberto Morales Colado"
+                },
+                {
+                    "codigo": "E-SIOP-1",
+                    "nombre": "SISTEMAS OPERATIVOS",
+                    "color": "#f472b6",
+                    "docente": "Daniel Omar Cuellar Álvarez"
+                },
+                {
+                    "codigo": "T-HSMC-1",
+                    "nombre": "HABILIDADES SOCIOEMOCIONALES Y MA",
+                    "color": "#22d3ee",
+                    "docente": "NEJSOe lDenEe C EOliNzaFLbIeCthTO GSarcía Gamez"
+                },
+                {
+                    "codigo": "B-ING2-1",
+                    "nombre": "INGLÉS II",
+                    "color": "#0ea5e9",
+                    "docente": "Rocio Yeraldi Islas Enciso"
+                }
+            ],
+            "horarios": [
+                {
+                    "codigo": "E-SIOP-1",
+                    "aula": "B-310",
+                    "dia_semana": 1,
+                    "hora_inicio": "08:40",
+                    "hora_fin": "09:30"
+                },
+                {
+                    "codigo": "Tutoría",
+                    "aula": "B-211",
+                    "dia_semana": 1,
+                    "hora_inicio": "09:30",
+                    "hora_fin": "10:20"
+                },
+                {
+                    "codigo": "B-CDI-1",
+                    "aula": "B-219",
+                    "dia_semana": 1,
+                    "hora_inicio": "10:50",
+                    "hora_fin": "12:30"
+                },
+                {
+                    "codigo": "E-PRE-1",
+                    "aula": "B-310",
+                    "dia_semana": 1,
+                    "hora_inicio": "12:30",
+                    "hora_fin": "14:10"
+                },
+                {
+                    "codigo": "B-PES-F-1",
+                    "aula": "D-105",
+                    "dia_semana": 1,
+                    "hora_inicio": "14:10",
+                    "hora_fin": "15:00"
+                },
+                {
+                    "codigo": "B-ING2-1",
+                    "aula": "B-311",
+                    "dia_semana": 2,
+                    "hora_inicio": "07:50",
+                    "hora_fin": "08:40"
+                },
+                {
+                    "codigo": "E-SIOP-1",
+                    "aula": "B-310",
+                    "dia_semana": 2,
+                    "hora_inicio": "08:40",
+                    "hora_fin": "09:30"
+                },
+                {
+                    "codigo": "E-PRE-1",
+                    "aula": "B-312",
+                    "dia_semana": 2,
+                    "hora_inicio": "09:30",
+                    "hora_fin": "10:20"
+                },
+                {
+                    "codigo": "B-CDI-1",
+                    "aula": "B-201",
+                    "dia_semana": 2,
+                    "hora_inicio": "10:50",
+                    "hora_fin": "12:30"
+                },
+                {
+                    "codigo": "T-HSMC-1",
+                    "aula": "B-210",
+                    "dia_semana": 2,
+                    "hora_inicio": "12:30",
+                    "hora_fin": "14:10"
+                },
+                {
+                    "codigo": "E-SIOP-1",
+                    "aula": "B-310",
+                    "dia_semana": 3,
+                    "hora_inicio": "07:00",
+                    "hora_fin": "08:40"
+                },
+                {
+                    "codigo": "B-ING2-1",
+                    "aula": "B-210",
+                    "dia_semana": 3,
+                    "hora_inicio": "08:40",
+                    "hora_fin": "09:30"
+                },
+                {
+                    "codigo": "E-CTER-1",
+                    "aula": "B-202",
+                    "dia_semana": 3,
+                    "hora_inicio": "09:30",
+                    "hora_fin": "10:20"
+                },
+                {
+                    "codigo": "E-CTER-1",
+                    "aula": "B-202",
+                    "dia_semana": 3,
+                    "hora_inicio": "10:50",
+                    "hora_fin": "11:40"
+                },
+                {
+                    "codigo": "B-PES-F-1",
+                    "aula": "D-105",
+                    "dia_semana": 3,
+                    "hora_inicio": "11:40",
+                    "hora_fin": "12:30"
+                },
+                {
+                    "codigo": "B-ING2-1",
+                    "aula": "B-201",
+                    "dia_semana": 3,
+                    "hora_inicio": "12:30",
+                    "hora_fin": "13:20"
+                },
+                {
+                    "codigo": "E-PRE-1",
+                    "aula": "B-312",
+                    "dia_semana": 4,
+                    "hora_inicio": "07:50",
+                    "hora_fin": "09:30"
+                },
+                {
+                    "codigo": "B-PES-F-1",
+                    "aula": "D-105",
+                    "dia_semana": 4,
+                    "hora_inicio": "09:30",
+                    "hora_fin": "10:20"
+                },
+                {
+                    "codigo": "B-CDI-1",
+                    "aula": "B-201",
+                    "dia_semana": 4,
+                    "hora_inicio": "10:50",
+                    "hora_fin": "12:30"
+                },
+                {
+                    "codigo": "E-CTER-1",
+                    "aula": "B-202",
+                    "dia_semana": 4,
+                    "hora_inicio": "12:30",
+                    "hora_fin": "15:00"
+                },
+                {
+                    "codigo": "B-PES-F-1",
+                    "aula": "D-105",
+                    "dia_semana": 5,
+                    "hora_inicio": "07:00",
+                    "hora_fin": "08:40"
+                },
+                {
+                    "codigo": "B-ING2-1",
+                    "aula": "B-201",
+                    "dia_semana": 5,
+                    "hora_inicio": "08:40",
+                    "hora_fin": "10:20"
+                },
+                {
+                    "codigo": "T-HSMC-1",
+                    "aula": "B-210",
+                    "dia_semana": 5,
+                    "hora_inicio": "10:50",
+                    "hora_fin": "12:30"
+                }
+            ]
+        },
+        {
+            "nombre": "TIID2-3",
+            "materias": [
+                {
+                    "codigo": "Tutoría",
+                    "nombre": "Tutoría",
+                    "color": "#f87171",
+                    "docente": "Melissa Osuna Cárdenas"
+                },
+                {
+                    "codigo": "B-CDI-1",
+                    "nombre": "CÁLCULO DIFERENCIAL",
+                    "color": "#34d399",
+                    "docente": "Ana Isabel Melgarejo Rodríguez"
+                },
+                {
+                    "codigo": "B-PES-F-1",
+                    "nombre": "PROBABILIDAD Y ESTADÍSTICA",
+                    "color": "#fbbf24",
+                    "docente": "Patricia Guadalupe Torrero Martínez"
+                },
+                {
+                    "codigo": "E-PRE-1",
+                    "nombre": "PROGRAMACIÓN ESTRUCTURADA",
+                    "color": "#60a5fa",
+                    "docente": "Gloria Irene Téllez Rodríguez"
+                },
+                {
+                    "codigo": "E-CTER-1",
+                    "nombre": "CONMUTACIÓN Y ENRUTAMIENTO DE RED",
+                    "color": "#a78bfa",
+                    "docente": "ESMC. Alberto Morales Colado"
+                },
+                {
+                    "codigo": "E-SIOP-1",
+                    "nombre": "SISTEMAS OPERATIVOS",
+                    "color": "#f472b6",
+                    "docente": "Daniel Omar Cuellar Álvarez"
+                },
+                {
+                    "codigo": "T-HSMC-1",
+                    "nombre": "HABILIDADES SOCIOEMOCIONALES Y MA",
+                    "color": "#22d3ee",
+                    "docente": "NEJMOC D. LEi zCeOttNeF PLeICraTlOtaS Partida"
+                },
+                {
+                    "codigo": "B-ING2-1",
+                    "nombre": "INGLÉS II",
+                    "color": "#0ea5e9",
+                    "docente": "Rocio Yeraldi Islas Enciso"
+                }
+            ],
+            "horarios": [
+                {
+                    "codigo": "B-CDI-1",
+                    "aula": "B-219",
+                    "dia_semana": 1,
+                    "hora_inicio": "08:40",
+                    "hora_fin": "10:20"
+                },
+                {
+                    "codigo": "B-ING2-1",
+                    "aula": "B-211",
+                    "dia_semana": 1,
+                    "hora_inicio": "10:50",
+                    "hora_fin": "11:40"
+                },
+                {
+                    "codigo": "E-PRE-1",
+                    "aula": "B-312",
+                    "dia_semana": 1,
+                    "hora_inicio": "11:40",
+                    "hora_fin": "13:20"
+                },
+                {
+                    "codigo": "T-HSMC-1",
+                    "aula": "B-311",
+                    "dia_semana": 1,
+                    "hora_inicio": "13:20",
+                    "hora_fin": "15:00"
+                },
+                {
+                    "codigo": "B-PES-F-1",
+                    "aula": "D-105",
+                    "dia_semana": 1,
+                    "hora_inicio": "15:00",
+                    "hora_fin": "15:50"
+                },
+                {
+                    "codigo": "B-ING2-1",
+                    "aula": "B-311",
+                    "dia_semana": 2,
+                    "hora_inicio": "08:40",
+                    "hora_fin": "10:20"
+                },
+                {
+                    "codigo": "B-ING2-1",
+                    "aula": "B-311",
+                    "dia_semana": 2,
+                    "hora_inicio": "10:50",
+                    "hora_fin": "11:40"
+                },
+                {
+                    "codigo": "B-PES-F-1",
+                    "aula": "D-105",
+                    "dia_semana": 2,
+                    "hora_inicio": "11:40",
+                    "hora_fin": "12:30"
+                },
+                {
+                    "codigo": "B-CDI-1",
+                    "aula": "B-201",
+                    "dia_semana": 2,
+                    "hora_inicio": "12:30",
+                    "hora_fin": "14:10"
+                },
+                {
+                    "codigo": "Tutoría",
+                    "aula": "B-201",
+                    "dia_semana": 2,
+                    "hora_inicio": "14:10",
+                    "hora_fin": "15:00"
+                },
+                {
+                    "codigo": "B-PES-F-1",
+                    "aula": "D-105",
+                    "dia_semana": 3,
+                    "hora_inicio": "07:00",
+                    "hora_fin": "08:40"
+                },
+                {
+                    "codigo": "E-SIOP-1",
+                    "aula": "B-310",
+                    "dia_semana": 3,
+                    "hora_inicio": "08:40",
+                    "hora_fin": "09:30"
+                },
+                {
+                    "codigo": "B-ING2-1",
+                    "aula": "B-210",
+                    "dia_semana": 3,
+                    "hora_inicio": "09:30",
+                    "hora_fin": "10:20"
+                },
+                {
+                    "codigo": "E-PRE-1",
+                    "aula": "B-310",
+                    "dia_semana": 3,
+                    "hora_inicio": "10:50",
+                    "hora_fin": "11:40"
+                },
+                {
+                    "codigo": "E-SIOP-1",
+                    "aula": "B-310",
+                    "dia_semana": 4,
+                    "hora_inicio": "07:00",
+                    "hora_fin": "09:30"
+                },
+                {
+                    "codigo": "E-CTER-1",
+                    "aula": "B-202",
+                    "dia_semana": 4,
+                    "hora_inicio": "09:30",
+                    "hora_fin": "10:20"
+                },
+                {
+                    "codigo": "E-CTER-1",
+                    "aula": "B-202",
+                    "dia_semana": 4,
+                    "hora_inicio": "10:50",
+                    "hora_fin": "12:30"
+                },
+                {
+                    "codigo": "B-CDI-1",
+                    "aula": "B-201",
+                    "dia_semana": 4,
+                    "hora_inicio": "12:30",
+                    "hora_fin": "14:10"
+                },
+                {
+                    "codigo": "T-HSMC-1",
+                    "aula": "B-311",
+                    "dia_semana": 4,
+                    "hora_inicio": "14:10",
+                    "hora_fin": "15:50"
+                },
+                {
+                    "codigo": "B-PES-F-1",
+                    "aula": "D-105",
+                    "dia_semana": 5,
+                    "hora_inicio": "08:40",
+                    "hora_fin": "09:30"
+                },
+                {
+                    "codigo": "E-CTER-1",
+                    "aula": "B-202",
+                    "dia_semana": 5,
+                    "hora_inicio": "09:30",
+                    "hora_fin": "10:20"
+                },
+                {
+                    "codigo": "E-CTER-1",
+                    "aula": "B-202",
+                    "dia_semana": 5,
+                    "hora_inicio": "10:50",
+                    "hora_fin": "11:40"
+                },
+                {
+                    "codigo": "E-PRE-1",
+                    "aula": "B-310",
+                    "dia_semana": 5,
+                    "hora_inicio": "11:40",
+                    "hora_fin": "13:20"
+                }
+            ]
+        },
+        {
+            "nombre": "TIID2-4",
+            "materias": [
+                {
+                    "codigo": "Tutoría",
+                    "nombre": "Tutoría",
+                    "color": "#f87171",
+                    "docente": "Carlos Zamudio Togo"
+                },
+                {
+                    "codigo": "B-CDI-1",
+                    "nombre": "CÁLCULO DIFERENCIAL",
+                    "color": "#34d399",
+                    "docente": "Ana Isabel Melgarejo Rodríguez"
+                },
+                {
+                    "codigo": "B-PES-F-1",
+                    "nombre": "PROBABILIDAD Y ESTADÍSTICA",
+                    "color": "#fbbf24",
+                    "docente": "Patricia Guadalupe Torrero Martínez"
+                },
+                {
+                    "codigo": "E-PRE-1",
+                    "nombre": "PROGRAMACIÓN ESTRUCTURADA",
+                    "color": "#60a5fa",
+                    "docente": "Roberto Antonio Martínez Thompson"
+                },
+                {
+                    "codigo": "E-CTER-1",
+                    "nombre": "CONMUTACIÓN Y ENRUTAMIENTO DE RED",
+                    "color": "#a78bfa",
+                    "docente": "ESMC. Alberto Morales Colado"
+                },
+                {
+                    "codigo": "E-SIOP-1",
+                    "nombre": "SISTEMAS OPERATIVOS",
+                    "color": "#f472b6",
+                    "docente": "Gloria Irene Téllez Rodríguez"
+                },
+                {
+                    "codigo": "T-HSMC-1",
+                    "nombre": "HABILIDADES SOCIOEMOCIONALES Y MA",
+                    "color": "#22d3ee",
+                    "docente": "NEJMOC D. CE aCrOloNs FZLaImCTuOdSio Togo"
+                },
+                {
+                    "codigo": "B-ING2-1",
+                    "nombre": "INGLÉS II",
+                    "color": "#0ea5e9",
+                    "docente": "Nydia Diaz Alba"
+                }
+            ],
+            "horarios": [
+                {
+                    "codigo": "T-HSMC-1",
+                    "aula": "B-201",
+                    "dia_semana": 1,
+                    "hora_inicio": "11:40",
+                    "hora_fin": "12:30"
+                },
+                {
+                    "codigo": "B-PES-F-1",
+                    "aula": "D-105",
+                    "dia_semana": 1,
+                    "hora_inicio": "12:30",
+                    "hora_fin": "13:20"
+                },
+                {
+                    "codigo": "B-ING2-1",
+                    "aula": "B-210",
+                    "dia_semana": 1,
+                    "hora_inicio": "13:20",
+                    "hora_fin": "15:00"
+                },
+                {
+                    "codigo": "B-CDI-1",
+                    "aula": "B-219",
+                    "dia_semana": 1,
+                    "hora_inicio": "15:00",
+                    "hora_fin": "15:50"
+                },
+                {
+                    "codigo": "B-CDI-1",
+                    "aula": "B-219",
+                    "dia_semana": 1,
+                    "hora_inicio": "16:20",
+                    "hora_fin": "17:10"
+                },
+                {
+                    "codigo": "E-SIOP-1",
+                    "aula": "B-310",
+                    "dia_semana": 2,
+                    "hora_inicio": "12:30",
+                    "hora_fin": "14:10"
+                },
+                {
+                    "codigo": "E-PRE-1",
+                    "aula": "B-312",
+                    "dia_semana": 2,
+                    "hora_inicio": "14:10",
+                    "hora_fin": "15:00"
+                },
+                {
+                    "codigo": "B-CDI-1",
+                    "aula": "B-201",
+                    "dia_semana": 2,
+                    "hora_inicio": "15:00",
+                    "hora_fin": "15:50"
+                },
+                {
+                    "codigo": "B-CDI-1",
+                    "aula": "B-201",
+                    "dia_semana": 2,
+                    "hora_inicio": "16:20",
+                    "hora_fin": "17:10"
+                },
+                {
+                    "codigo": "T-HSMC-1",
+                    "aula": "B-311",
+                    "dia_semana": 2,
+                    "hora_inicio": "17:10",
+                    "hora_fin": "18:00"
+                },
+                {
+                    "codigo": "E-CTER-1",
+                    "aula": "B-202",
+                    "dia_semana": 3,
+                    "hora_inicio": "11:40",
+                    "hora_fin": "13:20"
+                },
+                {
+                    "codigo": "B-PES-F-1",
+                    "aula": "D-105",
+                    "dia_semana": 3,
+                    "hora_inicio": "13:20",
+                    "hora_fin": "14:10"
+                },
+                {
+                    "codigo": "E-PRE-1",
+                    "aula": "B-312",
+                    "dia_semana": 3,
+                    "hora_inicio": "14:10",
+                    "hora_fin": "15:50"
+                },
+                {
+                    "codigo": "B-ING2-1",
+                    "aula": "B-217",
+                    "dia_semana": 3,
+                    "hora_inicio": "16:20",
+                    "hora_fin": "17:10"
+                },
+                {
+                    "codigo": "E-SIOP-1",
+                    "aula": "B-310",
+                    "dia_semana": 4,
+                    "hora_inicio": "09:30",
+                    "hora_fin": "10:20"
+                },
+                {
+                    "codigo": "E-SIOP-1",
+                    "aula": "B-310",
+                    "dia_semana": 4,
+                    "hora_inicio": "10:50",
+                    "hora_fin": "11:40"
+                },
+                {
+                    "codigo": "E-PRE-1",
+                    "aula": "B-310",
+                    "dia_semana": 4,
+                    "hora_inicio": "11:40",
+                    "hora_fin": "13:20"
+                },
+                {
+                    "codigo": "Tutoría",
+                    "aula": "B-219",
+                    "dia_semana": 4,
+                    "hora_inicio": "13:20",
+                    "hora_fin": "14:10"
+                },
+                {
+                    "codigo": "B-CDI-1",
+                    "aula": "B-201",
+                    "dia_semana": 4,
+                    "hora_inicio": "14:10",
+                    "hora_fin": "15:50"
+                },
+                {
+                    "codigo": "T-HSMC-1",
+                    "aula": "B-211",
+                    "dia_semana": 4,
+                    "hora_inicio": "16:20",
+                    "hora_fin": "18:00"
+                },
+                {
+                    "codigo": "B-PES-F-1",
+                    "aula": "D-105",
+                    "dia_semana": 5,
+                    "hora_inicio": "09:30",
+                    "hora_fin": "10:20"
+                },
+                {
+                    "codigo": "B-PES-F-1",
+                    "aula": "D-105",
+                    "dia_semana": 5,
+                    "hora_inicio": "10:50",
+                    "hora_fin": "12:30"
+                },
+                {
+                    "codigo": "E-CTER-1",
+                    "aula": "B-202",
+                    "dia_semana": 5,
+                    "hora_inicio": "12:30",
+                    "hora_fin": "15:00"
+                },
+                {
+                    "codigo": "B-ING2-1",
+                    "aula": "B-219",
+                    "dia_semana": 5,
+                    "hora_inicio": "15:00",
+                    "hora_fin": "15:50"
+                },
+                {
+                    "codigo": "B-ING2-1",
+                    "aula": "B-219",
+                    "dia_semana": 5,
+                    "hora_inicio": "16:20",
+                    "hora_fin": "17:10"
+                }
+            ]
+        },
+        {
+            "nombre": "TIID2-5",
+            "materias": [
+                {
+                    "codigo": "Tutoría",
+                    "nombre": "Tutoría",
+                    "color": "#f87171",
+                    "docente": "Lizette Peralta Partida"
+                },
+                {
+                    "codigo": "B-CDI-1",
+                    "nombre": "CÁLCULO DIFERENCIAL",
+                    "color": "#34d399",
+                    "docente": "Omar Alejandro Rubio Hernández"
+                },
+                {
+                    "codigo": "B-PES-F-1",
+                    "nombre": "PROBABILIDAD Y ESTADÍSTICA",
+                    "color": "#fbbf24",
+                    "docente": "Patricia Guadalupe Torrero Martínez"
+                },
+                {
+                    "codigo": "E-PRE-1",
+                    "nombre": "PROGRAMACIÓN ESTRUCTURADA",
+                    "color": "#60a5fa",
+                    "docente": "Luis Armando Aguayo Medina"
+                },
+                {
+                    "codigo": "E-CTER-1",
+                    "nombre": "CONMUTACIÓN Y ENRUTAMIENTO DE RED",
+                    "color": "#a78bfa",
+                    "docente": "ESMC. Alberto Morales Colado"
+                },
+                {
+                    "codigo": "E-SIOP-1",
+                    "nombre": "SISTEMAS OPERATIVOS",
+                    "color": "#f472b6",
+                    "docente": "Gloria Irene Téllez Rodríguez"
+                },
+                {
+                    "codigo": "T-HSMC-1",
+                    "nombre": "HABILIDADES SOCIOEMOCIONALES Y MA",
+                    "color": "#22d3ee",
+                    "docente": "NEJMOC D. CE aCrOloNs FZLaImCTuOdSio Togo"
+                },
+                {
+                    "codigo": "B-ING2-1",
+                    "nombre": "INGLÉS II",
+                    "color": "#0ea5e9",
+                    "docente": "Nydia Diaz Alba"
+                }
+            ],
+            "horarios": [
+                {
+                    "codigo": "B-PES-F-1",
+                    "aula": "D-105",
+                    "dia_semana": 1,
+                    "hora_inicio": "10:50",
+                    "hora_fin": "12:30"
+                },
+                {
+                    "codigo": "E-CTER-1",
+                    "aula": "B-202",
+                    "dia_semana": 1,
+                    "hora_inicio": "12:30",
+                    "hora_fin": "15:00"
+                },
+                {
+                    "codigo": "B-ING2-1",
+                    "aula": "B-211",
+                    "dia_semana": 1,
+                    "hora_inicio": "15:00",
+                    "hora_fin": "15:50"
+                },
+                {
+                    "codigo": "B-ING2-1",
+                    "aula": "B-211",
+                    "dia_semana": 1,
+                    "hora_inicio": "16:20",
+                    "hora_fin": "17:10"
+                },
+                {
+                    "codigo": "E-CTER-1",
+                    "aula": "B-202",
+                    "dia_semana": 2,
+                    "hora_inicio": "10:50",
+                    "hora_fin": "12:30"
+                },
+                {
+                    "codigo": "B-PES-F-1",
+                    "aula": "D-105",
+                    "dia_semana": 2,
+                    "hora_inicio": "12:30",
+                    "hora_fin": "13:20"
+                },
+                {
+                    "codigo": "T-HSMC-1",
+                    "aula": "B-311",
+                    "dia_semana": 2,
+                    "hora_inicio": "13:20",
+                    "hora_fin": "14:10"
+                },
+                {
+                    "codigo": "E-SIOP-1",
+                    "aula": "B-310",
+                    "dia_semana": 2,
+                    "hora_inicio": "14:10",
+                    "hora_fin": "15:50"
+                },
+                {
+                    "codigo": "B-ING2-1",
+                    "aula": "B-311",
+                    "dia_semana": 2,
+                    "hora_inicio": "16:20",
+                    "hora_fin": "17:10"
+                },
+                {
+                    "codigo": "E-PRE-1",
+                    "aula": "B-310",
+                    "dia_semana": 3,
+                    "hora_inicio": "11:40",
+                    "hora_fin": "14:10"
+                },
+                {
+                    "codigo": "B-ING2-1",
+                    "aula": "B-217",
+                    "dia_semana": 3,
+                    "hora_inicio": "14:10",
+                    "hora_fin": "15:50"
+                },
+                {
+                    "codigo": "T-HSMC-1",
+                    "aula": "B-311",
+                    "dia_semana": 3,
+                    "hora_inicio": "16:20",
+                    "hora_fin": "18:00"
+                },
+                {
+                    "codigo": "B-CDI-1",
+                    "aula": "B-311",
+                    "dia_semana": 4,
+                    "hora_inicio": "10:50",
+                    "hora_fin": "13:20"
+                },
+                {
+                    "codigo": "B-PES-F-1",
+                    "aula": "D-105",
+                    "dia_semana": 4,
+                    "hora_inicio": "13:20",
+                    "hora_fin": "15:00"
+                },
+                {
+                    "codigo": "T-HSMC-1",
+                    "aula": "B-211",
+                    "dia_semana": 4,
+                    "hora_inicio": "15:00",
+                    "hora_fin": "15:50"
+                },
+                {
+                    "codigo": "Tutoría",
+                    "aula": "B-201",
+                    "dia_semana": 5,
+                    "hora_inicio": "10:50",
+                    "hora_fin": "11:40"
+                },
+                {
+                    "codigo": "B-CDI-1",
+                    "aula": "B-217",
+                    "dia_semana": 5,
+                    "hora_inicio": "11:40",
+                    "hora_fin": "13:20"
+                },
+                {
+                    "codigo": "E-SIOP-1",
+                    "aula": "B-312",
+                    "dia_semana": 5,
+                    "hora_inicio": "13:20",
+                    "hora_fin": "15:00"
+                },
+                {
+                    "codigo": "E-PRE-1",
+                    "aula": "B-310",
+                    "dia_semana": 5,
+                    "hora_inicio": "15:00",
+                    "hora_fin": "15:50"
+                },
+                {
+                    "codigo": "E-PRE-1",
+                    "aula": "B-310",
+                    "dia_semana": 5,
+                    "hora_inicio": "16:20",
+                    "hora_fin": "17:10"
+                }
+            ]
+        },
+        {
+            "nombre": "TIID5-1",
+            "materias": [
+                {
+                    "codigo": "Tutoría",
+                    "nombre": "Tutoría",
+                    "color": "#f87171",
+                    "docente": "Alejandro Pérez Pasten Borja"
+                },
+                {
+                    "codigo": "B-ING5-2",
+                    "nombre": "INGLÉS V",
+                    "color": "#34d399",
+                    "docente": "Rocio Yeraldi Islas Enciso"
+                },
+                {
+                    "codigo": "T-LEAD-2",
+                    "nombre": "LIDERAZGO DE EQUIPOS DE ALTO DESEM",
+                    "color": "#fbbf24",
+                    "docente": "PEÑMOC. Lizette Peralta Partida"
+                },
+                {
+                    "codigo": "E-PIN2-2",
+                    "nombre": "PROYECTO INTEGRADOR II",
+                    "color": "#60a5fa",
+                    "docente": "Anabel Estrada Hernández"
+                },
+                {
+                    "codigo": "E-AWOS-2",
+                    "nombre": "APLICACIONES WEB ORIENTADAS A SERV",
+                    "color": "#a78bfa",
+                    "docente": "ICIMOCS. Roberto Antonio Martínez Thompson"
+                },
+                {
+                    "codigo": "E-BDAV-2",
+                    "nombre": "BASES DE DATOS AVANZADAS",
+                    "color": "#f472b6",
+                    "docente": "Melissa Osuna Cárdenas"
+                },
+                {
+                    "codigo": "B-EDI-2",
+                    "nombre": "ECUACIONES DIFERENCIALES",
+                    "color": "#22d3ee",
+                    "docente": "Mónica Avelina Gutiérrez Haros"
+                },
+                {
+                    "codigo": "E-EMDS-2",
+                    "nombre": "ESTÁNDARES Y MÉTRICAS PARA EL DESA",
+                    "color": "#0ea5e9",
+                    "docente": "RRODLrLaO. I DsmE aSyOliFaT SWaAuRceEdo Ugalde"
+                }
+            ],
+            "horarios": [
+                {
+                    "codigo": "E-PIN2-2",
+                    "aula": "B-211",
+                    "dia_semana": 1,
+                    "hora_inicio": "07:00",
+                    "hora_fin": "08:40"
+                },
+                {
+                    "codigo": "E-EMDS-2",
+                    "aula": "B-312",
+                    "dia_semana": 1,
+                    "hora_inicio": "08:40",
+                    "hora_fin": "10:20"
+                },
+                {
+                    "codigo": "T-LEAD-2",
+                    "aula": "B-311",
+                    "dia_semana": 1,
+                    "hora_inicio": "10:50",
+                    "hora_fin": "12:30"
+                },
+                {
+                    "codigo": "B-ING5-2",
+                    "aula": "B-201",
+                    "dia_semana": 1,
+                    "hora_inicio": "12:30",
+                    "hora_fin": "13:20"
+                },
+                {
+                    "codigo": "E-AWOS-2",
+                    "aula": "B-308",
+                    "dia_semana": 1,
+                    "hora_inicio": "13:20",
+                    "hora_fin": "14:10"
+                },
+                {
+                    "codigo": "E-BDAV-2",
+                    "aula": "B-308",
+                    "dia_semana": 1,
+                    "hora_inicio": "14:10",
+                    "hora_fin": "15:00"
+                },
+                {
+                    "codigo": "E-BDAV-2",
+                    "aula": "B-309",
+                    "dia_semana": 2,
+                    "hora_inicio": "07:50",
+                    "hora_fin": "09:30"
+                },
+                {
+                    "codigo": "E-EMDS-2",
+                    "aula": "B-310",
+                    "dia_semana": 2,
+                    "hora_inicio": "09:30",
+                    "hora_fin": "10:20"
+                },
+                {
+                    "codigo": "E-EMDS-2",
+                    "aula": "B-310",
+                    "dia_semana": 2,
+                    "hora_inicio": "10:50",
+                    "hora_fin": "11:40"
+                },
+                {
+                    "codigo": "B-EDI-2",
+                    "aula": "B-217",
+                    "dia_semana": 3,
+                    "hora_inicio": "08:40",
+                    "hora_fin": "10:20"
+                },
+                {
+                    "codigo": "B-ING5-2",
+                    "aula": "B-311",
+                    "dia_semana": 3,
+                    "hora_inicio": "10:50",
+                    "hora_fin": "12:30"
+                },
+                {
+                    "codigo": "E-AWOS-2",
+                    "aula": "B-309",
+                    "dia_semana": 3,
+                    "hora_inicio": "12:30",
+                    "hora_fin": "14:10"
+                },
+                {
+                    "codigo": "B-EDI-2",
+                    "aula": "B-311",
+                    "dia_semana": 4,
+                    "hora_inicio": "07:50",
+                    "hora_fin": "09:30"
+                },
+                {
+                    "codigo": "B-ING5-2",
+                    "aula": "B-219",
+                    "dia_semana": 4,
+                    "hora_inicio": "09:30",
+                    "hora_fin": "10:20"
+                },
+                {
+                    "codigo": "B-ING5-2",
+                    "aula": "B-219",
+                    "dia_semana": 4,
+                    "hora_inicio": "10:50",
+                    "hora_fin": "11:40"
+                },
+                {
+                    "codigo": "T-LEAD-2",
+                    "aula": "B-217",
+                    "dia_semana": 4,
+                    "hora_inicio": "11:40",
+                    "hora_fin": "13:20"
+                },
+                {
+                    "codigo": "E-BDAV-2",
+                    "aula": "B-313",
+                    "dia_semana": 4,
+                    "hora_inicio": "13:20",
+                    "hora_fin": "15:00"
+                },
+                {
+                    "codigo": "E-AWOS-2",
+                    "aula": "B-202",
+                    "dia_semana": 4,
+                    "hora_inicio": "15:00",
+                    "hora_fin": "15:50"
+                },
+                {
+                    "codigo": "E-PIN2-2",
+                    "aula": "B-311",
+                    "dia_semana": 5,
+                    "hora_inicio": "07:00",
+                    "hora_fin": "08:40"
+                },
+                {
+                    "codigo": "B-EDI-2",
+                    "aula": "B-217",
+                    "dia_semana": 5,
+                    "hora_inicio": "08:40",
+                    "hora_fin": "09:30"
+                },
+                {
+                    "codigo": "Tutoría",
+                    "aula": "B-219",
+                    "dia_semana": 5,
+                    "hora_inicio": "09:30",
+                    "hora_fin": "10:20"
+                },
+                {
+                    "codigo": "E-AWOS-2",
+                    "aula": "B-312",
+                    "dia_semana": 5,
+                    "hora_inicio": "10:50",
+                    "hora_fin": "11:40"
+                },
+                {
+                    "codigo": "E-EMDS-2",
+                    "aula": "B-312",
+                    "dia_semana": 5,
+                    "hora_inicio": "11:40",
+                    "hora_fin": "13:20"
+                }
+            ]
+        },
+        {
+            "nombre": "TIID5-2",
+            "materias": [
+                {
+                    "codigo": "Tutoría",
+                    "nombre": "Tutoría",
+                    "color": "#f87171",
+                    "docente": "Alejandro Pérez Pasten Borja"
+                },
+                {
+                    "codigo": "B-ING5-2",
+                    "nombre": "INGLÉS V",
+                    "color": "#34d399",
+                    "docente": "Rosa Elena Mejia Castro"
+                },
+                {
+                    "codigo": "T-LEAD-2",
+                    "nombre": "LIDERAZGO DE EQUIPOS DE ALTO DESEM",
+                    "color": "#fbbf24",
+                    "docente": "PEÑMOC. Lizette Peralta Partida"
+                },
+                {
+                    "codigo": "E-PIN2-2",
+                    "nombre": "PROYECTO INTEGRADOR II",
+                    "color": "#60a5fa",
+                    "docente": "Anabel Estrada Hernández"
+                },
+                {
+                    "codigo": "E-AWOS-2",
+                    "nombre": "APLICACIONES WEB ORIENTADAS A SERV",
+                    "color": "#a78bfa",
+                    "docente": "ICIMOCS. Roberto Antonio Martínez Thompson"
+                },
+                {
+                    "codigo": "E-BDAV-2",
+                    "nombre": "BASES DE DATOS AVANZADAS",
+                    "color": "#f472b6",
+                    "docente": "Melissa Osuna Cárdenas"
+                },
+                {
+                    "codigo": "B-EDI-2",
+                    "nombre": "ECUACIONES DIFERENCIALES",
+                    "color": "#22d3ee",
+                    "docente": "Mónica Avelina Gutiérrez Haros"
+                },
+                {
+                    "codigo": "E-EMDS-2",
+                    "nombre": "ESTÁNDARES Y MÉTRICAS PARA EL DESA",
+                    "color": "#0ea5e9",
+                    "docente": "RRODLrLaO. I DsmE aSyOliFaT SWaAuRceEdo Ugalde"
+                }
+            ],
+            "horarios": [
+                {
+                    "codigo": "B-EDI-2",
+                    "aula": "B-219",
+                    "dia_semana": 1,
+                    "hora_inicio": "07:00",
+                    "hora_fin": "07:50"
+                },
+                {
+                    "codigo": "E-AWOS-2",
+                    "aula": "B-309",
+                    "dia_semana": 1,
+                    "hora_inicio": "07:50",
+                    "hora_fin": "10:20"
+                },
+                {
+                    "codigo": "E-BDAV-2",
+                    "aula": "B-310",
+                    "dia_semana": 1,
+                    "hora_inicio": "10:50",
+                    "hora_fin": "12:30"
+                },
+                {
+                    "codigo": "T-LEAD-2",
+                    "aula": "B-311",
+                    "dia_semana": 1,
+                    "hora_inicio": "12:30",
+                    "hora_fin": "13:20"
+                },
+                {
+                    "codigo": "B-ING5-2",
+                    "aula": "B-210",
+                    "dia_semana": 2,
+                    "hora_inicio": "08:40",
+                    "hora_fin": "10:20"
+                },
+                {
+                    "codigo": "Tutoría",
+                    "aula": "B-313",
+                    "dia_semana": 2,
+                    "hora_inicio": "10:50",
+                    "hora_fin": "11:40"
+                },
+                {
+                    "codigo": "E-EMDS-2",
+                    "aula": "B-313",
+                    "dia_semana": 2,
+                    "hora_inicio": "11:40",
+                    "hora_fin": "13:20"
+                },
+                {
+                    "codigo": "B-EDI-2",
+                    "aula": "B-217",
+                    "dia_semana": 3,
+                    "hora_inicio": "07:00",
+                    "hora_fin": "08:40"
+                },
+                {
+                    "codigo": "E-PIN2-2",
+                    "aula": "B-201",
+                    "dia_semana": 3,
+                    "hora_inicio": "08:40",
+                    "hora_fin": "10:20"
+                },
+                {
+                    "codigo": "E-BDAV-2",
+                    "aula": "B-308",
+                    "dia_semana": 3,
+                    "hora_inicio": "10:50",
+                    "hora_fin": "11:40"
+                },
+                {
+                    "codigo": "E-EMDS-2",
+                    "aula": "B-312",
+                    "dia_semana": 3,
+                    "hora_inicio": "11:40",
+                    "hora_fin": "12:30"
+                },
+                {
+                    "codigo": "B-ING5-2",
+                    "aula": "B-210",
+                    "dia_semana": 3,
+                    "hora_inicio": "12:30",
+                    "hora_fin": "14:10"
+                },
+                {
+                    "codigo": "B-EDI-2",
+                    "aula": "B-311",
+                    "dia_semana": 4,
+                    "hora_inicio": "07:00",
+                    "hora_fin": "07:50"
+                },
+                {
+                    "codigo": "E-AWOS-2",
+                    "aula": "B-308",
+                    "dia_semana": 4,
+                    "hora_inicio": "07:50",
+                    "hora_fin": "09:30"
+                },
+                {
+                    "codigo": "E-EMDS-2",
+                    "aula": "B-312",
+                    "dia_semana": 4,
+                    "hora_inicio": "09:30",
+                    "hora_fin": "10:20"
+                },
+                {
+                    "codigo": "E-EMDS-2",
+                    "aula": "B-312",
+                    "dia_semana": 4,
+                    "hora_inicio": "10:50",
+                    "hora_fin": "11:40"
+                },
+                {
+                    "codigo": "E-BDAV-2",
+                    "aula": "B-309",
+                    "dia_semana": 4,
+                    "hora_inicio": "11:40",
+                    "hora_fin": "13:20"
+                },
+                {
+                    "codigo": "T-LEAD-2",
+                    "aula": "B-217",
+                    "dia_semana": 4,
+                    "hora_inicio": "13:20",
+                    "hora_fin": "14:10"
+                },
+                {
+                    "codigo": "B-EDI-2",
+                    "aula": "B-219",
+                    "dia_semana": 5,
+                    "hora_inicio": "07:00",
+                    "hora_fin": "07:50"
+                },
+                {
+                    "codigo": "E-EMDS-2",
+                    "aula": "B-312",
+                    "dia_semana": 5,
+                    "hora_inicio": "07:50",
+                    "hora_fin": "08:40"
+                },
+                {
+                    "codigo": "E-PIN2-2",
+                    "aula": "B-311",
+                    "dia_semana": 5,
+                    "hora_inicio": "08:40",
+                    "hora_fin": "10:20"
+                },
+                {
+                    "codigo": "B-ING5-2",
+                    "aula": "B-219",
+                    "dia_semana": 5,
+                    "hora_inicio": "10:50",
+                    "hora_fin": "11:40"
+                },
+                {
+                    "codigo": "T-LEAD-2",
+                    "aula": "B-311",
+                    "dia_semana": 5,
+                    "hora_inicio": "11:40",
+                    "hora_fin": "13:20"
+                }
+            ]
+        },
+        {
+            "nombre": "TIID5-3",
+            "materias": [
+                {
+                    "codigo": "Tutoría",
+                    "nombre": "Tutoría",
+                    "color": "#f87171",
+                    "docente": "Lizette Peralta Partida"
+                },
+                {
+                    "codigo": "B-ING5-2",
+                    "nombre": "INGLÉS V",
+                    "color": "#34d399",
+                    "docente": "Rosa Elena Mejia Castro"
+                },
+                {
+                    "codigo": "T-LEAD-2",
+                    "nombre": "LIDERAZGO DE EQUIPOS DE ALTO DESEM",
+                    "color": "#fbbf24",
+                    "docente": "PEÑMOC. Lizette Peralta Partida"
+                },
+                {
+                    "codigo": "E-PIN2-2",
+                    "nombre": "PROYECTO INTEGRADOR II",
+                    "color": "#60a5fa",
+                    "docente": "Anabel Estrada Hernández"
+                },
+                {
+                    "codigo": "E-AWOS-2",
+                    "nombre": "APLICACIONES WEB ORIENTADAS A SERV",
+                    "color": "#a78bfa",
+                    "docente": "ICIDOr.S Ramón Patricio Velázquez Cuadras"
+                },
+                {
+                    "codigo": "E-BDAV-2",
+                    "nombre": "BASES DE DATOS AVANZADAS",
+                    "color": "#f472b6",
+                    "docente": "Melissa Osuna Cárdenas"
+                },
+                {
+                    "codigo": "B-EDI-2",
+                    "nombre": "ECUACIONES DIFERENCIALES",
+                    "color": "#22d3ee",
+                    "docente": "Adrian Berrelleza Toledo"
+                },
+                {
+                    "codigo": "E-EMDS-2",
+                    "nombre": "ESTÁNDARES Y MÉTRICAS PARA EL DESA",
+                    "color": "#0ea5e9",
+                    "docente": "RRODLrLaO. I DsmE aSyOliFaT SWaAuRceEdo Ugalde"
+                }
+            ],
+            "horarios": [
+                {
+                    "codigo": "B-ING5-2",
+                    "aula": "B-217",
+                    "dia_semana": 1,
+                    "hora_inicio": "07:50",
+                    "hora_fin": "09:30"
+                },
+                {
+                    "codigo": "T-LEAD-2",
+                    "aula": "B-311",
+                    "dia_semana": 1,
+                    "hora_inicio": "09:30",
+                    "hora_fin": "10:20"
+                },
+                {
+                    "codigo": "E-AWOS-2",
+                    "aula": "B-313",
+                    "dia_semana": 1,
+                    "hora_inicio": "11:40",
+                    "hora_fin": "14:10"
+                },
+                {
+                    "codigo": "E-EMDS-2",
+                    "aula": "B-312",
+                    "dia_semana": 2,
+                    "hora_inicio": "07:50",
+                    "hora_fin": "08:40"
+                },
+                {
+                    "codigo": "E-PIN2-2",
+                    "aula": "B-217",
+                    "dia_semana": 2,
+                    "hora_inicio": "08:40",
+                    "hora_fin": "10:20"
+                },
+                {
+                    "codigo": "E-BDAV-2",
+                    "aula": "B-312",
+                    "dia_semana": 2,
+                    "hora_inicio": "10:50",
+                    "hora_fin": "12:30"
+                },
+                {
+                    "codigo": "T-LEAD-2",
+                    "aula": "B-217",
+                    "dia_semana": 2,
+                    "hora_inicio": "12:30",
+                    "hora_fin": "13:20"
+                },
+                {
+                    "codigo": "Tutoría",
+                    "aula": "B-217",
+                    "dia_semana": 2,
+                    "hora_inicio": "13:20",
+                    "hora_fin": "14:10"
+                },
+                {
+                    "codigo": "E-BDAV-2",
+                    "aula": "B-308",
+                    "dia_semana": 3,
+                    "hora_inicio": "07:50",
+                    "hora_fin": "10:20"
+                },
+                {
+                    "codigo": "B-EDI-2",
+                    "aula": "B-201",
+                    "dia_semana": 3,
+                    "hora_inicio": "10:50",
+                    "hora_fin": "12:30"
+                },
+                {
+                    "codigo": "E-EMDS-2",
+                    "aula": "B-312",
+                    "dia_semana": 3,
+                    "hora_inicio": "12:30",
+                    "hora_fin": "14:10"
+                },
+                {
+                    "codigo": "B-ING5-2",
+                    "aula": "B-201",
+                    "dia_semana": 4,
+                    "hora_inicio": "07:50",
+                    "hora_fin": "08:40"
+                },
+                {
+                    "codigo": "E-PIN2-2",
+                    "aula": "B-211",
+                    "dia_semana": 4,
+                    "hora_inicio": "08:40",
+                    "hora_fin": "09:30"
+                },
+                {
+                    "codigo": "E-PIN2-2",
+                    "aula": "B-311",
+                    "dia_semana": 4,
+                    "hora_inicio": "09:30",
+                    "hora_fin": "10:20"
+                },
+                {
+                    "codigo": "T-LEAD-2",
+                    "aula": "B-217",
+                    "dia_semana": 4,
+                    "hora_inicio": "10:50",
+                    "hora_fin": "11:40"
+                },
+                {
+                    "codigo": "E-EMDS-2",
+                    "aula": "B-312",
+                    "dia_semana": 4,
+                    "hora_inicio": "11:40",
+                    "hora_fin": "13:20"
+                },
+                {
+                    "codigo": "B-EDI-2",
+                    "aula": "B-210",
+                    "dia_semana": 4,
+                    "hora_inicio": "13:20",
+                    "hora_fin": "15:00"
+                },
+                {
+                    "codigo": "B-ING5-2",
+                    "aula": "B-219",
+                    "dia_semana": 5,
+                    "hora_inicio": "07:50",
+                    "hora_fin": "09:30"
+                },
+                {
+                    "codigo": "T-LEAD-2",
+                    "aula": "B-217",
+                    "dia_semana": 5,
+                    "hora_inicio": "09:30",
+                    "hora_fin": "10:20"
+                },
+                {
+                    "codigo": "E-EMDS-2",
+                    "aula": "B-310",
+                    "dia_semana": 5,
+                    "hora_inicio": "10:50",
+                    "hora_fin": "11:40"
+                },
+                {
+                    "codigo": "B-EDI-2",
+                    "aula": "B-201",
+                    "dia_semana": 5,
+                    "hora_inicio": "11:40",
+                    "hora_fin": "12:30"
+                },
+                {
+                    "codigo": "E-AWOS-2",
+                    "aula": "B-313",
+                    "dia_semana": 5,
+                    "hora_inicio": "12:30",
+                    "hora_fin": "14:10"
+                }
+            ]
+        },
+        {
+            "nombre": "TIID5-4",
+            "materias": [
+                {
+                    "codigo": "Tutoría",
+                    "nombre": "Tutoría",
+                    "color": "#f87171",
+                    "docente": "Carlos Zamudio Togo"
+                },
+                {
+                    "codigo": "B-ING5-2",
+                    "nombre": "INGLÉS V",
+                    "color": "#34d399",
+                    "docente": "Edelbais Uribe Martínez"
+                },
+                {
+                    "codigo": "T-LEAD-2",
+                    "nombre": "LIDERAZGO DE EQUIPOS DE ALTO DESEM",
+                    "color": "#fbbf24",
+                    "docente": "PEÑMOC. Lizette Peralta Partida"
+                },
+                {
+                    "codigo": "E-PIN2-2",
+                    "nombre": "PROYECTO INTEGRADOR II",
+                    "color": "#60a5fa",
+                    "docente": "Luis Armando Aguayo Medina"
+                },
+                {
+                    "codigo": "E-AWOS-2",
+                    "nombre": "APLICACIONES WEB ORIENTADAS A SERV",
+                    "color": "#a78bfa",
+                    "docente": "ICIDOr.S Ramón Patricio Velázquez Cuadras"
+                },
+                {
+                    "codigo": "E-BDAV-2",
+                    "nombre": "BASES DE DATOS AVANZADAS",
+                    "color": "#f472b6",
+                    "docente": "Melissa Osuna Cárdenas"
+                },
+                {
+                    "codigo": "B-EDI-2",
+                    "nombre": "ECUACIONES DIFERENCIALES",
+                    "color": "#22d3ee",
+                    "docente": "Jesús Manuel Morales Acosta"
+                },
+                {
+                    "codigo": "E-EMDS-2",
+                    "nombre": "ESTÁNDARES Y MÉTRICAS PARA EL DESA",
+                    "color": "#0ea5e9",
+                    "docente": "RROMLCL.O I lDiaEn aS OAFmTaWbAeRlyE Silva Hernández"
+                }
+            ],
+            "horarios": [
+                {
+                    "codigo": "B-EDI-2",
+                    "aula": "B-201",
+                    "dia_semana": 1,
+                    "hora_inicio": "10:50",
+                    "hora_fin": "11:40"
+                },
+                {
+                    "codigo": "E-EMDS-2",
+                    "aula": "B-211",
+                    "dia_semana": 1,
+                    "hora_inicio": "11:40",
+                    "hora_fin": "13:20"
+                },
+                {
+                    "codigo": "E-PIN2-2",
+                    "aula": "B-211",
+                    "dia_semana": 1,
+                    "hora_inicio": "13:20",
+                    "hora_fin": "15:00"
+                },
+                {
+                    "codigo": "B-ING5-2",
+                    "aula": "B-201",
+                    "dia_semana": 1,
+                    "hora_inicio": "15:00",
+                    "hora_fin": "15:50"
+                },
+                {
+                    "codigo": "B-ING5-2",
+                    "aula": "B-201",
+                    "dia_semana": 1,
+                    "hora_inicio": "16:20",
+                    "hora_fin": "18:00"
+                },
+                {
+                    "codigo": "B-EDI-2",
+                    "aula": "B-219",
+                    "dia_semana": 2,
+                    "hora_inicio": "09:30",
+                    "hora_fin": "10:20"
+                },
+                {
+                    "codigo": "T-LEAD-2",
+                    "aula": "B-217",
+                    "dia_semana": 2,
+                    "hora_inicio": "11:40",
+                    "hora_fin": "12:30"
+                },
+                {
+                    "codigo": "E-BDAV-2",
+                    "aula": "B-312",
+                    "dia_semana": 2,
+                    "hora_inicio": "12:30",
+                    "hora_fin": "14:10"
+                },
+                {
+                    "codigo": "E-PIN2-2",
+                    "aula": "B-211",
+                    "dia_semana": 2,
+                    "hora_inicio": "14:10",
+                    "hora_fin": "15:50"
+                },
+                {
+                    "codigo": "T-LEAD-2",
+                    "aula": "B-217",
+                    "dia_semana": 3,
+                    "hora_inicio": "10:50",
+                    "hora_fin": "11:40"
+                },
+                {
+                    "codigo": "E-BDAV-2",
+                    "aula": "B-313",
+                    "dia_semana": 3,
+                    "hora_inicio": "11:40",
+                    "hora_fin": "14:10"
+                },
+                {
+                    "codigo": "E-AWOS-2",
+                    "aula": "B-313",
+                    "dia_semana": 3,
+                    "hora_inicio": "14:10",
+                    "hora_fin": "15:50"
+                },
+                {
+                    "codigo": "B-ING5-2",
+                    "aula": "B-210",
+                    "dia_semana": 3,
+                    "hora_inicio": "16:20",
+                    "hora_fin": "18:00"
+                },
+                {
+                    "codigo": "B-EDI-2",
+                    "aula": "B-309",
+                    "dia_semana": 4,
+                    "hora_inicio": "10:50",
+                    "hora_fin": "11:40"
+                },
+                {
+                    "codigo": "E-AWOS-2",
+                    "aula": "B-313",
+                    "dia_semana": 4,
+                    "hora_inicio": "11:40",
+                    "hora_fin": "12:30"
+                },
+                {
+                    "codigo": "E-EMDS-2",
+                    "aula": "B-211",
+                    "dia_semana": 4,
+                    "hora_inicio": "12:30",
+                    "hora_fin": "14:10"
+                },
+                {
+                    "codigo": "B-EDI-2",
+                    "aula": "B-210",
+                    "dia_semana": 5,
+                    "hora_inicio": "08:40",
+                    "hora_fin": "10:20"
+                },
+                {
+                    "codigo": "Tutoría",
+                    "aula": "B-217",
+                    "dia_semana": 5,
+                    "hora_inicio": "10:50",
+                    "hora_fin": "11:40"
+                },
+                {
+                    "codigo": "E-EMDS-2",
+                    "aula": "B-219",
+                    "dia_semana": 5,
+                    "hora_inicio": "11:40",
+                    "hora_fin": "13:20"
+                },
+                {
+                    "codigo": "T-LEAD-2",
+                    "aula": "B-311",
+                    "dia_semana": 5,
+                    "hora_inicio": "13:20",
+                    "hora_fin": "15:00"
+                },
+                {
+                    "codigo": "E-AWOS-2",
+                    "aula": "B-313",
+                    "dia_semana": 5,
+                    "hora_inicio": "15:00",
+                    "hora_fin": "15:50"
+                },
+                {
+                    "codigo": "E-AWOS-2",
+                    "aula": "B-313",
+                    "dia_semana": 5,
+                    "hora_inicio": "16:20",
+                    "hora_fin": "17:10"
+                }
+            ]
+        },
+        {
+            "nombre": "TI8-1",
+            "materias": [
+                {
+                    "codigo": "Tutoría",
+                    "nombre": "Tutoría",
+                    "color": "#f87171",
+                    "docente": "Vanessa Guadalupe Félix Aviña"
+                },
+                {
+                    "codigo": "ING8-LN",
+                    "nombre": "INGLÉS VIII",
+                    "color": "#34d399",
+                    "docente": "Rosa Elena Mejia Castro"
+                },
+                {
+                    "codigo": "TEV-FT",
+                    "nombre": "TECNOLOGÍAS DE VIRTUALIZACIÓN",
+                    "color": "#fbbf24",
+                    "docente": "Roberto Antonio Martínez Thompson"
+                },
+                {
+                    "codigo": "APT-FT",
+                    "nombre": "ADMINISTRACIÓN DE PROYECTOS DE TEC",
+                    "color": "#60a5fa",
+                    "docente": "NODLrOaG. VÍAaSn eDsEsa I NGFuOaRdaMluApCeIÓ FNé lix Aviña"
+                },
+                {
+                    "codigo": "TAI-FT",
+                    "nombre": "TECNOLOGÍAS DE APLICACIONES EN INT",
+                    "color": "#a78bfa",
+                    "docente": "ERNInEgT. Jose Cruz Paredes Magaña"
+                },
+                {
+                    "codigo": "DII-FT",
+                    "nombre": "DISEÑO DE INTERFACES",
+                    "color": "#f472b6",
+                    "docente": "Gloria Irene Téllez Rodríguez"
+                },
+                {
+                    "codigo": "SII-FT",
+                    "nombre": "SISTEMAS INTELIGENTES",
+                    "color": "#22d3ee",
+                    "docente": "Rodolfo Ostos Robles"
+                },
+                {
+                    "codigo": "GDS-FT",
+                    "nombre": "GESTIÓN DE DESARROLLO DE SOFTWARE",
+                    "color": "#0ea5e9",
+                    "docente": "Luis Armando Aguayo Medina"
+                }
+            ],
+            "horarios": [
+                {
+                    "codigo": "APT-FT",
+                    "aula": "B-201",
+                    "dia_semana": 1,
+                    "hora_inicio": "07:00",
+                    "hora_fin": "08:40"
+                },
+                {
+                    "codigo": "SII-FT",
+                    "aula": "B-308",
+                    "dia_semana": 1,
+                    "hora_inicio": "08:40",
+                    "hora_fin": "10:20"
+                },
+                {
+                    "codigo": "TEV-FT",
+                    "aula": "B-309",
+                    "dia_semana": 1,
+                    "hora_inicio": "10:50",
+                    "hora_fin": "13:20"
+                },
+                {
+                    "codigo": "ING8-LN",
+                    "aula": "B-217",
+                    "dia_semana": 1,
+                    "hora_inicio": "13:20",
+                    "hora_fin": "14:10"
+                },
+                {
+                    "codigo": "SII-FT",
+                    "aula": "B-308",
+                    "dia_semana": 2,
+                    "hora_inicio": "07:50",
+                    "hora_fin": "09:30"
+                },
+                {
+                    "codigo": "TEV-FT",
+                    "aula": "B-308",
+                    "dia_semana": 2,
+                    "hora_inicio": "09:30",
+                    "hora_fin": "10:20"
+                },
+                {
+                    "codigo": "TEV-FT",
+                    "aula": "B-308",
+                    "dia_semana": 2,
+                    "hora_inicio": "10:50",
+                    "hora_fin": "11:40"
+                },
+                {
+                    "codigo": "DII-FT",
+                    "aula": "B-309",
+                    "dia_semana": 2,
+                    "hora_inicio": "11:40",
+                    "hora_fin": "12:30"
+                },
+                {
+                    "codigo": "GDS-FT",
+                    "aula": "B-211",
+                    "dia_semana": 2,
+                    "hora_inicio": "12:30",
+                    "hora_fin": "14:10"
+                },
+                {
+                    "codigo": "TAI-FT",
+                    "aula": "B-313",
+                    "dia_semana": 3,
+                    "hora_inicio": "07:00",
+                    "hora_fin": "09:30"
+                },
+                {
+                    "codigo": "SII-FT",
+                    "aula": "B-309",
+                    "dia_semana": 3,
+                    "hora_inicio": "09:30",
+                    "hora_fin": "10:20"
+                },
+                {
+                    "codigo": "ING8-LN",
+                    "aula": "B-210",
+                    "dia_semana": 3,
+                    "hora_inicio": "10:50",
+                    "hora_fin": "12:30"
+                },
+                {
+                    "codigo": "APT-FT",
+                    "aula": "B-211",
+                    "dia_semana": 4,
+                    "hora_inicio": "07:00",
+                    "hora_fin": "08:40"
+                },
+                {
+                    "codigo": "SII-FT",
+                    "aula": "B-309",
+                    "dia_semana": 4,
+                    "hora_inicio": "08:40",
+                    "hora_fin": "09:30"
+                },
+                {
+                    "codigo": "ING8-LN",
+                    "aula": "B-210",
+                    "dia_semana": 4,
+                    "hora_inicio": "09:30",
+                    "hora_fin": "10:20"
+                },
+                {
+                    "codigo": "ING8-LN",
+                    "aula": "B-210",
+                    "dia_semana": 4,
+                    "hora_inicio": "10:50",
+                    "hora_fin": "11:40"
+                },
+                {
+                    "codigo": "DII-FT",
+                    "aula": "B-219",
+                    "dia_semana": 4,
+                    "hora_inicio": "11:40",
+                    "hora_fin": "12:30"
+                },
+                {
+                    "codigo": "TAI-FT",
+                    "aula": "B-313",
+                    "dia_semana": 5,
+                    "hora_inicio": "07:00",
+                    "hora_fin": "08:40"
+                },
+                {
+                    "codigo": "DII-FT",
+                    "aula": "B-308",
+                    "dia_semana": 5,
+                    "hora_inicio": "08:40",
+                    "hora_fin": "10:20"
+                },
+                {
+                    "codigo": "DII-FT",
+                    "aula": "B-308",
+                    "dia_semana": 5,
+                    "hora_inicio": "10:50",
+                    "hora_fin": "11:40"
+                },
+                {
+                    "codigo": "Tutoría",
+                    "aula": "B-202",
+                    "dia_semana": 5,
+                    "hora_inicio": "11:40",
+                    "hora_fin": "12:30"
+                },
+                {
+                    "codigo": "GDS-FT",
+                    "aula": "B-211",
+                    "dia_semana": 5,
+                    "hora_inicio": "12:30",
+                    "hora_fin": "15:00"
+                }
+            ]
+        },
+        {
+            "nombre": "TI8-2",
+            "materias": [
+                {
+                    "codigo": "Tutoría",
+                    "nombre": "Tutoría",
+                    "color": "#f87171",
+                    "docente": "Alberto Morales Colado"
+                },
+                {
+                    "codigo": "ING8-LN",
+                    "nombre": "INGLÉS VIII",
+                    "color": "#34d399",
+                    "docente": "Rosa Elena Mejia Castro"
+                },
+                {
+                    "codigo": "TEV-FT",
+                    "nombre": "TECNOLOGÍAS DE VIRTUALIZACIÓN",
+                    "color": "#fbbf24",
+                    "docente": "Roberto Antonio Martínez Thompson"
+                },
+                {
+                    "codigo": "APT-FT",
+                    "nombre": "ADMINISTRACIÓN DE PROYECTOS DE TEC",
+                    "color": "#60a5fa",
+                    "docente": "NODLrOaG. VÍAaSn eDsEsa I NGFuOaRdaMluApCeIÓ FNé lix Aviña"
+                },
+                {
+                    "codigo": "TAI-FT",
+                    "nombre": "TECNOLOGÍAS DE APLICACIONES EN INT",
+                    "color": "#a78bfa",
+                    "docente": "ERNInEgT. Jose Cruz Paredes Magaña"
+                },
+                {
+                    "codigo": "DII-FT",
+                    "nombre": "DISEÑO DE INTERFACES",
+                    "color": "#f472b6",
+                    "docente": "Gloria Irene Téllez Rodríguez"
+                },
+                {
+                    "codigo": "SII-FT",
+                    "nombre": "SISTEMAS INTELIGENTES",
+                    "color": "#22d3ee",
+                    "docente": "Jesús Ernesto Ramírez Díaz"
+                },
+                {
+                    "codigo": "GDS-FT",
+                    "nombre": "GESTIÓN DE DESARROLLO DE SOFTWARE",
+                    "color": "#0ea5e9",
+                    "docente": "Luis Armando Aguayo Medina"
+                }
+            ],
+            "horarios": [
+                {
+                    "codigo": "DII-FT",
+                    "aula": "B-202",
+                    "dia_semana": 1,
+                    "hora_inicio": "08:40",
+                    "hora_fin": "09:30"
+                },
+                {
+                    "codigo": "APT-FT",
+                    "aula": "B-201",
+                    "dia_semana": 1,
+                    "hora_inicio": "09:30",
+                    "hora_fin": "10:20"
+                },
+                {
+                    "codigo": "Tutoría",
+                    "aula": "B-313",
+                    "dia_semana": 1,
+                    "hora_inicio": "10:50",
+                    "hora_fin": "11:40"
+                },
+                {
+                    "codigo": "ING8-LN",
+                    "aula": "B-217",
+                    "dia_semana": 1,
+                    "hora_inicio": "11:40",
+                    "hora_fin": "13:20"
+                },
+                {
+                    "codigo": "SII-FT",
+                    "aula": "B-309",
+                    "dia_semana": 1,
+                    "hora_inicio": "13:20",
+                    "hora_fin": "15:50"
+                },
+                {
+                    "codigo": "TAI-FT",
+                    "aula": "B-313",
+                    "dia_semana": 2,
+                    "hora_inicio": "07:00",
+                    "hora_fin": "09:30"
+                },
+                {
+                    "codigo": "DII-FT",
+                    "aula": "B-309",
+                    "dia_semana": 2,
+                    "hora_inicio": "09:30",
+                    "hora_fin": "10:20"
+                },
+                {
+                    "codigo": "DII-FT",
+                    "aula": "B-309",
+                    "dia_semana": 2,
+                    "hora_inicio": "10:50",
+                    "hora_fin": "11:40"
+                },
+                {
+                    "codigo": "ING8-LN",
+                    "aula": "B-311",
+                    "dia_semana": 2,
+                    "hora_inicio": "11:40",
+                    "hora_fin": "13:20"
+                },
+                {
+                    "codigo": "SII-FT",
+                    "aula": "B-309",
+                    "dia_semana": 2,
+                    "hora_inicio": "13:20",
+                    "hora_fin": "14:10"
+                },
+                {
+                    "codigo": "APT-FT",
+                    "aula": "B-201",
+                    "dia_semana": 3,
+                    "hora_inicio": "07:00",
+                    "hora_fin": "08:40"
+                },
+                {
+                    "codigo": "ING8-LN",
+                    "aula": "B-311",
+                    "dia_semana": 3,
+                    "hora_inicio": "08:40",
+                    "hora_fin": "09:30"
+                },
+                {
+                    "codigo": "DII-FT",
+                    "aula": "B-310",
+                    "dia_semana": 3,
+                    "hora_inicio": "09:30",
+                    "hora_fin": "10:20"
+                },
+                {
+                    "codigo": "TEV-FT",
+                    "aula": "B-309",
+                    "dia_semana": 3,
+                    "hora_inicio": "10:50",
+                    "hora_fin": "12:30"
+                },
+                {
+                    "codigo": "TAI-FT",
+                    "aula": "B-313",
+                    "dia_semana": 4,
+                    "hora_inicio": "07:00",
+                    "hora_fin": "08:40"
+                },
+                {
+                    "codigo": "DII-FT",
+                    "aula": "B-202",
+                    "dia_semana": 4,
+                    "hora_inicio": "08:40",
+                    "hora_fin": "09:30"
+                },
+                {
+                    "codigo": "GDS-FT",
+                    "aula": "B-308",
+                    "dia_semana": 4,
+                    "hora_inicio": "09:30",
+                    "hora_fin": "10:20"
+                },
+                {
+                    "codigo": "GDS-FT",
+                    "aula": "B-308",
+                    "dia_semana": 4,
+                    "hora_inicio": "10:50",
+                    "hora_fin": "12:30"
+                },
+                {
+                    "codigo": "APT-FT",
+                    "aula": "B-211",
+                    "dia_semana": 5,
+                    "hora_inicio": "07:00",
+                    "hora_fin": "07:50"
+                },
+                {
+                    "codigo": "TEV-FT",
+                    "aula": "B-309",
+                    "dia_semana": 5,
+                    "hora_inicio": "07:50",
+                    "hora_fin": "10:20"
+                },
+                {
+                    "codigo": "GDS-FT",
+                    "aula": "B-211",
+                    "dia_semana": 5,
+                    "hora_inicio": "10:50",
+                    "hora_fin": "12:30"
+                },
+                {
+                    "codigo": "SII-FT",
+                    "aula": "B-309",
+                    "dia_semana": 5,
+                    "hora_inicio": "13:20",
+                    "hora_fin": "15:00"
+                }
+            ]
+        },
+        {
+            "nombre": "TI8-3",
+            "materias": [
+                {
+                    "codigo": "Tutoría",
+                    "nombre": "Tutoría",
+                    "color": "#f87171",
+                    "docente": "Ismaylia Saucedo Ugalde"
+                },
+                {
+                    "codigo": "ING8-LN",
+                    "nombre": "INGLÉS VIII",
+                    "color": "#34d399",
+                    "docente": "Rosa Elena Mejia Castro"
+                },
+                {
+                    "codigo": "TEV-FT",
+                    "nombre": "TECNOLOGÍAS DE VIRTUALIZACIÓN",
+                    "color": "#fbbf24",
+                    "docente": "Roberto Antonio Martínez Thompson"
+                },
+                {
+                    "codigo": "APT-FT",
+                    "nombre": "ADMINISTRACIÓN DE PROYECTOS DE TEC",
+                    "color": "#60a5fa",
+                    "docente": "NODLrO. GLuÍAisS J aDvEi eIrN MFOenRaM CAaCmIÓaNre"
+                },
+                {
+                    "codigo": "TAI-FT",
+                    "nombre": "TECNOLOGÍAS DE APLICACIONES EN INT",
+                    "color": "#a78bfa",
+                    "docente": "ERNInEgT. Jose Cruz Paredes Magaña"
+                },
+                {
+                    "codigo": "DII-FT",
+                    "nombre": "DISEÑO DE INTERFACES",
+                    "color": "#f472b6",
+                    "docente": "Gloria Irene Téllez Rodríguez"
+                },
+                {
+                    "codigo": "SII-FT",
+                    "nombre": "SISTEMAS INTELIGENTES",
+                    "color": "#22d3ee",
+                    "docente": "Jesús Ernesto Ramírez Díaz"
+                },
+                {
+                    "codigo": "GDS-FT",
+                    "nombre": "GESTIÓN DE DESARROLLO DE SOFTWARE",
+                    "color": "#0ea5e9",
+                    "docente": "Iliana Amabely Silva Hernández"
+                }
+            ],
+            "horarios": [
+                {
+                    "codigo": "TAI-FT",
+                    "aula": "B-313",
+                    "dia_semana": 1,
+                    "hora_inicio": "07:00",
+                    "hora_fin": "09:30"
+                },
+                {
+                    "codigo": "ING8-LN",
+                    "aula": "B-217",
+                    "dia_semana": 1,
+                    "hora_inicio": "09:30",
+                    "hora_fin": "10:20"
+                },
+                {
+                    "codigo": "ING8-LN",
+                    "aula": "B-217",
+                    "dia_semana": 1,
+                    "hora_inicio": "10:50",
+                    "hora_fin": "11:40"
+                },
+                {
+                    "codigo": "APT-FT",
+                    "aula": "B-308",
+                    "dia_semana": 1,
+                    "hora_inicio": "11:40",
+                    "hora_fin": "13:20"
+                },
+                {
+                    "codigo": "DII-FT",
+                    "aula": "B-202",
+                    "dia_semana": 2,
+                    "hora_inicio": "07:50",
+                    "hora_fin": "09:30"
+                },
+                {
+                    "codigo": "GDS-FT",
+                    "aula": "B-211",
+                    "dia_semana": 2,
+                    "hora_inicio": "09:30",
+                    "hora_fin": "10:20"
+                },
+                {
+                    "codigo": "GDS-FT",
+                    "aula": "B-211",
+                    "dia_semana": 2,
+                    "hora_inicio": "10:50",
+                    "hora_fin": "11:40"
+                },
+                {
+                    "codigo": "TEV-FT",
+                    "aula": "B-308",
+                    "dia_semana": 2,
+                    "hora_inicio": "11:40",
+                    "hora_fin": "14:10"
+                },
+                {
+                    "codigo": "SII-FT",
+                    "aula": "B-309",
+                    "dia_semana": 2,
+                    "hora_inicio": "14:10",
+                    "hora_fin": "15:50"
+                },
+                {
+                    "codigo": "TEV-FT",
+                    "aula": "B-309",
+                    "dia_semana": 3,
+                    "hora_inicio": "07:50",
+                    "hora_fin": "08:40"
+                },
+                {
+                    "codigo": "GDS-FT",
+                    "aula": "B-211",
+                    "dia_semana": 3,
+                    "hora_inicio": "08:40",
+                    "hora_fin": "10:20"
+                },
+                {
+                    "codigo": "Tutoría",
+                    "aula": "B-312",
+                    "dia_semana": 3,
+                    "hora_inicio": "10:50",
+                    "hora_fin": "11:40"
+                },
+                {
+                    "codigo": "DII-FT",
+                    "aula": "B-308",
+                    "dia_semana": 3,
+                    "hora_inicio": "11:40",
+                    "hora_fin": "12:30"
+                },
+                {
+                    "codigo": "TAI-FT",
+                    "aula": "B-313",
+                    "dia_semana": 4,
+                    "hora_inicio": "08:40",
+                    "hora_fin": "09:30"
+                },
+                {
+                    "codigo": "GDS-FT",
+                    "aula": "B-211",
+                    "dia_semana": 4,
+                    "hora_inicio": "09:30",
+                    "hora_fin": "10:20"
+                },
+                {
+                    "codigo": "TEV-FT",
+                    "aula": "B-313",
+                    "dia_semana": 4,
+                    "hora_inicio": "10:50",
+                    "hora_fin": "11:40"
+                },
+                {
+                    "codigo": "ING8-LN",
+                    "aula": "B-210",
+                    "dia_semana": 4,
+                    "hora_inicio": "11:40",
+                    "hora_fin": "13:20"
+                },
+                {
+                    "codigo": "DII-FT",
+                    "aula": "B-308",
+                    "dia_semana": 4,
+                    "hora_inicio": "13:20",
+                    "hora_fin": "15:00"
+                },
+                {
+                    "codigo": "SII-FT",
+                    "aula": "B-309",
+                    "dia_semana": 4,
+                    "hora_inicio": "15:00",
+                    "hora_fin": "15:50"
+                },
+                {
+                    "codigo": "APT-FT",
+                    "aula": "B-201",
+                    "dia_semana": 5,
+                    "hora_inicio": "07:00",
+                    "hora_fin": "08:40"
+                },
+                {
+                    "codigo": "TAI-FT",
+                    "aula": "B-313",
+                    "dia_semana": 5,
+                    "hora_inicio": "08:40",
+                    "hora_fin": "09:30"
+                },
+                {
+                    "codigo": "ING8-LN",
+                    "aula": "B-312",
+                    "dia_semana": 5,
+                    "hora_inicio": "09:30",
+                    "hora_fin": "10:20"
+                },
+                {
+                    "codigo": "SII-FT",
+                    "aula": "B-309",
+                    "dia_semana": 5,
+                    "hora_inicio": "10:50",
+                    "hora_fin": "13:20"
+                }
+            ]
+        },
+        {
+            "nombre": "TI8-4",
+            "materias": [
+                {
+                    "codigo": "Tutoría",
+                    "nombre": "Tutoría",
+                    "color": "#f87171",
+                    "docente": "Carlos Zamudio Togo"
+                },
+                {
+                    "codigo": "ING8-LN",
+                    "nombre": "INGLÉS VIII",
+                    "color": "#34d399",
+                    "docente": "Nydia Diaz Alba"
+                },
+                {
+                    "codigo": "TEV-FT",
+                    "nombre": "TECNOLOGÍAS DE VIRTUALIZACIÓN",
+                    "color": "#fbbf24",
+                    "docente": "Roberto Antonio Martínez Thompson"
+                },
+                {
+                    "codigo": "APT-FT",
+                    "nombre": "ADMINISTRACIÓN DE PROYECTOS DE TEC",
+                    "color": "#60a5fa",
+                    "docente": "NODLrO. GLuÍAisS J aDvEi eIrN MFOenRaM CAaCmIÓaNre"
+                },
+                {
+                    "codigo": "TAI-FT",
+                    "nombre": "TECNOLOGÍAS DE APLICACIONES EN INT",
+                    "color": "#a78bfa",
+                    "docente": "ERNDEr.T Ramón Patricio Velázquez Cuadras"
+                },
+                {
+                    "codigo": "DII-FT",
+                    "nombre": "DISEÑO DE INTERFACES",
+                    "color": "#f472b6",
+                    "docente": "Gloria Irene Téllez Rodríguez"
+                },
+                {
+                    "codigo": "SII-FT",
+                    "nombre": "SISTEMAS INTELIGENTES",
+                    "color": "#22d3ee",
+                    "docente": "Jesús Ernesto Ramírez Díaz"
+                },
+                {
+                    "codigo": "GDS-FT",
+                    "nombre": "GESTIÓN DE DESARROLLO DE SOFTWARE",
+                    "color": "#0ea5e9",
+                    "docente": "Iliana Amabely Silva Hernández"
+                }
+            ],
+            "horarios": [
+                {
+                    "codigo": "DII-FT",
+                    "aula": "B-308",
+                    "dia_semana": 1,
+                    "hora_inicio": "10:50",
+                    "hora_fin": "11:40"
+                },
+                {
+                    "codigo": "ING8-LN",
+                    "aula": "B-210",
+                    "dia_semana": 1,
+                    "hora_inicio": "11:40",
+                    "hora_fin": "13:20"
+                },
+                {
+                    "codigo": "APT-FT",
+                    "aula": "B-201",
+                    "dia_semana": 1,
+                    "hora_inicio": "13:20",
+                    "hora_fin": "15:00"
+                },
+                {
+                    "codigo": "TEV-FT",
+                    "aula": "B-313",
+                    "dia_semana": 1,
+                    "hora_inicio": "15:00",
+                    "hora_fin": "15:50"
+                },
+                {
+                    "codigo": "TAI-FT",
+                    "aula": "B-313",
+                    "dia_semana": 1,
+                    "hora_inicio": "16:20",
+                    "hora_fin": "18:00"
+                },
+                {
+                    "codigo": "APT-FT",
+                    "aula": "B-219",
+                    "dia_semana": 2,
+                    "hora_inicio": "12:30",
+                    "hora_fin": "14:10"
+                },
+                {
+                    "codigo": "ING8-LN",
+                    "aula": "B-311",
+                    "dia_semana": 2,
+                    "hora_inicio": "14:10",
+                    "hora_fin": "15:50"
+                },
+                {
+                    "codigo": "SII-FT",
+                    "aula": "B-309",
+                    "dia_semana": 2,
+                    "hora_inicio": "16:20",
+                    "hora_fin": "18:00"
+                },
+                {
+                    "codigo": "GDS-FT",
+                    "aula": "B-211",
+                    "dia_semana": 3,
+                    "hora_inicio": "10:50",
+                    "hora_fin": "12:30"
+                },
+                {
+                    "codigo": "DII-FT",
+                    "aula": "B-308",
+                    "dia_semana": 3,
+                    "hora_inicio": "12:30",
+                    "hora_fin": "15:00"
+                },
+                {
+                    "codigo": "Tutoría",
+                    "aula": "B-217",
+                    "dia_semana": 4,
+                    "hora_inicio": "09:30",
+                    "hora_fin": "10:20"
+                },
+                {
+                    "codigo": "GDS-FT",
+                    "aula": "B-211",
+                    "dia_semana": 4,
+                    "hora_inicio": "10:50",
+                    "hora_fin": "12:30"
+                },
+                {
+                    "codigo": "DII-FT",
+                    "aula": "B-308",
+                    "dia_semana": 4,
+                    "hora_inicio": "12:30",
+                    "hora_fin": "13:20"
+                },
+                {
+                    "codigo": "TEV-FT",
+                    "aula": "B-310",
+                    "dia_semana": 4,
+                    "hora_inicio": "13:20",
+                    "hora_fin": "14:10"
+                },
+                {
+                    "codigo": "SII-FT",
+                    "aula": "B-309",
+                    "dia_semana": 4,
+                    "hora_inicio": "14:10",
+                    "hora_fin": "15:00"
+                },
+                {
+                    "codigo": "TAI-FT",
+                    "aula": "B-313",
+                    "dia_semana": 4,
+                    "hora_inicio": "15:00",
+                    "hora_fin": "15:50"
+                },
+                {
+                    "codigo": "TAI-FT",
+                    "aula": "B-313",
+                    "dia_semana": 4,
+                    "hora_inicio": "16:20",
+                    "hora_fin": "18:00"
+                },
+                {
+                    "codigo": "GDS-FT",
+                    "aula": "B-311",
+                    "dia_semana": 5,
+                    "hora_inicio": "10:50",
+                    "hora_fin": "11:40"
+                },
+                {
+                    "codigo": "TEV-FT",
+                    "aula": "B-308",
+                    "dia_semana": 5,
+                    "hora_inicio": "11:40",
+                    "hora_fin": "14:10"
+                },
+                {
+                    "codigo": "ING8-LN",
+                    "aula": "B-219",
+                    "dia_semana": 5,
+                    "hora_inicio": "14:10",
+                    "hora_fin": "15:00"
+                },
+                {
+                    "codigo": "SII-FT",
+                    "aula": "B-309",
+                    "dia_semana": 5,
+                    "hora_inicio": "15:00",
+                    "hora_fin": "15:50"
+                },
+                {
+                    "codigo": "SII-FT",
+                    "aula": "B-309",
+                    "dia_semana": 5,
+                    "hora_inicio": "16:20",
+                    "hora_fin": "18:00"
+                }
+            ]
+        }
+    ]
+}
