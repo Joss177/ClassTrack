@@ -43,12 +43,31 @@ class UsersTable extends Table
 
     public function buildRules(RulesChecker $rules)
     {
+        // Validar correo único (normal)
         $rules->add($rules->isUnique(
             ['correo'],
             'El correo ya está registrado'
         ));
 
-        $rules->add($rules->existsIn(['group_id'], 'Groups'));
+        // 🔥 Validar group_id SOLO cuando aplique
+        $rules->add(function ($entity, $options) {
+
+            // 👉 Si solo estás actualizando token o token_expira, NO validar group_id
+            if ($entity->isDirty('token') || $entity->isDirty('token_expira')) {
+                return true;
+            }
+
+            // 👉 Validación normal de group_id
+            if (!empty($entity->group_id)) {
+                return $this->Groups->exists(['id' => $entity->group_id]);
+            }
+
+            return false;
+
+        }, 'validGroup', [
+            'errorField' => 'group_id',
+            'message' => 'El grupo no existe'
+        ]);
 
         return $rules;
     }

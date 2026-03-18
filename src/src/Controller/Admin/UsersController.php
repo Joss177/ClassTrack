@@ -5,6 +5,8 @@ use App\Controller\AppController;
 use Cake\Event\Event;
 use Cake\Mailer\Email;
 use Cake\Routing\Router;
+use Cake\I18n\FrozenTime;
+
 
 class UsersController extends AppController
 {
@@ -22,7 +24,11 @@ class UsersController extends AppController
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
-        $this->Auth->allow(['login', 'recuperarPassword']);
+        $this->Auth->allow([
+            'login',
+            'recuperarPassword',
+            'editPass'
+        ]);
     }
 
     /* =========================
@@ -178,34 +184,80 @@ class UsersController extends AppController
     /* =========================
      * CAMBIAR PASSWORD
      * ========================= */
-    public function editPass($id)
+    public function editPass($token = null)
     {
-        $editUser = $this->Users->get($id);
+        $this->viewBuilder()->disableAutoLayout();
 
+        // Validar token vacío
+        if (!$token) {
+            $this->Flash->error('Token inválido');
+            return $this->redirect([
+                'controller' => 'Users',
+                'action' => 'login'
+            ]);
+        }
+
+        // Buscar usuario por token válido y no expirado
+        $user = $this->Users->find()
+            ->where([
+                'token' => $token,
+                'token_expira >=' => FrozenTime::now()
+            ])
+            ->first();
+
+        // Token inválido o expirado
+        if (!$user) {
+            $this->Flash->error('El enlace es inválido o ha expirado');
+            return $this->redirect([
+                'controller' => 'Users',
+                'action' => 'login'
+            ]);
+        }
+
+        // Procesar formulario
         if ($this->request->is(['post', 'put'])) {
 
-            $data = $this->request->getData();
+            $password = $this->request->getData('password');
+            $confirm  = $this->request->getData('confirm_password');
 
-            // Validación simple
-            if (empty($data['password'])) {
-                $this->Flash->error('La contraseña no puede ir vacía');
+            // Validaciones básicas
+            if (empty($password) || empty($confirm)) {
+                $this->Flash->error('Todos los campos son obligatorios');
                 return;
             }
 
-            // Eliminar campo que no existe en la entidad
-            unset($data['confirm_pass']);
-
-            $this->Users->patchEntity($editUser, $data);
-
-            if ($this->Users->save($editUser)) {
-                $this->Flash->success('Contraseña actualizada correctamente');
-                return $this->redirect(['action' => 'index']);
+            if ($password !== $confirm) {
+                $this->Flash->error('Las contraseñas no coinciden');
+                return;
             }
 
-            $this->Flash->error('No se pudo actualizar la contraseña');
+            if (strlen($password) < 6) {
+                $this->Flash->error('La contraseña debe tener mínimo 6 caracteres');
+                return;
+            }
+
+            // Asignar nueva contraseña (se hashea automáticamente en Entity)
+            $user->password = $password;
+
+            // Limpiar token
+            $user->token = null;
+            $user->token_expira = null;
+
+            // Guardar sin reglas (para evitar conflictos como unique, etc.)
+            if ($this->Users->save($user, ['checkRules' => false])) {
+
+                $this->Flash->success('Contraseña actualizada correctamente');
+
+                return $this->redirect([
+                    'controller' => 'Users',
+                    'action' => 'login'
+                ]);
+            }
+
+            $this->Flash->error('Error al actualizar la contraseña');
         }
 
-        $this->set(compact('editUser'));
+        $this->set(compact('user'));
     }
 
 
@@ -261,26 +313,26 @@ public function recuperarPassword()
             ]);
         }
 
-        // Generar token
+
         $token = bin2hex(random_bytes(16));
 
-        // Guardar token sin validar
-        $user = $this->Users->patchEntity($user, [
-            'token' => $token,
-            'token_expira' => date('Y-m-d H:i:s', strtotime('+1 hour'))
-        ], ['validate' => false]);
 
-        $this->Users->save($user);
+        $this->Users->query()
+            ->update()
+            ->set([
+                'token' => $token,
+                'token_expira' => date('Y-m-d H:i:s', strtotime('+1 hour'))
+            ])
+            ->where(['id' => $user->id])
+            ->execute();
 
-        // Crear link de recuperación
         $link = Router::url([
-            'prefix' => 'admin',
             'controller' => 'Users',
             'action' => 'editPass',
             $token
         ], true);
 
-        // Enviar correo
+
         $email = new Email('default');
 
         $email->setTo($correo)
@@ -289,11 +341,7 @@ public function recuperarPassword()
             ->send(
                 '<p>Hola <strong>' . $user->nombre_completo . '</strong>,</p>
 
-                <p>¡Se ha solicitado cambiar tu contraseña!</p>
-
-                <p>Si no realizaste esta solicitud, por favor, ignora este correo.</p>
-
-                <p>De lo contrario, haz clic en el siguiente botón para cambiar tu contraseña:</p>
+                <p>Se solicitó cambiar tu contraseña.</p>
 
                 <p>
                     <a href="' . $link . '" style="
@@ -307,12 +355,13 @@ public function recuperarPassword()
                         Recuperar contraseña
                     </a>
                 </p>
+
+                <p>Este enlace expira en 1 hora.</p>
             ');
 
         $this->Flash->success('Revisa tu correo para continuar.');
 
         return $this->redirect([
-            'prefix' => 'admin',
             'controller' => 'Users',
             'action' => 'login'
         ]);
