@@ -29,7 +29,8 @@ class UsersTable extends Table
             ->notEmpty('nombre_completo', 'El nombre es obligatorio')
             ->notEmpty('correo', 'El correo es obligatorio')
             ->email('correo', false, 'Debe ser un correo válido')
-
+            ->allowEmptyString('token')
+            ->allowEmptyDateTime('token_expira')
             // Password obligatoria solo al crear
             ->notEmpty('password', 'La contraseña es obligatoria', 'create')
             ->minLength('password', 6, 'Mínimo 6 caracteres')

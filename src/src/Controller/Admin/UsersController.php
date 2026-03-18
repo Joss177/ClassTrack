@@ -3,6 +3,7 @@ namespace App\Controller\Admin;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
+use Cake\Mailer\Email;
 
 class UsersController extends AppController
 {
@@ -20,8 +21,7 @@ class UsersController extends AppController
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
-
-        $this->Auth->allow(['login']);
+        $this->Auth->allow(['login', 'recuperarPassword']);
     }
 
     /* =========================
@@ -52,52 +52,52 @@ class UsersController extends AppController
      * LOGIN
      * ========================= */
     public function login()
-{
-    $this->viewBuilder()->disableAutoLayout();
+    {
+        $this->viewBuilder()->disableAutoLayout();
 
-    if ($this->Auth->user()) {
-        return $this->redirect([
-            'controller' => 'Admin',
-            'action' => 'index',
-            'prefix' => 'admin'
-        ]);
-    }
-
-    if ($this->request->is('post')) {
-
-        $correo = $this->request->getData('correo');
-        $password = $this->request->getData('password');
-
-        if (empty($correo) || empty($password)) {
-            $this->Flash->error('Llenar todos los campos');
-            return;
-        }
-
-        $usuario = $this->Users->find()
-            ->where(['correo' => $correo])
-            ->first();
-
-        if (!$usuario) {
-            $this->Flash->error('Usuario no encontrado');
-            return;
-        }
-
-        $user = $this->Auth->identify();
-
-        if ($user) {
-
-            $this->Auth->setUser($user);
-
-            return $this->redirect($this->Auth->redirectUrl([
+        if ($this->Auth->user()) {
+            return $this->redirect([
                 'controller' => 'Admin',
                 'action' => 'index',
                 'prefix' => 'admin'
-            ]));
+            ]);
         }
 
-        $this->Flash->error('Contraseña o Correo Incorrectas');
+        if ($this->request->is('post')) {
+
+            $correo = $this->request->getData('correo');
+            $password = $this->request->getData('password');
+
+            if (empty($correo) || empty($password)) {
+                $this->Flash->error('Llenar todos los campos');
+                return;
+            }
+
+            $usuario = $this->Users->find()
+                ->where(['correo' => $correo])
+                ->first();
+
+            if (!$usuario) {
+                $this->Flash->error('Usuario no encontrado');
+                return;
+            }
+
+            $user = $this->Auth->identify();
+
+            if ($user) {
+
+                $this->Auth->setUser($user);
+
+                return $this->redirect($this->Auth->redirectUrl([
+                    'controller' => 'Admin',
+                    'action' => 'index',
+                    'prefix' => 'admin'
+                ]));
+            }
+
+            $this->Flash->error('Contraseña o Correo Incorrectas');
+        }
     }
-}
 
 
     /* =========================
@@ -150,28 +150,28 @@ class UsersController extends AppController
 
 
     public function edit($id = null)
-{
-    $users = $this->Users->find('all');
+    {
+        $users = $this->Users->find('all');
 
-    if ($this->request->is(['post', 'put'])) {
+        if ($this->request->is(['post', 'put'])) {
 
-        $user = $this->Users->get($this->request->getData('id'));
+            $user = $this->Users->get($this->request->getData('id'));
 
-        $this->Users->patchEntity($user, $this->request->getData(), [
-            'fields' => ['nombre_completo', 'correo']
-        ]);
+            $this->Users->patchEntity($user, $this->request->getData(), [
+                'fields' => ['nombre_completo', 'correo']
+            ]);
 
-        if ($this->Users->save($user)) {
-            $this->Flash->success('Usuario actualizado.');
-        } else {
-            $this->Flash->error('Error al actualizar.');
+            if ($this->Users->save($user)) {
+                $this->Flash->success('Usuario actualizado.');
+            } else {
+                $this->Flash->error('Error al actualizar.');
+            }
+
+            return $this->redirect(['action' => 'edit']);
         }
 
-        return $this->redirect(['action' => 'edit']);
+        $this->set(compact('users'));
     }
-
-    $this->set(compact('users'));
-}
 
 
     /* =========================
@@ -236,5 +236,34 @@ class UsersController extends AppController
     public function logout()
     {
         return $this->redirect($this->Auth->logout());
+    }
+
+    public function recuperarPassword()
+    {
+        if ($this->request->is('post')) {
+
+            $correo = $this->request->getData('correo');
+
+            $user = $this->Users->find()
+                ->where(['correo' => $correo])
+                ->first();
+
+            if (!$user) {
+                $this->Flash->error('Correo no encontrado');
+                return $this->redirect([
+                    'prefix' => 'admin',
+                    'controller' => 'Users',
+                    'action' => 'login'
+                ]);
+            }
+
+            $this->Flash->success('Revisa tu correo para continuar.');
+
+            return $this->redirect([
+                'prefix' => 'admin',
+                'controller' => 'Users',
+                'action' => 'login'
+            ]);
+        }
     }
 }
