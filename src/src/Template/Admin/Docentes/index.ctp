@@ -97,11 +97,11 @@
             <label>Nombre <span class="required">*Requerido</span></label>
             <input type="text" name="nombre" required>
 
-            <label>Apellido <span class="required">*Requerido</span></label>
-            <input type="text" name="apellido" required>
+            <label>Apellido </label>
+            <input type="text" name="apellido" >
 
-            <label>Email <span class="required">*Requerido</span></label>
-            <input type="email" name="email" required>
+            <label>Email </label>
+            <input type="email" name="email" >
 
         </div>
 
@@ -135,11 +135,11 @@
             <label>Nombre <span class="required">*Requerido</span></label>
             <input type="text" name="nombre" id="editNombre" required>
 
-            <label>Apellido <span class="required">*Requerido</span></label>
-            <input type="text" name="apellido" id="editApellido" required>
+            <label>Apellido </label>
+            <input type="text" name="apellido" id="editApellido" >
 
-            <label>Email <span class="required">*Requerido</span></label>
-            <input type="email" name="email" id="editEmail" required>
+            <label>Email</label>
+            <input type="email" name="email" id="editEmail">
         </div>
 
         <hr>

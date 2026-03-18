@@ -18,6 +18,10 @@ class SheetsController extends AppController
         // ================= QUERY BASE =================
         $query = $this->Horarios->find()
             ->contain(['Docentes', 'Materias', 'Grupos'])
+            ->where([
+                'Docentes.email IS NOT' => null,
+                'Docentes.email !=' => ''
+            ])
             ->order(['Docentes.nombre' => 'ASC']);
 
         if (!empty($docenteId)) {
