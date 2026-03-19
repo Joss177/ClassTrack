@@ -32,7 +32,7 @@
 
                 <div class="image-container">
 
-                    <?= $this->Html->image('salon.jpg', ['alt' => h($cam->aula->nombre)]) ?>
+                    <?= $this->Html->image('testImg/captura.jpg?' . time(), ['alt' => h($cam->aula->nombre)]) ?>
 
                     <?php if ($cam->estado === 'activa'): ?>
                         <div class="live-badge">
@@ -112,7 +112,7 @@
             </div>
 
             <div class="modal-image">
-                <?= $this->Html->image('salon.jpg') ?>
+                <?= $this->Html->image('testImg/captura.jpg?' . time()) ?>
                 <div class="time-badge" id="modalHora"></div>
             </div>
 
@@ -257,7 +257,6 @@ document.addEventListener('DOMContentLoaded', function() {
        MODAL VISTA CÁMARA
     ========================== */
     window.openModal = function(aula, edificio, piso, estado, capacidad, deteccion) {
-
         document.getElementById('modalAula').innerText = aula;
         document.getElementById('modalUbicacion').innerText = edificio + ' - Piso ' + piso;
         document.getElementById('modalHora').innerText = deteccion;
@@ -268,6 +267,10 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('modalDeteccion').innerText = deteccion;
         document.getElementById('modalCapacidad').innerText = capacidad;
         document.getElementById('modalNumero').innerText = aula;
+
+        // RECARGAR IMAGEN DE LA CÁMARA
+        const camImg = document.querySelector('#cameraModal .modal-image img');
+        camImg.src = '<?= $this->Url->build("/img/testImg/captura.jpg") ?>?t=' + new Date().getTime();
 
         document.getElementById('cameraModal').style.display = 'flex';
     };

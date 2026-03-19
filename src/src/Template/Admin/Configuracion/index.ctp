@@ -71,27 +71,6 @@
         </div>
     </div>
 
-    <!-- TEMA -->
-    <div class="card">
-        <div class="card-title">
-            <span class="icon">🎨</span>
-            Tema
-        </div>
-
-        <p class="subtext">Selecciona el tema de la aplicación</p>
-
-        <label class="radio">
-            <input type="radio" name="tema" checked>
-            Claro
-        </label>
-
-        <label class="radio">
-            <input type="radio" name="tema">
-            Oscuro
-        </label>
-    </div>
-
-
     <!-- VERSION -->
     <div class="card">
         <div class="card-title">
@@ -106,12 +85,17 @@
 
         <div class="info-row">
             <span>Versión</span>
-            <strong>1.0.0</strong>
+            <strong>1.0.9</strong>
         </div>
 
         <div class="info-row">
             <span>Última actualización</span>
-            <strong>Febrero 2026</strong>
+            <strong>Marzo 2026</strong>
+        </div>
+
+        <div class="info-row">
+            <span>Soporte</span>
+            <strong>dmtsoporte@gmail.com</strong>
         </div>
     </div>
 

@@ -55,20 +55,19 @@ foreach ($horarios as $h) {
     <div class="top-bar">
         <?= $this->Form->create(null, ['type' => 'get', 'style' => 'display:inline;']) ?>
 
-            <div>
-                <label>Grupo:</label>
-                <select name="grupo_id" onchange="this.form.submit()">
-                    <option value="">Todas las aulas</option>
-
-                    <?php foreach ($grupos as $id => $nombre): ?>
-                        <option value="<?= $id ?>"
-                            <?= ($this->request->getQuery('grupo_id') == $id) ? 'selected' : '' ?>>
-                            <?= h($nombre) ?>
-                        </option>
-                    <?php endforeach; ?>
-
-                </select>
-            </div>
+            <?= $this->Form->create(null, ['type' => 'get']) ?>
+                <div>
+                    <label>Grupo:</label>
+                    <select name="grupo_id" onchange="this.form.submit()">
+                        <option value="">Todas las aulas</option>
+                        <?php foreach ($grupos as $id => $nombre): ?>
+                            <option value="<?= $id ?>" <?= ($this->request->getQuery('grupo_id') == $id) ? 'selected' : '' ?>>
+                                <?= h($nombre) ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+                <?= $this->Form->end() ?>
 
         <?= $this->Form->end() ?>
         <?= $this->Form->create(null, [
