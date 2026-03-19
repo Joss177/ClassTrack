@@ -59,14 +59,18 @@
                 ]
             ) ?>
 
-            <?= $this->Html->link(
-                '<i class="fas fa-table"></i><span>Google Sheets</span>',
-                ['controller' => 'Sheets', 'action' => 'index'],
-                [
-                    'escape' => false,
-                    'class' => 'item ' . $this->Menu->activeClass('Sheets')
-                ]
-            ) ?>
+            <?php if ($this->request->getSession()->read('Auth.User.group_id') == 2): ?>
+
+                <?= $this->Html->link(
+                    '<i class="fas fa-table"></i><span>Google Sheets</span>',
+                    ['controller' => 'Sheets', 'action' => 'index'],
+                    [
+                        'escape' => false,
+                        'class' => 'item ' . $this->Menu->activeClass('Sheets')
+                    ]
+                ) ?>
+
+            <?php endif; ?>
 
             <?= $this->Html->link(
                 '<i class="fas fa-video"></i><span>Cámaras</span>',
@@ -77,14 +81,18 @@
                 ]
             ) ?>
 
-            <?= $this->Html->link(
-                '<i class="fas fa-users-cog"></i><span>Gestión</span>',
-                ['controller' => 'Gestion', 'action' => 'index'],
-                [
-                    'escape' => false,
-                    'class' => 'item ' . $this->Menu->activeClass('Gestion')
-                ]
-            ) ?>
+            <?php if ($this->request->getSession()->read('Auth.User.group_id') == 2): ?>
+
+                <?= $this->Html->link(
+                    '<i class="fas fa-users-cog"></i><span>Gestión</span>',
+                    ['controller' => 'Gestion', 'action' => 'index'],
+                    [
+                        'escape' => false,
+                        'class' => 'item ' . $this->Menu->activeClass('Gestion')
+                    ]
+                ) ?>
+
+            <?php endif; ?>
 
             <?= $this->Html->link(
                 '<i class="fas fa-cog"></i><span>Configuración</span>',

@@ -27,3 +27,6 @@
 
 # ignorar uploads
 src/webroot/uploads/
+
+# ignorar res.json
+src/webroot/res.json

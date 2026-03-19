@@ -756,7 +756,7 @@ function abrirBuscador() {
 }
 
 .materia-bloque {
-    color: rgb(46, 46, 46);
+    color: rgb(26, 26, 26);
     padding: 6px;
     border-radius: 6px;
     font-size: 14px;

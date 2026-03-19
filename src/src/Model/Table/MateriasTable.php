@@ -4,6 +4,8 @@ namespace App\Model\Table;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 use Cake\ORM\RulesChecker;
+use Cake\Event\Event;
+use ArrayObject;
 
 class MateriasTable extends Table
 {
@@ -30,30 +32,30 @@ class MateriasTable extends Table
             ->integer('id')
             ->allowEmptyString('id', 'create');
 
-        // Nombre de la materia (viene del PDF)
+        // Nombre
         $validator
             ->scalar('nombre')
             ->maxLength('nombre', 150)
             ->requirePresence('nombre', 'create')
             ->notEmptyString('nombre', 'El nombre de la materia es obligatorio.');
 
-        // Código de la materia (clave del PDF)
+        // Código (AHORA acepta minúsculas)
         $validator
             ->scalar('codigo')
             ->maxLength('codigo', 50)
             ->requirePresence('codigo', 'create')
             ->notEmptyString('codigo', 'El código es obligatorio.')
             ->add('codigo', 'formato', [
-                'rule' => ['custom', '/^[A-Z0-9\-]+$/'],
-                'message' => 'El código solo puede contener letras mayúsculas, números y guiones.'
+                'rule' => ['custom', '/^[A-Za-z0-9\-]+$/'],
+                'message' => 'El código solo puede contener letras, números y guiones.'
             ]);
 
-        // Descripción (opcional, el PDF no la incluye)
+        // Descripción
         $validator
             ->scalar('descripcion')
             ->allowEmptyString('descripcion');
 
-        // Color (opcional porque el PDF no lo trae, se puede usar default de la BD)
+        // Color
         $validator
             ->scalar('color')
             ->maxLength('color', 7)
@@ -66,14 +68,21 @@ class MateriasTable extends Table
         return $validator;
     }
 
+    // 🔥 Normaliza antes de guardar
+    public function beforeMarshal(Event $event, ArrayObject $data, ArrayObject $options)
+    {
+        if (!empty($data['codigo'])) {
+            $data['codigo'] = strtoupper(trim($data['codigo']));
+        }
+
+        if (!empty($data['nombre'])) {
+            $data['nombre'] = trim($data['nombre']);
+        }
+    }
+
     public function buildRules(RulesChecker $rules)
     {
-        // Evitar materias duplicadas
-        $rules->add(
-            $rules->isUnique(['codigo']),
-            ['errorField' => 'codigo', 'message' => 'Este código de materia ya existe.']
-        );
-
+        // SIN reglas de unicidad → permite duplicados
         return $rules;
     }
 }

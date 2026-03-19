@@ -120,6 +120,8 @@ class UsersController extends AppController
         if ($this->request->is('post')) {
 
             $data = $this->request->getData();
+
+            // Asignar grupo por defecto
             $data['group_id'] = 1;
 
             // Validación manual de confirmar contraseña
@@ -130,6 +132,10 @@ class UsersController extends AppController
                 return;
             }
 
+            // Eliminar confirm_password antes de guardar
+            unset($data['confirm_password']);
+
+            // Crear entidad con validaciones
             $user = $this->Users->patchEntity($user, $data);
 
             if ($this->Users->save($user)) {
@@ -137,9 +143,9 @@ class UsersController extends AppController
                 $this->Flash->success('Usuario creado correctamente.');
 
                 return $this->redirect(['action' => 'login']);
+
             } else {
 
-                // Si hay errores de validación (ej: correo duplicado)
                 if ($user->getErrors()) {
                     $this->Flash->error('Verifica los datos ingresados.');
                 } else {
@@ -294,77 +300,77 @@ class UsersController extends AppController
 
 
 
-public function recuperarPassword()
-{
-    if ($this->request->is('post')) {
+    public function recuperarPassword()
+    {
+        if ($this->request->is('post')) {
 
-        $correo = $this->request->getData('correo');
+            $correo = $this->request->getData('correo');
 
-        $user = $this->Users->find()
-            ->where(['correo' => $correo])
-            ->first();
+            $user = $this->Users->find()
+                ->where(['correo' => $correo])
+                ->first();
 
-        if (!$user) {
-            $this->Flash->error('Correo no encontrado');
+            if (!$user) {
+                $this->Flash->error('Correo no encontrado');
+                return $this->redirect([
+                    'prefix' => 'admin',
+                    'controller' => 'Users',
+                    'action' => 'login'
+                ]);
+            }
+
+
+            $token = bin2hex(random_bytes(16));
+
+
+            $this->Users->query()
+                ->update()
+                ->set([
+                    'token' => $token,
+                    'token_expira' => date('Y-m-d H:i:s', strtotime('+1 hour'))
+                ])
+                ->where(['id' => $user->id])
+                ->execute();
+
+            $link = Router::url([
+                'controller' => 'Users',
+                'action' => 'editPass',
+                $token
+            ], true);
+
+
+            $email = new Email('default');
+
+            $email->setTo($correo)
+                ->setSubject('Recuperar contraseña')
+                ->setEmailFormat('html')
+                ->send(
+                    '<p>Hola <strong>' . $user->nombre_completo . '</strong>,</p>
+
+                    <p>Se solicitó cambiar tu contraseña.</p>
+
+                    <p>
+                        <a href="' . $link . '" style="
+                            display:inline-block;
+                            padding:12px 25px;
+                            background:#007bff;
+                            color:#ffffff;
+                            text-decoration:none;
+                            border-radius:5px;
+                            font-weight:bold;">
+                            Recuperar contraseña
+                        </a>
+                    </p>
+
+                    <p>Este enlace expira en 1 hora.</p>
+                ');
+
+            $this->Flash->success('Revisa tu correo para continuar.');
+
             return $this->redirect([
-                'prefix' => 'admin',
                 'controller' => 'Users',
                 'action' => 'login'
             ]);
         }
-
-
-        $token = bin2hex(random_bytes(16));
-
-
-        $this->Users->query()
-            ->update()
-            ->set([
-                'token' => $token,
-                'token_expira' => date('Y-m-d H:i:s', strtotime('+1 hour'))
-            ])
-            ->where(['id' => $user->id])
-            ->execute();
-
-        $link = Router::url([
-            'controller' => 'Users',
-            'action' => 'editPass',
-            $token
-        ], true);
-
-
-        $email = new Email('default');
-
-        $email->setTo($correo)
-            ->setSubject('Recuperar contraseña')
-            ->setEmailFormat('html')
-            ->send(
-                '<p>Hola <strong>' . $user->nombre_completo . '</strong>,</p>
-
-                <p>Se solicitó cambiar tu contraseña.</p>
-
-                <p>
-                    <a href="' . $link . '" style="
-                        display:inline-block;
-                        padding:12px 25px;
-                        background:#007bff;
-                        color:#ffffff;
-                        text-decoration:none;
-                        border-radius:5px;
-                        font-weight:bold;">
-                        Recuperar contraseña
-                    </a>
-                </p>
-
-                <p>Este enlace expira en 1 hora.</p>
-            ');
-
-        $this->Flash->success('Revisa tu correo para continuar.');
-
-        return $this->redirect([
-            'controller' => 'Users',
-            'action' => 'login'
-        ]);
     }
-}
 }
