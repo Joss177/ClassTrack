@@ -3,6 +3,7 @@ import numpy as np
 from insightface.app import FaceAnalysis
 import json
 import os
+import time
 from checkList import registrar_asistencia
 
 '''Aqui abajo es la base de datos del reconocimiento facila. NO TOCAR'''
@@ -87,21 +88,29 @@ def carasDetectadaas(frame,carasDetctadas):
                 
                 if listaNombres:
                     persona=cara.embedding
-                    encontrarPersona=np.dot(matrizEmbeddings,persona) #evalua la cara de la persona con toda lainfo que tenemos y da un np array de cual es el mas cercabno
-                    certezaPersona=np.max(encontrarPersona) #da el valor de 0 a 1 de similitud
+                    encontrarPersona=np.dot(matrizEmbeddings,persona) 
+                    certezaPersona=np.max(encontrarPersona) 
                     print(certezaPersona)
-                    if  certezaPersona>200: # el rango con el que debo de jugar es de 200 a 250. menos y da falso postivo mas y es muy estricto a la hora de juzgar a la persona
+                    if  certezaPersona>200: 
 
-                        personaMasCercana=np.argmax(encontrarPersona) #devuelve el indice del np array de ese valor
+                        personaMasCercana=np.argmax(encontrarPersona) 
                         nombre=listaNombres[personaMasCercana]
-                        listaAsistencia.append(nombre)#Esto proximamente se cambiara por matricula
-                        #cv2.putText(frame,str(certezaPersona),(x1,y2+10),1,1,(165,45,85),2)
-                
+                        listaAsistencia.append(nombre)
                 
                 cv2.rectangle(frame,(x1,y1),(x2,y2),(255,0,0),1)
                 cv2.putText(frame,nombre,(x1,y1-10),1,1,(165,45,85),2)
 
     cv2.imshow('Resultado Reconocimiento', frame)
+    
+    # ================= LO NUEVO =================
+    # Genera un nombre único tipo: "captura_1710860000.jpg"
+    nombre_imagen = f"camaraView/testImg/captura_{int(time.time())}.jpg"
+    
+    # Guarda el frame modificado como imagen
+    cv2.imwrite(nombre_imagen, frame)
+    print(f"📸 Imagen guardada como: {nombre_imagen}")
+    # ============================================
+
     return listaAsistencia
 
 # por facor que de preferencia solo este una cara a la vez cuando se vaya a guardar una nueva cara
