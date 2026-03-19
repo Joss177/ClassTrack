@@ -31,4 +31,4 @@ src/webroot/uploads/
 # ignorar res.json
 src/webroot/res.json
 
-camaraView/pasedelista-488923-32f3e99c3a1c.json
+camaraView/*.json

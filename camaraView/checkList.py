@@ -9,7 +9,7 @@ SCOPES = [
     "https://www.googleapis.com/auth/drive"
 ]
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-RUTA_CREDENCIALES = os.path.join(BASE_DIR, "pasedelista-488923-32f3e99c3a1c.json")
+RUTA_CREDENCIALES = os.path.join(BASE_DIR, "pasedelista-488923-fa367c976ef2.json")
 
 credenciales = Credentials.from_service_account_file(
     RUTA_CREDENCIALES,

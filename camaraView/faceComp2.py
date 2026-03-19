@@ -104,7 +104,7 @@ def carasDetectadaas(frame,carasDetctadas):
     
     # ================= LO NUEVO =================
     # Genera un nombre único tipo: "captura_1710860000.jpg"
-    nombre_imagen = f"camaraView/testImg/captura.jpg"
+    nombre_imagen = f"src/webroot/img/testImg/captura.jpg"
     
     # Guarda el frame modificado como imagen
     cv2.imwrite(nombre_imagen, frame)
