@@ -91,7 +91,7 @@ def carasDetectadaas(frame,carasDetctadas):
                     encontrarPersona=np.dot(matrizEmbeddings,persona) 
                     certezaPersona=np.max(encontrarPersona) 
                     print(certezaPersona)
-                    if  certezaPersona>200: 
+                    if  certezaPersona>180: 
 
                         personaMasCercana=np.argmax(encontrarPersona) 
                         nombre=listaNombres[personaMasCercana]

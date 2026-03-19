@@ -9,7 +9,7 @@ SCOPES = [
     "https://www.googleapis.com/auth/drive"
 ]
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-RUTA_CREDENCIALES = os.path.join(BASE_DIR, "pasedelista-488923-6b6f15fe036d.json")
+RUTA_CREDENCIALES = os.path.join(BASE_DIR, "pasedelista-488923-32f3e99c3a1c.json")
 
 credenciales = Credentials.from_service_account_file(
     RUTA_CREDENCIALES,
@@ -19,7 +19,7 @@ credenciales = Credentials.from_service_account_file(
 
 cliente = gspread.authorize(credenciales)
 
-hoja = cliente.open("asistencia").sheet1
+hoja = cliente.open("8-3").sheet1
 
 
 def registrar_asistencia(nombre_detectado=None, minutos=0, fechaAmanuela=None, finalizar_clase=False):
