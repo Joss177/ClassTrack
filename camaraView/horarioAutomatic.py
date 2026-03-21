@@ -1,6 +1,7 @@
 # ============================================================
 # horarioAutomatic.py  —  Procesa TODOS los grupos del PDF
 # Devuelve JSON UTF-8 compatible con controller CakePHP 3.8
+# Estructurado por AULAS en lugar de grupos.
 # pip install pdfplumber
 # ============================================================
 import pdfplumber
@@ -22,24 +23,22 @@ COLORES = [
 ]
 
 # ── Mapa de corrección de docentes corruptos en el PDF ───────
-# El PDF tiene caracteres intercalados en ciertos docentes.
-# Clave: fragmento único del texto corrupto → Valor: nombre real.
 DOCENTES_CORRUPTOS = {
-    "ESMC.":       "MC.",                         # E-CTER-1: prefijo extra
-    "NEJSOe":      "Selene Elizabeth García Gamez", # T-HSMC-1 grupos 1-2
-    "NEJMOC D. LE": "MC. Lizette Peralta Partida",  # T-HSMC-1 grupo 3
-    "NEJMOC D. CE": "MC. Carlos Zamudio Togo",      # T-HSMC-1 grupos 4-5
-    "PEÑMOC.":     "MC. Lizette Peralta Partida",   # T-LEAD-2 grupos 5-8
-    "RRODLrLaO.":  "Dra. Ismaylia Saucedo Ugalde",  # E-EMDS-2 grupos 5-8
-    "RROMLCL.O":   "MC. Iliana Amabely Silva Hernández", # E-EMDS-2 grupo 9
-    "APT-FT":      "Dr. Luis Javier Mena Camare",   # APT-FT texto fusionado
-    "TAI-FT":      "Ing. Jose Cruz Paredes Magaña",  # TAI-FT texto fusionado
-    "ICIMOCS.":    "MC. Roberto Antonio Martínez Thompson",  # E-AWOS-2 grupos 5-6
-    "ICIDOr.S":    "Dr. Ramón Patricio Velázquez Cuadras",   # E-AWOS-2 grupos 7-8
-    "ERNDEr.T":    "Dr. Ramón Patricio Velázquez Cuadras",   # TAI-FT grupo 13
-    "ERNInEgT.":   "Ing. Jose Cruz Paredes Magaña",          # TAI-FT grupos 10-12
-    "NODLrOaG.":   "Dra. Vanessa Guadalupe Félix Aviña",     # APT-FT grupos 10-11
-    "NODLrO.":     "Dr. Luis Javier Mena Camare",            # APT-FT grupos 12-13
+    "ESMC.":       "MC.",                         
+    "NEJSOe":      "Selene Elizabeth García Gamez", 
+    "NEJMOC D. LE": "MC. Lizette Peralta Partida",  
+    "NEJMOC D. CE": "MC. Carlos Zamudio Togo",      
+    "PEÑMOC.":     "MC. Lizette Peralta Partida",   
+    "RRODLrLaO.":  "Dra. Ismaylia Saucedo Ugalde",  
+    "RROMLCL.O":   "MC. Iliana Amabely Silva Hernández", 
+    "APT-FT":      "Dr. Luis Javier Mena Camare",   
+    "TAI-FT":      "Ing. Jose Cruz Paredes Magaña",  
+    "ICIMOCS.":    "MC. Roberto Antonio Martínez Thompson",  
+    "ICIDOr.S":    "Dr. Ramón Patricio Velázquez Cuadras",   
+    "ERNDEr.T":    "Dr. Ramón Patricio Velázquez Cuadras",   
+    "ERNInEgT.":   "Ing. Jose Cruz Paredes Magaña",          
+    "NODLrOaG.":   "Dra. Vanessa Guadalupe Félix Aviña",     
+    "NODLrO.":     "Dr. Luis Javier Mena Camare",            
 }
 
 def corregir_docente(texto):
@@ -48,19 +47,16 @@ def corregir_docente(texto):
         return "Sin asignar"
     for patron, correcto in DOCENTES_CORRUPTOS.items():
         if patron in texto:
-            # Caso especial ESMC.: solo reemplazar el prefijo
             if patron == "ESMC.":
                 return texto.replace("ESMC.", "MC.").strip()
             return correcto
     return texto
-
 
 # ── Helpers ───────────────────────────────────────────────────
 def limpiar(texto):
     if not texto:
         return ""
     return re.sub(r"\s+", " ", texto.strip())
-
 
 def normalizar_hora(hora):
     hora = hora.strip().replace(".", ":")
@@ -69,40 +65,28 @@ def normalizar_hora(hora):
         return partes[0].zfill(2) + ":" + partes[1].zfill(2)
     return hora
 
-
 def normalizar_docente(nombre):
-    """Elimina número de horas al final y colapsa espacios."""
     if not nombre:
         return "Sin asignar"
     nombre = re.sub(r"\s+\d+$", "", limpiar(nombre))
     return limpiar(nombre)
 
-
 def extraer_nombre_grupo(texto):
-    # Nombre ANTES del label (confirmado en este PDF)
     m = re.search(r"([A-Z0-9][A-Z0-9\-]{2,})\s*\n\s*GRUPO/GRADO:", texto)
-    if m:
-        return m.group(1).strip()
-    # Fallback: nombre DESPUÉS del label
+    if m: return m.group(1).strip()
     m = re.search(r"GRUPO/GRADO:\s*\n?\s*([A-Z0-9][A-Z0-9\-]{2,})", texto)
-    if m:
-        return m.group(1).strip()
+    if m: return m.group(1).strip()
     return "SIN_GRUPO"
-
 
 def extraer_periodo(texto):
     m = re.search(r"PERIODO:\s*(.+)", texto, re.IGNORECASE)
-    if m:
-        return limpiar(m.group(1))
+    if m: return limpiar(m.group(1))
     return "SIN_PERIODO"
-
 
 def extraer_tutor(texto):
     m = re.search(r"Nombre del Tutor:\s*(.+)", texto)
-    if m:
-        return limpiar(m.group(1))
+    if m: return limpiar(m.group(1))
     return ""
-
 
 # ── Extracción por página ─────────────────────────────────────
 def extraer_pagina(page):
@@ -138,7 +122,6 @@ def extraer_pagina(page):
                         continue
 
                     codigo = partes[0].strip()
-                    # Tec. Móvil ocupa dos tokens
                     if len(partes) >= 3 and partes[1] == "Tec.":
                         aula = "Tec. Móvil"
                     else:
@@ -154,28 +137,21 @@ def extraer_pagina(page):
                 continue
 
             # ── Tabla 1: catálogo de materias ──────────────────
-            # Formato confirmado: [codigo, nombre, docente, horas]
             if len(fila) >= 3:
                 codigo_raw  = limpiar(fila[0])
                 nombre_raw  = limpiar(fila[1])
                 docente_raw = normalizar_docente(limpiar(fila[2]) if fila[2] else "")
 
-                # Solo filas que parecen código de materia
-                if not re.match(r"^([A-Z][A-Z0-9]*-[A-Z0-9\-]+|Tutoría)$",
-                                 codigo_raw, re.IGNORECASE):
+                if not re.match(r"^([A-Z][A-Z0-9]*-[A-Z0-9\-]+|Tutoría)$", codigo_raw, re.IGNORECASE):
                     continue
                 if not nombre_raw or nombre_raw.lower() in ("asignatura", "clave"):
                     continue
 
-                # Normalizar Tutoría
                 if codigo_raw.upper() in ("TUTORÍA", "TUTORIA"):
                     codigo_raw = "Tutoría"
-
-                # Nombre distinto al código para evitar UNIQUE KEY doble en BD
                 if codigo_raw == "Tutoría" and nombre_raw.upper() in ("TUTORÍA", "TUTORIA"):
                     nombre_raw = "Tutoría Grupal"
 
-                # Corregir texto corrupto del PDF usando el mapa global
                 docente_raw = corregir_docente(docente_raw)
 
                 materias_raw[codigo_raw] = {
@@ -183,12 +159,10 @@ def extraer_pagina(page):
                     "docente": docente_raw,
                 }
 
-    # ── Corrección: "Tec." suelto → "Tec. Móvil" ─────────────
     for b in bloques_raw:
         if b["aula"] == "Tec.":
             b["aula"] = "Tec. Móvil"
 
-    # ── Herencia de aulas para celdas sin aula ────────────────
     for i in range(len(bloques_raw)):
         if bloques_raw[i]["aula"] == "SIN_AULA":
             for j in range(len(bloques_raw)):
@@ -197,7 +171,6 @@ def extraer_pagina(page):
                     bloques_raw[i]["aula"] = bloques_raw[j]["aula"]
                     break
 
-    # ── Fusionar bloques consecutivos ─────────────────────────
     bloques_raw.sort(key=lambda x: (x["dia_semana"], x["hora_inicio"]))
     horarios_final = []
     for b in bloques_raw:
@@ -213,12 +186,10 @@ def extraer_pagina(page):
             aulas_set.add(b["aula"])
         horarios_final.append(dict(b))
 
-    # ── Añadir docente a cada bloque ──────────────────────────
     for bloque in horarios_final:
         info = materias_raw.get(bloque["codigo"], {})
         bloque["docente"] = info.get("docente", "Sin asignar")
 
-    # ── Seguro: materias huérfanas ────────────────────────────
     for cod in set(b["codigo"] for b in horarios_final):
         if cod not in materias_raw:
             materias_raw[cod] = {
@@ -226,7 +197,6 @@ def extraer_pagina(page):
                 "docente": "Sin asignar",
             }
 
-    # ── Lista final de materias con color ─────────────────────
     docentes_set   = set()
     materias_lista = []
     for idx, (clave, info) in enumerate(materias_raw.items()):
@@ -264,7 +234,9 @@ def main():
         sys.exit(1)
 
     pdf_path  = sys.argv[1]
-    resultado = {"grupos": []}
+    
+    # Aquí guardamos los datos originales por grupo
+    datos_grupos = []
 
     try:
         with pdfplumber.open(pdf_path) as pdf:
@@ -272,21 +244,67 @@ def main():
                 try:
                     datos = extraer_pagina(page)
                     if datos and datos["nombre"] != "SIN_GRUPO":
-                        resultado["grupos"].append(datos)
+                        datos_grupos.append(datos)
                 except Exception as e:
-                    resultado["grupos"].append({
-                        "nombre":   f"ERROR_PAGINA_{num}",
-                        "materias": [],
-                        "horarios": [],
-                        "error":    str(e),
-                    })
+                    # En caso de error de lectura, lo ignoramos para que no rompa el resto del PDF
+                    pass
 
-        # Salida para CakePHP — UTF-8 sin escapes unicode
-        print(json.dumps(resultado, ensure_ascii=False))
+        # =====================================================================
+        # TRANSFORMADOR MÁGICO: Convertir de Grupos a Aulas
+        # =====================================================================
+        aulas_dict = {}
+
+        for grupo in datos_grupos:
+            nombre_grupo = grupo["nombre"]
+            
+            # Mapas rápidos para obtener el nombre de la materia y el docente por su código
+            mapa_materias = {m["codigo"]: m["nombre"] for m in grupo["materias"]}
+            mapa_docentes = {m["codigo"]: m["docente"] for m in grupo["materias"]}
+
+            for h in grupo["horarios"]:
+                nombre_aula = h["aula"]
+                
+                # Omitimos si el aula es SIN_AULA, ya que no representa un espacio físico
+                if nombre_aula == "SIN_AULA":
+                    continue
+                
+                # Si el aula no existe en el diccionario general, la inicializamos
+                if nombre_aula not in aulas_dict:
+                    aulas_dict[nombre_aula] = {
+                        "nombre": nombre_aula,
+                        "horarios": []
+                    }
+                
+                # Agregamos la clase a esa aula, incluyendo el nombre del grupo al que pertenece
+                aulas_dict[nombre_aula]["horarios"].append({
+                    "dia_semana": h["dia_semana"],
+                    "hora_inicio": h["hora_inicio"],
+                    "hora_fin": h["hora_fin"],
+                    "grupo": nombre_grupo,
+                    "codigo": h["codigo"],
+                    "materia": mapa_materias.get(h["codigo"], "MATERIA NO REGISTRADA"),
+                    "docente": mapa_docentes.get(h["codigo"], "Sin asignar")
+                })
+
+        # Estructura final que espera CakePHP y el archivo res.json
+        resultado_final = {"aulas": []}
+        
+        # Ordenamos las aulas alfabéticamente (B-201, B-202, etc.)
+        for aula_nombre in sorted(aulas_dict.keys()):
+            aula_data = aulas_dict[aula_nombre]
+            
+            # Ordenamos los horarios de esa aula por día de la semana y hora de inicio
+            aula_data["horarios"].sort(key=lambda x: (x["dia_semana"], x["hora_inicio"]))
+            
+            resultado_final["aulas"].append(aula_data)
+        # =====================================================================
+
+        # Salida por consola para CakePHP — UTF-8 sin escapes unicode
+        print(json.dumps(resultado_final, ensure_ascii=False))
 
         # Archivo de debug local
         with open("res.json", "w", encoding="utf-8") as f:
-            json.dump(resultado, f, ensure_ascii=False, indent=4)
+            json.dump(resultado_final, f, ensure_ascii=False, indent=4)
 
     except Exception as e:
         print(json.dumps({"error": str(e)}, ensure_ascii=False))
