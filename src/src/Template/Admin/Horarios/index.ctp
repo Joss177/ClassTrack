@@ -36,13 +36,13 @@ foreach ($horarios as $h) {
         $inicioBloque = strtotime($bloque['inicio']);
 
         if ($inicioBloque >= $inicioHorario && $inicioBloque < $finHorario) {
-            $horariosMap[$h->grupo_id][$h->dia_semana][$bloque['inicio']] = $h;
+            $horariosMap[$h->aula_id][$h->dia_semana][$bloque['inicio']] = $h;
         }
     }
 }
 
 // Filtrar grupos según el query param
-$grupoIdFiltro = $this->request->getQuery('grupo_id');
+$aulaIdFiltro = $this->request->getQuery('aula_id');
 ?>
 
 <div class="container">
@@ -54,10 +54,10 @@ $grupoIdFiltro = $this->request->getQuery('grupo_id');
         <?= $this->Form->create(null, ['type' => 'get']) ?>
             <div>
                 <label>Grupo:</label>
-                <select name="grupo_id" onchange="this.form.submit()">
+                <select name="aula_id" onchange="this.form.submit()">
                     <option value="">Todas las aulas</option>
-                    <?php foreach ($grupos as $id => $nombre): ?>
-                        <option value="<?= $id ?>" <?= ($grupoIdFiltro == $id) ? 'selected' : '' ?>>
+                    <?php foreach ($aulas as $id => $nombre): ?>
+                        <option value="<?= $id ?>" <?= ($aulaIdFiltro == $id) ? 'selected' : '' ?>>
                             <?= h($nombre) ?>
                         </option>
                     <?php endforeach; ?>
@@ -95,18 +95,13 @@ $grupoIdFiltro = $this->request->getQuery('grupo_id');
 
     </div>
 
-    <?php foreach ($grupos as $grupoId => $grupoNombre): ?>
+    <?php foreach ($aulas as $aulaId => $aulaNombre): ?>
 
-        <?php
-        // ── FILTRO: si hay grupo seleccionado, saltar los demás ──
-        if (!empty($grupoIdFiltro) && $grupoIdFiltro != $grupoId) {
-            continue;
-        }
-        ?>
+        <?php if (!empty($aulaIdFiltro) && $aulaIdFiltro != $aulaId) continue; ?>
 
         <div class="card">
 
-            <h2 class="aula-title"><?= h($grupoNombre) ?></h2>
+             <h2 class="aula-title"><?= h($aulaNombre) ?></h2>
 
             <div class="schedule">
 
@@ -136,8 +131,8 @@ $grupoIdFiltro = $this->request->getQuery('grupo_id');
                             data-dia="<?= $dia ?>"
                             data-hora="<?= $bloque['inicio'] ?>">
 
-                            <?php if (!empty($horariosMap[$grupoId][$dia][$bloque['inicio']])):
-                                $h = $horariosMap[$grupoId][$dia][$bloque['inicio']];
+                            <?php if (!empty($horariosMap[$aulaId][$dia][$bloque['inicio']])):
+                                $h = $horariosMap[$aulaId][$dia][$bloque['inicio']];
                                 $duracion = (strtotime($h->hora_fin) - strtotime($h->hora_inicio)) / 60;
                             ?>
                                 <div class="materia-bloque abrir-detalle"
@@ -153,7 +148,7 @@ $grupoIdFiltro = $this->request->getQuery('grupo_id');
                                     data-duracion="<?= $duracion ?>">
 
                                     <strong><?= h($h->materia->codigo ?? '') ?></strong><br>
-                                    <?= h($h->aula->nombre ?? '') ?>
+                                    <?= h($h->grupo->nombre ?? '') ?>
 
                                 </div>
                             <?php endif; ?>

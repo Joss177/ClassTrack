@@ -64,7 +64,6 @@ class HorariosController extends AppController
                 return $this->redirect($this->referer());
             }
 
-            // Descartar warnings/texto antes del JSON
             $resultado = trim($resultado);
             $pos = strpos($resultado, '{');
             if ($pos === false) {
@@ -75,158 +74,127 @@ class HorariosController extends AppController
 
             $data = json_decode($resultado, true);
 
-            if (!$data || !isset($data['grupos'])) {
+            if (!$data || !isset($data['aulas'])) {
                 $this->Flash->error("JSON inválido: " . json_last_error_msg());
                 return $this->redirect($this->referer());
             }
 
             /* =====================================================
-            INSERTAR DATOS
+            INSERTAR DATOS (estructura por AULAS)
             ====================================================== */
-            foreach ($data['grupos'] as $grupoData) {
+            $colores = [
+                '#f87171','#34d399','#fbbf24','#60a5fa',
+                '#a78bfa','#f472b6','#22d3ee','#0ea5e9',
+                '#10b981','#ef4444','#d97706','#4b5563',
+                '#16a34a','#3b82f6','#e879f9','#f97316',
+            ];
+            $colorIdx = 0;
 
-                if (empty($grupoData['nombre']) || strpos($grupoData['nombre'], 'ERROR') === 0) {
-                    continue;
-                }
+            foreach ($data['aulas'] as $aulaData) {
 
-                /* ── 1. GRUPO ─────────────────────────────────── */
-                $grupo = $this->Grupos->find()
-                    ->where(['Grupos.nombre' => trim($grupoData['nombre'])])
+                if (empty($aulaData['nombre'])) continue;
+
+                /* ── 1. AULA ──────────────────────────────────── */
+                $aulaNombre = trim($aulaData['nombre']);
+
+                $aula = $this->Aulas->find()
+                    ->where(['Aulas.nombre' => $aulaNombre])
                     ->first();
 
-                if (!$grupo) {
-                    $grupo = $this->Grupos->newEntity([
-                        'nombre' => trim($grupoData['nombre'])
-                    ]);
-                    if (!$this->Grupos->save($grupo)) {
-                        \Cake\Log\Log::error('Grupo no guardado: ' . json_encode($grupo->getErrors()));
+                if (!$aula) {
+                    $aula = $this->Aulas->newEntity(['nombre' => $aulaNombre]);
+                    if (!$this->Aulas->save($aula)) {
+                        \Cake\Log\Log::error('Aula no guardada: ' . json_encode($aula->getErrors()));
                         continue;
                     }
                 }
 
-                $grupo_id    = $grupo->id;
-                $mapMaterias = [];
+                /* ── 2. HORARIOS DE ESTA AULA ─────────────────── */
+                foreach ($aulaData['horarios'] as $h) {
 
-                /* ── 2. DOCENTES Y MATERIAS ───────────────────── */
-                foreach ($grupoData['materias'] as $materiaData) {
+                    /* ── GRUPO ── */
+                    $grupoNombre = trim($h['grupo'] ?? 'SIN_GRUPO');
 
-                    if (empty($materiaData['codigo']) || empty($materiaData['nombre'])) {
-                        continue;
+                    $grupo = $this->Grupos->find()
+                        ->where(['Grupos.nombre' => $grupoNombre])
+                        ->first();
+
+                    if (!$grupo) {
+                        $grupo = $this->Grupos->newEntity(['nombre' => $grupoNombre]);
+                        if (!$this->Grupos->save($grupo)) {
+                            \Cake\Log\Log::error('Grupo no guardado: ' . json_encode($grupo->getErrors()));
+                            continue;
+                        }
                     }
 
-                    // FIX duplicados: normalizar espacios del nombre del docente
-                    $nombreDocente = !empty($materiaData['docente'])
-                        ? trim(preg_replace('/\s+/', ' ', $materiaData['docente']))
-                        : 'Sin asignar';
+                    /* ── DOCENTE ── */
+                    $nombreDocente = trim(preg_replace('/\s+/', ' ', $h['docente'] ?? 'Sin asignar'));
 
-                    // Buscar docente con nombre normalizado
                     $docente = $this->Docentes->find()
                         ->where(['Docentes.nombre' => $nombreDocente])
                         ->first();
 
                     if (!$docente) {
-                        $docente = $this->Docentes->newEntity([
-                            'nombre' => $nombreDocente
-                        ]);
+                        $docente = $this->Docentes->newEntity(['nombre' => $nombreDocente]);
                         if (!$this->Docentes->save($docente)) {
                             \Cake\Log\Log::error('Docente no guardado: ' . json_encode($docente->getErrors()));
                             continue;
                         }
                     }
 
-                    $docente_id = $docente->id;
+                    /* ── MATERIA ── */
+                    $codigo = trim($h['codigo'] ?? '');
+                    if (empty($codigo)) continue;
 
-                    // Buscar materia por codigo
                     $materia = $this->Materias->find()
-                        ->where(['Materias.codigo' => $materiaData['codigo']])
+                        ->where(['Materias.codigo' => $codigo])
                         ->first();
 
                     if (!$materia) {
                         $materia = $this->Materias->newEntity([
-                            'codigo' => $materiaData['codigo'],
-                            'nombre' => $materiaData['nombre'],
-                            'color'  => $materiaData['color'] ?? '#60a5fa',
+                            'codigo' => $codigo,
+                            'nombre' => $h['materia'] ?? 'SIN NOMBRE',
+                            'color'  => $colores[$colorIdx % count($colores)],
                         ]);
+                        $colorIdx++;
                         if (!$this->Materias->save($materia)) {
                             \Cake\Log\Log::error('Materia no guardada: ' . json_encode($materia->getErrors()));
                             continue;
                         }
                     }
 
-                    $mapMaterias[$materiaData['codigo']] = [
-                        'materia_id' => $materia->id,
-                        'docente_id' => $docente_id,
-                    ];
-                }
-
-                /* ── 3. HORARIOS ──────────────────────────────── */
-                foreach ($grupoData['horarios'] as $horarioData) {
-
-                    $codigo = $horarioData['codigo'] ?? '';
-
-                    if (!isset($mapMaterias[$codigo])) {
-                        continue;
-                    }
-
-                    $materia_id = $mapMaterias[$codigo]['materia_id'];
-                    $docente_id = $mapMaterias[$codigo]['docente_id'];
-
-                    // Aula
-                    $aulaNombre = !empty($horarioData['aula'])
-                        ? trim($horarioData['aula'])
-                        : 'SIN_AULA';
-
-                    $aula = $this->Aulas->find()
-                        ->where(['Aulas.nombre' => $aulaNombre])
-                        ->first();
-
-                    if (!$aula) {
-                        $aula = $this->Aulas->newEntity([
-                            'nombre' => $aulaNombre
-                        ]);
-                        if (!$this->Aulas->save($aula)) {
-                            \Cake\Log\Log::error('Aula no guardada: ' . json_encode($aula->getErrors()));
-                            continue;
-                        }
-                    }
-
-                    // FIX horas: Python ya devuelve HH:MM con cero,
-                    // pero por si acaso normalizamos también aquí
-                    $horaInicio = $horarioData['hora_inicio'] ?? '';
-                    $horaFin    = $horarioData['hora_fin']    ?? '';
-
-                    // Asegurar formato HH:MM (añadir cero si falta)
+                    /* ── HORAS ── */
+                    $horaInicio = $h['hora_inicio'] ?? '';
+                    $horaFin    = $h['hora_fin']    ?? '';
                     if (strlen($horaInicio) === 4) { $horaInicio = '0' . $horaInicio; }
                     if (strlen($horaFin)    === 4) { $horaFin    = '0' . $horaFin;    }
 
-                    // Evitar duplicado — UNIQUE KEY: (grupo_id, dia_semana, hora_inicio)
+                    /* ── EVITAR DUPLICADO ── */
                     $existe = $this->Horarios->find()
                         ->where([
-                            'Horarios.grupo_id'    => $grupo_id,
-                            'Horarios.dia_semana'  => (int)$horarioData['dia_semana'],
+                            'Horarios.aula_id'     => $aula->id,
+                            'Horarios.dia_semana'  => (int)$h['dia_semana'],
                             'Horarios.hora_inicio' => $horaInicio,
                         ])
                         ->first();
 
-                    if ($existe) {
-                        continue;
-                    }
+                    if ($existe) continue;
 
+                    /* ── GUARDAR HORARIO ── */
                     $horario = $this->Horarios->newEntity([
-                        'docente_id'  => $docente_id,
-                        'materia_id'  => $materia_id,
-                        'grupo_id'    => $grupo_id,
+                        'docente_id'  => $docente->id,
+                        'materia_id'  => $materia->id,
+                        'grupo_id'    => $grupo->id,
                         'aula_id'     => $aula->id,
-                        'dia_semana'  => (int)$horarioData['dia_semana'],
+                        'dia_semana'  => (int)$h['dia_semana'],
                         'hora_inicio' => $horaInicio,
                         'hora_fin'    => $horaFin,
                     ]);
 
                     if (!$this->Horarios->save($horario)) {
                         \Cake\Log\Log::error(
-                            "Horario no guardado — grupo=$grupo_id "
-                            . "dia={$horarioData['dia_semana']} "
-                            . "inicio=$horaInicio "
+                            "Horario no guardado — aula={$aula->id} "
+                            . "dia={$h['dia_semana']} inicio=$horaInicio "
                             . "errores=" . json_encode($horario->getErrors())
                         );
                     }
@@ -240,7 +208,7 @@ class HorariosController extends AppController
         /* =====================================================
         CONSULTA NORMAL DEL HORARIO
         ====================================================== */
-        $grupoId = $this->request->getQuery('grupo_id');
+        $aulaId = $this->request->getQuery('aula_id');
 
         $horario = $this->Horarios->newEntity();
 
@@ -267,8 +235,8 @@ class HorariosController extends AppController
         $query = $this->Horarios->find()
             ->contain(['Docentes', 'Materias', 'Grupos', 'Aulas']);
 
-        if (!empty($grupoId)) {
-            $query->where(['Horarios.grupo_id' => $grupoId]);
+        if (!empty($aulaId)) {
+            $query->where(['Horarios.aula_id' => $aulaId]);
         }
 
         $horarios = $query->all();
@@ -280,7 +248,7 @@ class HorariosController extends AppController
             'grupos',
             'aulas',
             'horarios',
-            'grupoId'
+            'aulaId'
         ));
     }
 
