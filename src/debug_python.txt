@@ -1,0 +1,12 @@
+CMD: "C:\Users\josue\anaconda3\python.exe" "C:\xampp\htdocs\ClassTrack\camaraView\horarioAutomatic.py" "C:\xampp\htdocs\ClassTrack\src\webroot\uploads\1774502275_horario grupo Enero 2026 ultima version (1).pdf" 2>&1
+
+RUTA PDF: C:\xampp\htdocs\ClassTrack\src\webroot\uploads\1774502275_horario grupo Enero 2026 ultima version (1).pdf
+
+PDF EXISTE: SI
+
+OUTPUT:
+'Traceback (most recent call last):
+  File "C:\\xampp\\htdocs\\ClassTrack\\camaraView\\horarioAutomatic.py", line 7, in <module>
+    import pdfplumber
+ModuleNotFoundError: No module named \'pdfplumber\'
+'

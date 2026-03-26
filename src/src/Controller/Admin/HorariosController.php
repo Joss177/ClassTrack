@@ -21,10 +21,12 @@ class HorariosController extends AppController
 
     public function index()
     {
+
         /* =====================================================
         SUBIR PDF Y PROCESAR CON PYTHON
         ====================================================== */
         if ($this->request->is('post')) {
+
 
             $archivo = $this->request->getData('archivoHorario');
 
@@ -58,6 +60,7 @@ class HorariosController extends AppController
             $script    = "C:\\xampp\\htdocs\\ClassTrack\\camaraView\\horarioAutomatic.py";
             $cmd       = "\"$python\" \"$script\" \"$ruta\" 2>&1";
             $resultado = shell_exec($cmd);
+
 
             if ($resultado === null) {
                 $this->Flash->error("Python no se ejecutó correctamente");
@@ -283,41 +286,56 @@ class HorariosController extends AppController
         return $this->redirect(['action' => 'index']);
     }
 
-    public function mover()
-    {
-        $this->request->allowMethod(['post']);
-        $this->autoRender = false;
+public function mover()
+{
+    $this->request->allowMethod(['post']);
+    $this->autoRender = false;
+    $this->response = $this->response->withType('application/json');
 
+    try {
         $data = $this->request->input('json_decode', true);
+
+        if (!isset($data['id'], $data['aula_id'], $data['dia_semana'], $data['hora_inicio'], $data['hora_fin'])) {
+            echo json_encode(['success' => false, 'error' => 'Datos incompletos']);
+            return;
+        }
 
         $horario = $this->Horarios->get($data['id']);
 
+        $horaIni = substr($data['hora_inicio'], 0, 5);
+        $horaFin = substr($data['hora_fin'],    0, 5);
+
+        // ✅ Sin and_() — compatible con CakePHP 3.8
         $existe = $this->Horarios->find()
             ->where([
-                'grupo_id' => $data['grupo_id'],
-                'dia_semana' => $data['dia_semana'],
-                'id !=' => $data['id'],
-                'hora_inicio <' => $data['hora_fin'],
-                'hora_fin >' => $data['hora_inicio']
+                'aula_id'       => $data['aula_id'],
+                'dia_semana'    => $data['dia_semana'],
+                'id !='         => $data['id'],
+                'hora_inicio <' => $horaFin,
+                'hora_fin >'    => $horaIni,
             ])
             ->count();
 
         if ($existe > 0) {
-            echo json_encode(['success' => false]);
+            echo json_encode(['success' => false, 'error' => 'Conflicto de horario']);
             return;
         }
 
-        $horario->grupo_id = $data['grupo_id'];
-        $horario->dia_semana = $data['dia_semana'];
-        $horario->hora_inicio = $data['hora_inicio'];
-        $horario->hora_fin = $data['hora_fin'];
+        $horario->aula_id     = $data['aula_id'];
+        $horario->dia_semana  = $data['dia_semana'];
+        $horario->hora_inicio = $horaIni;
+        $horario->hora_fin    = $horaFin;
 
         if ($this->Horarios->save($horario)) {
             echo json_encode(['success' => true]);
         } else {
-            echo json_encode(['success' => false]);
+            echo json_encode(['success' => false, 'error' => 'Error al guardar', 'errores' => $horario->getErrors()]);
         }
+
+    } catch (\Exception $e) {
+        echo json_encode(['success' => false, 'error' => $e->getMessage()]);
     }
+}
 
     public function delete($id = null)
     {
@@ -365,7 +383,6 @@ public function vaciarTodo()
         $this->loadModel('Materias');
         $this->loadModel('Docentes');
 
-        // 🔥 ORDEN CORRECTO
         $this->Horarios->deleteAll([]);
         $this->Grupos->deleteAll([]);
         $this->Materias->deleteAll([]);

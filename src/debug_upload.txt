@@ -1,0 +1,30 @@
+Array
+(
+    [post_data_keys] => Array
+        (
+            [0] => archivoHorario
+        )
+
+    [files] => Array
+        (
+            [archivoHorario] => Array
+                (
+                    [name] => horario grupo Enero 2026 ultima version (4).pdf
+                    [type] => application/pdf
+                    [tmp_name] => C:\xampp\tmp\php7025.tmp
+                    [error] => 0
+                    [size] => 1402963
+                )
+
+        )
+
+    [archivo_raw] => Array
+        (
+            [tmp_name] => C:\xampp\tmp\php7025.tmp
+            [error] => 0
+            [name] => horario grupo Enero 2026 ultima version (4).pdf
+            [type] => application/pdf
+            [size] => 1402963
+        )
+
+)

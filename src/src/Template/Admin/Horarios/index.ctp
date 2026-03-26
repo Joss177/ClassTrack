@@ -66,17 +66,6 @@ $aulaIdFiltro = $this->request->getQuery('aula_id');
             </div>
         <?= $this->Form->end() ?>
 
-        <?= $this->Form->create(null, [
-            'type'   => 'file',
-            'method' => 'post',
-            'url'    => [
-                'prefix'     => 'admin',
-                'controller' => 'Horarios',
-                'action'     => 'index'
-            ],
-            'id' => 'formHorario'
-        ]) ?>
-
         <div class="botones">
             <button type="button" class="btn-primary" onclick="abrirModalEliminar()">
                 Vaciar Horarios
@@ -88,14 +77,6 @@ $aulaIdFiltro = $this->request->getQuery('aula_id');
                 Agregar Horario Manual
             </button>
         </div>
-
-        <?= $this->Form->file('archivoHorario', [
-            'id'     => 'archivoHorario',
-            'accept' => '.pdf',
-            'style'  => 'display:none'
-        ]) ?>
-
-        <?= $this->Form->end() ?>
 
     </div>
 
@@ -131,7 +112,7 @@ $aulaIdFiltro = $this->request->getQuery('aula_id');
 
                     <?php for ($dia = 1; $dia <= 5; $dia++): ?>
                         <div class="cell"
-                            data-grupo="<?= $grupoId ?>"
+                            data-aula="<?= $aulaId ?>"
                             data-dia="<?= $dia ?>"
                             data-hora="<?= $bloque['inicio'] ?>">
 
@@ -364,6 +345,22 @@ $aulaIdFiltro = $this->request->getQuery('aula_id');
     </div>
 </div>
 
+<?= $this->Form->create(null, [
+    'type'   => 'file',
+    'method' => 'post',
+    'url'    => [
+        'prefix'     => 'admin',
+        'controller' => 'Horarios',
+        'action'     => 'index'
+    ],
+    'id' => 'formHorario'
+]) ?>
+<?= $this->Form->file('archivoHorario', [
+    'id'     => 'archivoHorario',
+    'accept' => '.pdf',
+    'style'  => 'display:none',
+]) ?>
+<?= $this->Form->end() ?>
 
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
 
@@ -400,17 +397,17 @@ document.addEventListener("DOMContentLoaded", function () {
                 const destino  = evt.to;
                 if (!destino) return;
 
-                const nuevoGrupo      = destino.dataset.grupo;
+                const nuevaAula       = destino.dataset.aula;
                 const nuevoDia        = destino.dataset.dia;
                 const nuevaHoraInicio = destino.dataset.hora;
 
-                if (!id || !nuevoGrupo || !nuevoDia || !nuevaHoraInicio) {
+                if (!id || !nuevaAula || !nuevoDia || !nuevaHoraInicio) {
                     console.error("Datos incompletos");
                     location.reload();
                     return;
                 }
 
-                moverHorario(id, nuevoGrupo, nuevoDia, nuevaHoraInicio, duracion);
+                moverHorario(id, nuevaAula, nuevoDia, nuevaHoraInicio, duracion);
             }
         });
     });
@@ -422,12 +419,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function minToHora(min) {
-        const h  = Math.floor(min / 60);
-        const m  = min % 60;
+        const h = Math.floor(min / 60);
+        const m = min % 60;
         return ("0" + h).slice(-2) + ":" + ("0" + m).slice(-2);
     }
 
-    function moverHorario(id, grupo, dia, horaInicio, duracion) {
+    function moverHorario(id, aula, dia, horaInicio, duracion) {
         const minInicio = horaToMin(horaInicio);
         const horaFin   = minToHora(minInicio + duracion);
 
@@ -438,26 +435,39 @@ document.addEventListener("DOMContentLoaded", function () {
                 "X-CSRF-Token": "<?= $this->request->getParam('_csrfToken') ?>"
             },
             body: JSON.stringify({
-                id:           id,
-                grupo_id:     grupo,
-                dia_semana:   dia,
-                hora_inicio:  horaInicio,
-                hora_fin:     horaFin
+                id:          id,
+                aula_id:     aula,
+                dia_semana:  dia,
+                hora_inicio: horaInicio,
+                hora_fin:    horaFin
             })
         })
         .then(function(res) {
-            if (!res.ok) throw new Error("Error HTTP");
+            if (!res.ok) {
+                return res.text().then(function(text) {
+                    throw new Error("HTTP " + res.status + ": " + text.substring(0, 200));
+                });
+            }
             return res.json();
         })
         .then(function(data) {
             if (!data.success) {
-                alert("Conflicto de horario");
+                alert("Error: " + (data.error ?? 'desconocido'));
                 location.reload();
+            } else {
+                // ✅ Actualizar horariosExistentes en memoria para evitar falsos conflictos
+                const idx = horariosExistentes.findIndex(h => h.id == id);
+                if (idx !== -1) {
+                    horariosExistentes[idx].aula_id     = aula;
+                    horariosExistentes[idx].dia_semana  = parseInt(dia);
+                    horariosExistentes[idx].hora_inicio = horaInicio + ':00';
+                    horariosExistentes[idx].hora_fin    = horaFin    + ':00';
+                }
             }
         })
         .catch(function(error) {
-            console.error(error);
-            alert("Error del servidor");
+            console.error("Error completo:", error.message);
+            alert("Error: " + error.message);
             location.reload();
         });
     }
