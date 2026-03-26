@@ -6,14 +6,10 @@
     <div class="header-camaras">
         <h1 class="title">Cámaras</h1>
 
-
-
         <button type="button" class="btn-agregar" onclick="abrirModalRegistro()">
             Agregar
         </button>
     </div>
-
-
 
     <div class="cards">
 
@@ -28,11 +24,9 @@
                     '<?= $cam->ultima_deteccion ? $cam->ultima_deteccion->format('H:i') : 'Sin registro' ?>'
                 )">
 
-
-
                 <div class="image-container">
 
-                    <?= $this->Html->image('testImg/captura.jpg?' . time(), ['alt' => h($cam->aula->nombre)]) ?>
+                    <?= $this->Html->image('testImg/fotocam.jpg?' . time(), ['alt' => h($cam->aula->nombre)]) ?>
 
                     <?php if ($cam->estado === 'activa'): ?>
                         <div class="live-badge">
@@ -112,7 +106,7 @@
             </div>
 
             <div class="modal-image">
-                <?= $this->Html->image('testImg/captura.jpg?' . time()) ?>
+                <?= $this->Html->image('testImg/fotocam.jpg?' . time()) ?>
                 <div class="time-badge" id="modalHora"></div>
             </div>
 
@@ -256,6 +250,8 @@ document.addEventListener('DOMContentLoaded', function() {
     /* =========================
        MODAL VISTA CÁMARA
     ========================== */
+    let modalInterval = null;
+
     window.openModal = function(aula, edificio, piso, estado, capacidad, deteccion) {
         document.getElementById('modalAula').innerText = aula;
         document.getElementById('modalUbicacion').innerText = edificio + ' - Piso ' + piso;
@@ -268,16 +264,29 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('modalCapacidad').innerText = capacidad;
         document.getElementById('modalNumero').innerText = aula;
 
-        // RECARGAR IMAGEN DE LA CÁMARA
-        const camImg = document.querySelector('#cameraModal .modal-image img');
-        camImg.src = '<?= $this->Url->build("/img/testImg/captura.jpg") ?>?t=' + new Date().getTime();
+        // Refresco continuo mientras el modal esté abierto
+        modalInterval = setInterval(function() {
+            const camImg = document.querySelector('#cameraModal .modal-image img');
+            camImg.src = '/img/testImg/fotocam.jpg?t=' + new Date().getTime();
+        }, 1000);
 
         document.getElementById('cameraModal').style.display = 'flex';
     };
 
     window.closeModal = function() {
+        clearInterval(modalInterval); // Detener refresco al cerrar
         document.getElementById('cameraModal').style.display = 'none';
     };
+
+
+    /* =========================
+       REFRESCO AUTOMÁTICO CARDS
+    ========================== */
+    setInterval(function() {
+        document.querySelectorAll('.image-container img').forEach(function(img) {
+            img.src = '/img/testImg/fotocam.jpg?t=' + new Date().getTime();
+        });
+    }, 1000);
 
 
     /* =========================
@@ -375,6 +384,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const modalEliminar = document.getElementById('modalEliminar');
 
         if (event.target === cameraModal) {
+            clearInterval(modalInterval);
             cameraModal.style.display = 'none';
         }
 
@@ -410,4 +420,3 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 </script>
-

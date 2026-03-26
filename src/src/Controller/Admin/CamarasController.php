@@ -31,83 +31,106 @@ class CamarasController extends AppController{
         $this->set(compact('camara', 'aulas', 'camaras'));
     }
 
-    public function add()
-    {
-        $camara = $this->Camaras->newEntity();
+public function add()
+{
+    $camara = $this->Camaras->newEntity();
 
-        if ($this->request->is('post')) {
+    if ($this->request->is('post')) {
 
-            $data = $this->request->getData();
+        $data = $this->request->getData();
 
-            // Verificar que el aula exista
-            $aula = $this->Camaras->Aulas->find()
-                ->where(['id' => $data['aula_id']])
-                ->first();
+        // Verificar que el aula exista
+        $aula = $this->Camaras->Aulas->find()
+            ->where(['id' => $data['aula_id']])
+            ->first();
 
-            if (!$aula) {
-                $this->Flash->error('El aula no existe.', ['key' => 'camara']);
-                return $this->redirect(['action' => 'index']);
+        if (!$aula) {
+            $this->Flash->error('El aula no existe.', ['key' => 'camara']);
+            return $this->redirect(['action' => 'index']);
+        }
+
+        // Verificar si ya existe cámara en esa aula
+        $existe = $this->Camaras->find()
+            ->where(['aula_id' => $data['aula_id']])
+            ->first();
+
+        if ($existe) {
+            $this->Flash->error('Ya existe una cámara registrada en esa aula.', ['key' => 'camara']);
+            return $this->redirect(['action' => 'index']);
+        }
+
+        // Forzar capacidad desde BD
+        $data['capacidad'] = $aula->capacidad;
+
+        $camara = $this->Camaras->patchEntity($camara, $data);
+
+        if ($this->Camaras->save($camara)) {
+
+            // Arrancar script si la cámara es activa
+            if ($camara->estado === 'activa') {
+                $pythonPath = 'C:\\Users\\josue\\anaconda3\\python.exe';
+                $scriptPath = 'C:\\xampp\\htdocs\\ClassTrack\\camaraView\\fotocam.py';
+                pclose(popen("cmd /c start /B \"\" \"$pythonPath\" \"$scriptPath\"", "r"));
             }
 
-            // 🔴 VALIDACIÓN: verificar si ya existe cámara en esa aula
+            $this->Flash->success('Cámara registrada correctamente.', ['key' => 'camara']);
+
+        } else {
+            $this->Flash->error('No se pudo registrar la cámara.', ['key' => 'camara']);
+        }
+    }
+
+    return $this->redirect(['action' => 'index']);
+}
+
+public function edit($id)
+{
+    $camara = $this->Camaras->get($id);
+
+    if ($this->request->is(['post', 'put', 'patch'])) {
+
+        $data = $this->request->getData();
+
+        // Si cambió de aula, verificar que no exista otra cámara ahí
+        if ($data['aula_id'] != $camara->aula_id) {
+
             $existe = $this->Camaras->find()
-                ->where(['aula_id' => $data['aula_id']])
+                ->where([
+                    'aula_id' => $data['aula_id']
+                ])
                 ->first();
 
             if ($existe) {
-                $this->Flash->error('Ya existe una cámara registrada en esa aula.', ['key' => 'camara']);
+                $this->Flash->error('Ya existe una cámara en esa aula.', ['key' => 'camara']);
                 return $this->redirect(['action' => 'index']);
             }
+        }
 
-            // Forzar capacidad desde BD
-            $data['capacidad'] = $aula->capacidad;
+        $camara = $this->Camaras->patchEntity($camara, $data);
 
-            $camara = $this->Camaras->patchEntity($camara, $data);
+        if ($this->Camaras->save($camara)) {
 
-            if ($this->Camaras->save($camara)) {
-                $this->Flash->success('Cámara registrada correctamente.', ['key' => 'camara']);
-            } else {
-                $this->Flash->error('No se pudo registrar la cámara.', ['key' => 'camara']);
+            // Detener Python si se inactiva o pone en mantenimiento
+            if ($camara->estado === 'inactiva' || $camara->estado === 'mantenimiento') {
+                shell_exec('taskkill /F /IM python.exe 2>&1');
             }
+
+            // Arrancar Python si se reactiva
+            if ($camara->estado === 'activa') {
+                $pythonPath = 'C:\\Users\\josue\\anaconda3\\python.exe';
+                $scriptPath = 'C:\\xampp\\htdocs\\ClassTrack\\camaraView\\fotocam.py';
+                pclose(popen("cmd /c start /B \"\" \"$pythonPath\" \"$scriptPath\"", "r"));
+            }
+
+            $this->Flash->success('Cámara actualizada correctamente.', ['key' => 'camara']);
+
+        } else {
+            $this->Flash->error('No se pudo actualizar la cámara.', ['key' => 'camara']);
         }
 
         return $this->redirect(['action' => 'index']);
     }
-
-    public function edit($id)
-    {
-        $camara = $this->Camaras->get($id);
-
-        if ($this->request->is(['post', 'put', 'patch'])) {
-
-            $data = $this->request->getData();
-
-            // 🔴 Si cambió de aula
-            if ($data['aula_id'] != $camara->aula_id) {
-
-                $existe = $this->Camaras->find()
-                    ->where([
-                        'aula_id' => $data['aula_id']
-                    ])
-                    ->first();
-
-                if ($existe) {
-                    $this->Flash->error('Ya existe una cámara en esa aula.', ['key' => 'camara']);
-                    return $this->redirect(['action' => 'index']);
-                }
-            }
-
-            $camara = $this->Camaras->patchEntity($camara, $data);
-
-            if ($this->Camaras->save($camara)) {
-                $this->Flash->success('Cámara actualizada correctamente.', ['key' => 'camara']);
-            } else {
-                $this->Flash->error('No se pudo actualizar la cámara.', ['key' => 'camara']);
-            }
-
-            return $this->redirect(['action' => 'index']);
-        }
-    }
+}
 
     public function delete($id)
     {
