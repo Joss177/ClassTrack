@@ -2,7 +2,7 @@
 namespace App\Controller\Admin;
 
 use App\Controller\AppController;
-
+use Cake\Datasource\ConnectionManager;
 class HorariosController extends AppController
 {
     public function initialize()
@@ -352,4 +352,34 @@ class HorariosController extends AppController
     }
 
 
+
+public function vaciarTodo()
+{
+    $this->request->allowMethod(['post']);
+
+    try {
+
+        $this->loadModel('Horarios');
+        $this->loadModel('Aulas');
+        $this->loadModel('Grupos');
+        $this->loadModel('Materias');
+        $this->loadModel('Docentes');
+
+        // 🔥 ORDEN CORRECTO
+        $this->Horarios->deleteAll([]);
+        $this->Grupos->deleteAll([]);
+        $this->Materias->deleteAll([]);
+        $this->Docentes->deleteAll([]);
+        $this->Aulas->deleteAll([]);
+
+        $this->Flash->success('Todos los datos fueron eliminados.');
+
+    } catch (\Exception $e) {
+
+        debug($e->getMessage());
+        die();
+    }
+
+    return $this->redirect($this->referer());
+}
 }

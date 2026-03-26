@@ -1,4 +1,5 @@
 <?= $this->Html->css('horario', ['block' => true]) ?>
+<?= $this->Html->css('Gestion', ['block' => true]) ?>
 
 <?php
 // BLOQUES EXACTOS DEL DÍA
@@ -77,6 +78,9 @@ $aulaIdFiltro = $this->request->getQuery('aula_id');
         ]) ?>
 
         <div class="botones">
+            <button type="button" class="btn-primary" onclick="abrirModalEliminar()">
+                Vaciar Horarios
+            </button>
             <button type="button" class="btn-primary" onclick="abrirBuscador()">
                 Subir Horario
             </button>
@@ -326,6 +330,40 @@ $aulaIdFiltro = $this->request->getQuery('aula_id');
     </div>
 </div>
 
+<!-- MODAL ELIMINAR -->
+<div class="modal-overlay" id="modalEliminarAula">
+    <div class="modal-confirm">
+
+        <?= $this->Form->create(null, [
+            'id' => 'formEliminarAula',
+            'url' => [
+                'prefix' => 'admin',
+                'controller' => 'Horarios',
+                'action' => 'vaciarTodo'
+            ]
+        ]) ?>
+
+        <div class="modal-header">
+            <h3>Confirmar Eliminación</h3>
+        </div>
+
+        <div class="modal-body">
+            <p>
+                ¿Estás seguro de que deseas eliminar el horario?
+                Esta acción no se puede deshacer.
+            </p>
+        </div>
+
+        <div class="modal-actions">
+            <button type="button" class="btn-cancelar" onclick="cerrarModalEliminar()">Cancelar</button>
+            <button type="submit" class="btn-danger">Eliminar</button>
+        </div>
+
+        <?= $this->Form->end() ?>
+
+    </div>
+</div>
+
 
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
 
@@ -569,6 +607,21 @@ function nombreDia(num) {
 
 
 <script>
+
+// ===== ELIMINAR =====
+    function abrirModalEliminar(id) {
+
+        // Construir URL correctamente con ID
+        var urlEliminar = "<?= $this->Url->build(['prefix' => 'admin', 'controller' => 'Horarios', 'action' => 'vaciarTodo']) ?>/" + id;
+        document.getElementById("formEliminarAula").action = urlEliminar;
+
+        document.getElementById("modalEliminarAula").style.display = "flex";
+    }
+
+    function cerrarModalEliminar() {
+        document.getElementById("modalEliminarAula").style.display = "none";
+    }
+
 function openModal() {
     document.getElementById('modalAgregar').style.display = 'flex';
 }
@@ -580,9 +633,11 @@ function closeModal() {
 window.onclick = function(e) {
     const modalAgregar = document.getElementById("modalAgregar");
     const modalDetalle = document.getElementById("modalHorario");
+     const modalEliminar = document.getElementById("modalEliminarAula");
 
     if (e.target === modalAgregar) modalAgregar.style.display = "none";
     if (e.target === modalDetalle) modalDetalle.style.display = "none";
+    if (e.target === modalEliminar) modalEliminar.style.display = "none";
 };
 
 document.addEventListener("DOMContentLoaded", function () {
